@@ -1,80 +1,80 @@
 *
 {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 html,body
 {
-    height: 100%;
-    overflow: hidden;
+  height: 100%;
+  overflow: hidden;
 }
 body
 {
-     background-image: url(pic/B.png);
-     background-repeat: no-repeat;
-     background-attachment: fixed;
-     background-position: center;
-     background-size: cover;     
+  background-image: url(pic/B.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;     
 
 }
 header
 {
-    border-style: solid;
-    border-width: 5px;
-    height: 200px;
+  border-style: solid;
+  border-width: 5px;
+  height: 200px;
 }
 .topic
 {
-    display: inline-block;
-    position: relative;
-    border-style: solid;
-    border-width: 5px;
-    width: 60%;
-    height: 80px;    
-    text-align:center;
-    top: 20%;
-    left: 20%;
-    background-color: #bfb7b775;
+  display: inline-block;
+  position: relative;
+  border-style: solid;
+  border-width: 5px;
+  width: 60%;
+  height: 80px;    
+  text-align:center;
+  top: 20%;
+  left: 20%;
+  background-color: #bfb7b775;
 }
 .sideleft
 {
-    position: relative;
-    /*border-style: solid;
-    border-width: 5px;*/
-    width: 10%;
-    height: 70%;       
-    padding: 0px;
-    text-align:center;
-    float: left;
-    top:10%;
-    line-height: 40px;
-    background-color: #bfb7b775;
+  position: relative;
+  /*border-style: solid;
+  border-width: 5px;*/
+width: 10%;
+height: 70%;       
+padding: 0px;
+text-align:center;
+float: left;
+top:10%;
+line-height: 40px;
+background-color: #bfb7b775;
 }
 
 .sideright
 {
-    position: relative;
-    /*border-style: solid;
-    border-width: 5px;*/
-    width: 10%;
-    height: 70%;      
-    padding: 0px;
-    text-align:center;
-    float: left;
-    top:20%;    
-    line-height: 40px;
-    background-color: #bfb7b775;
+  position: relative;
+  /*border-style: solid;
+  border-width: 5px;*/
+width: 10%;
+height: 70%;      
+padding: 0px;
+text-align:center;
+float: left;
+top:20%;    
+line-height: 40px;
+background-color: #bfb7b775;
 }
 .member
 {
-    display: inline-block;
-    position: relative;
-    border-style: solid;
-    border-width: 3px;
-    width: 8vw;
-    height: 8vw; 
-    background-color: #bfb7b775;
-    border-radius:50%;
+  display: inline-block;
+  position: relative;
+  border-style: solid;
+  border-width: 3px;
+  width: 8vw;
+  height: 8vw; 
+  background-color: #bfb7b775;
+  border-radius:50%;
 }
 .liecat
 {
@@ -101,85 +101,113 @@ header
 }
 #f1
 {
-    position: absolute;
-    left: -110%;
-    bottom: -45%;
-    height: 450%;
-    transform: rotate(-10deg); 
-    z-index: -1;
-    /*
-    left: -55%;
-    */
+  position: absolute;
+  left: -110%;
+  bottom: -45%;
+  height: 450%;
+  transform: rotate(-10deg); 
+  z-index: -1;
+  /*
+  left: -55%;
+   */
 }
 #f2
 {
-    position: absolute;
-    left: -78%;
-    bottom: -25%;
-    height: 300%;
-    transform: rotate(-15deg);
-    z-index: -1;
-    /*
-    left: -23%;
-    */
+  position: absolute;
+  left: -78%;
+  bottom: -25%;
+  height: 300%;
+  transform: rotate(-15deg);
+  z-index: -1;
+  /*
+  left: -23%;
+   */
 }
 #f3
 {
-    position: absolute;
-    left: -110%;
-    bottom: -36%;
-    height: 385%;
-    transform: rotate(-10deg); 
-    z-index: -1;
-    /*
-    left: -46%;
-    */
+  position: absolute;
+  left: -110%;
+  bottom: -36%;
+  height: 385%;
+  transform: rotate(-10deg); 
+  z-index: -1;
+  /*
+  left: -46%;
+   */
 }
 #f4
 {
-    position: absolute;
-    left: -110%;
-    bottom: -44%;
-    height: 367%;
-    transform: rotate(-10deg); 
-    z-index: -1;
-    /*
-    left: -33%;
-    */
+  position: absolute;
+  left: -110%;
+  bottom: -44%;
+  height: 367%;
+  transform: rotate(-10deg); 
+  z-index: -1;
+  /*
+  left: -33%;
+   */
 }
 #f5
 {
-    position: absolute;
-    left: -110%;
-    bottom: -77%;
-    height: 376%;
-    transform: rotate(-10deg); 
-    z-index: -1;
-    /*
-    left: -22%;
-    */
+  position: absolute;
+  left: -110%;
+  bottom: -77%;
+  height: 376%;
+  transform: rotate(-10deg); 
+  z-index: -1;
+  /*
+  left: -22%;
+   */
 }
 #f6
 {
-    position: absolute;
-    left: -110%;
-    bottom: -58%;
-    height: 347%;
-    transform: rotate(-10deg); 
-    z-index: -1;
-    /*
-    left: -25%;
-    */
+  position: absolute;
+  left: -110%;
+  bottom: -58%;
+  height: 347%;
+  transform: rotate(-10deg); 
+  z-index: -1;
+  /*
+  left: -25%;
+   */
 }
 #f7
 {
-    position: absolute;
-    left: -110%;
-    bottom: -44%;
-    height: 376%;
-    transform: rotate(-3deg);
-    z-index: -1;
-    /*
-    left: -25%;
-    */
+  position: absolute;
+  left: -110%;
+  bottom: -44%;
+  height: 376%;
+  transform: rotate(-3deg);
+  z-index: -1;
+  /*
+  left: -25%;
+   */
 }
+
+.intro
+{
+  position:absolute;
+  left:25%;
+  top:10%;
+  height:220px;
+  width:540px;
+  border-radius:25px;
+  padding:20px;
+  background-color:#FFF5EE;
+  border-width:8px;
+  border-style:dotted;
+  border-color:#704214;
+  font-family:Microsoft JhengHei;
+  font-size:18px;
+  display:none;
+}
+
+.name{
+  font-size: 25px;
+  font-weight:bold;
+}
+
+.department{
+  font-size:20px;
+}
+
