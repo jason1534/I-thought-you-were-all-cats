@@ -1,6 +1,6 @@
 function same1()
 {
-        $(".liecat").stop().animate({left: '45%',bottom:'-29%'},500);
+        $(".liecat").stop().animate({left: '45%',bottom:'-29%'},1000);
         $(".liecat").stop().animate({opacity:'0.0'},250);
         $(".upcat").stop().animate({opacity:'1.0'},1000);
         $(".title").stop().animate({opacity:'0.0'},500);
@@ -19,34 +19,34 @@ $(document).ready(function(){
         $("#member1").hover(function(){		
                 same1();
                 $("#member1").animate({opacity:'1.0'},200);
-                $("#f1").animate({left: '-55%'},700);
+                $("#f1").animate({left: '-45%'},700);
                 $("#intro1").fadeIn(1000);
 
 	},function(){
                 $("#intro1").fadeOut("quick");
-                $("#f1").animate({left: '-110%'},500);
+                $("#f1").animate({left: '-140%'},500);
                 same2();
         });  
        
         $("#member2").hover(function(){		
                 same1();
                 $("#member2").animate({opacity:'1.0'},200);
-                $("#f2").animate({left: '-25%'},700);
+                $("#f2").animate({left: '-15%'},700);
                 $("#intro2").fadeIn(1000);
 	},function(){
                 $("#intro2").fadeOut("quick");
-                $("#f2").animate({left: '-78%'},500);
+                $("#f2").animate({left: '-108%'},500);
                 same2();
         });
         
         $("#member3").hover(function(){		
                 same1();
                 $("#member3").animate({opacity:'1.0'},200);
-                $("#f3").animate({left: '-46%'},700);
+                $("#f3").animate({left: '-36%'},700);
                 $("#intro3").fadeIn(1000);
 	},function(){
                 $("#intro3").fadeOut("quick");
-                $("#f3").animate({left: '-110%'},500);
+                $("#f3").animate({left: '-140%'},500);
                 same2();
         });  
         
@@ -57,7 +57,7 @@ $(document).ready(function(){
                 $("#intro4").fadeIn(1000);
 	},function(){
                 $("#intro4").fadeOut("quick");
-                $("#f4").animate({left: '-110%'},500);
+                $("#f4").animate({left: '-140%'},500);
                 same2();
         });  
        
@@ -68,7 +68,7 @@ $(document).ready(function(){
                 $("#intro5").fadeIn(1000);
 	},function(){
                 $("#intro5").fadeOut("quick");
-                $("#f5").animate({left: '-110%'},500);
+                $("#f5").animate({left: '-140%'},500);
                 same2();
         });  
         
@@ -79,7 +79,7 @@ $(document).ready(function(){
                 $("#intro6").fadeIn(1000);
 	},function(){
                 $("#intro6").fadeOut("quick");
-                $("#f6").animate({left: '-110%'},500);
+                $("#f6").animate({left: '-140%'},500);
                 same2();
         });  
         
@@ -90,7 +90,7 @@ $(document).ready(function(){
                 $("#intro7").fadeIn(1000);
 	},function(){
                 $("#intro7").fadeOut("quick");
-                $("#f7").animate({left: '-110%'},500);
+                $("#f7").animate({left: '-140%'},500);
                 same2();
         });
         $("#member8").hover(function(){		
