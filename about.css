@@ -41,14 +41,14 @@ header
   position: relative;
   /*border-style: solid;
   border-width: 5px;*/
-width: 10%;
-height: 70%;       
-padding: 0px;
-text-align:center;
-float: left;
-top:10%;
-line-height: 40px;
-background-color: #bfb7b775;
+  width: 10%;
+  height: 70%;       
+  padding: 0px;
+  text-align:center;
+  float: left;
+  top:10%;
+  line-height: 40px;
+  /*background-color: #bfb7b775;*/
 }
 
 .sideright
@@ -56,14 +56,14 @@ background-color: #bfb7b775;
   position: relative;
   /*border-style: solid;
   border-width: 5px;*/
-width: 10%;
-height: 70%;      
-padding: 0px;
-text-align:center;
-float: left;
-top:20%;    
-line-height: 40px;
-background-color: #bfb7b775;
+  width: 10%;
+  height: 70%;      
+  padding: 0px;
+  text-align:center;
+  float: left;
+  top:20%;    
+  line-height: 40px;
+  /*background-color: #bfb7b775;*/
 }
 .member
 {
@@ -103,7 +103,7 @@ background-color: #bfb7b775;
 {
   position: absolute;
   left: -110%;
-  bottom: -45%;
+  bottom: -40%;
   height: 450%;
   transform: rotate(-10deg); 
   z-index: -1;
@@ -115,7 +115,7 @@ background-color: #bfb7b775;
 {
   position: absolute;
   left: -78%;
-  bottom: -25%;
+  bottom: -20%;
   height: 300%;
   transform: rotate(-15deg);
   z-index: -1;
@@ -151,7 +151,7 @@ background-color: #bfb7b775;
 {
   position: absolute;
   left: -110%;
-  bottom: -77%;
+  bottom: -72%;
   height: 376%;
   transform: rotate(-10deg); 
   z-index: -1;
@@ -163,7 +163,7 @@ background-color: #bfb7b775;
 {
   position: absolute;
   left: -110%;
-  bottom: -58%;
+  bottom: -53%;
   height: 347%;
   transform: rotate(-10deg); 
   z-index: -1;
@@ -175,7 +175,7 @@ background-color: #bfb7b775;
 {
   position: absolute;
   left: -110%;
-  bottom: -44%;
+  bottom: -40%;
   height: 376%;
   transform: rotate(-3deg);
   z-index: -1;
@@ -210,4 +210,67 @@ background-color: #bfb7b775;
 .department{
   font-size:20px;
 }
+#member1
+{
+  background-image: url(N/P01.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+#member2
+{
+  background-image: url(N/P02.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#member3
+{
+  background-image: url(N/P03.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#member4
+{
+  background-image: url(N/P04.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#member5
+{
+  background-image: url(N/P05.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#member6
+{
+  background-image: url(N/P06.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#member7
+{
+  background-image: url(N/P07.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#member8
+{
+  background-image: url(pic/T01.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 
