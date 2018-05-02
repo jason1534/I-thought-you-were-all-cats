@@ -1,97 +1,68 @@
-function same1()
+function same1($member,$f,$intro,$right)
 {
-        $(".liecat").stop().animate({left: '45%',bottom:'-29%'},1000);
-        $(".liecat").stop().animate({opacity:'0.0'},250);
-        $(".upcat").stop().animate({opacity:'1.0'},1000);
-        $(".title").stop().animate({opacity:'0.0'},500);
-        $(".member").stop().animate({opacity:'0.3'},200);
+        $(".liecat").stop().animate({left: '45%',bottom:'-29%'},700);
+        $(".liecat").animate({opacity:'0.0'},250);
+        $(".upcat").animate({opacity:'1.0'},1000);
+        $(".title").animate({opacity:'0.0'},500);
+        $(".member").animate({opacity:'0.3'},200);
+        
+        $($member).animate({opacity:'1.0'},200);
+        $($f).animate({left: $right},700);
+        $($intro).fadeIn(1000);
 }
-function same2()
+function same2($intro,$f,$left)
 {
+        $($intro).fadeOut("quick");
+        $($f).animate({left: $left},500);
+
         $(".member").animate({opacity:'1.0'},200);
         $(".liecat").animate({opacity:'1.0'},10);
         $(".upcat").animate({opacity:'0.0'},50);
 	$(".liecat").animate({left: '24%',bottom:'-20%'});
         $(".title").animate({opacity:'1.0'},500);
 }
- 
-$(document).ready(function(){	
-        $("#member1").hover(function(){		
-                same1();
-                $("#member1").animate({opacity:'1.0'},200);
-                $("#f1").animate({left: '-45%'},700);
-                $("#intro1").fadeIn(1000);
 
+/*$(document).ready(function(){	
+        $("#member1").hover(function(){		
+                same1("#member1","#f1","#intro1",'-45%');
 	},function(){
-                $("#intro1").fadeOut("quick");
-                $("#f1").animate({left: '-140%'},500);
-                same2();
+                same2("#intro1","#f1",'-140%');
         });  
        
         $("#member2").hover(function(){		
-                same1();
-                $("#member2").animate({opacity:'1.0'},200);
-                $("#f2").animate({left: '-15%'},700);
-                $("#intro2").fadeIn(1000);
+                same1("#member2","#f2","#intro2",'-15%');
 	},function(){
-                $("#intro2").fadeOut("quick");
-                $("#f2").animate({left: '-108%'},500);
-                same2();
+                same2("#intro2","#f2",'-108%');
         });
         
         $("#member3").hover(function(){		
-                same1();
-                $("#member3").animate({opacity:'1.0'},200);
-                $("#f3").animate({left: '-36%'},700);
-                $("#intro3").fadeIn(1000);
+                same1("#member3","#f3","#intro3",'-36%');
 	},function(){
-                $("#intro3").fadeOut("quick");
-                $("#f3").animate({left: '-140%'},500);
-                same2();
+                same2("#intro3","#f3",'-140%');
         });  
         
         $("#member4").hover(function(){		
-                same1();
-                $("#member4").animate({opacity:'1.0'},200);
-                $("#f4").animate({left: '-30%'},700);
-                $("#intro4").fadeIn(1000);
+                same1("#member4","#f4","#intro4",'-30%');
 	},function(){
-                $("#intro4").fadeOut("quick");
-                $("#f4").animate({left: '-140%'},500);
-                same2();
+                same2("#intro4","#f4",'-140%');
         });  
        
         $("#member5").hover(function(){		
-                same1();
-                $("#member5").animate({opacity:'1.0'},200);
-                $("#f5").animate({left: '-22%'},700);
-                $("#intro5").fadeIn(1000);
+                same1("#member5","#f5","#intro5",'-22%');
 	},function(){
-                $("#intro5").fadeOut("quick");
-                $("#f5").animate({left: '-140%'},500);
-                same2();
+                same2("#intro5","#f5",'-140%');
         });  
         
         $("#member6").hover(function(){		
-                same1();
-                $("#member6").animate({opacity:'1.0'},200);
-                $("#f6").animate({left: '-25%'},700);
-                $("#intro6").fadeIn(1000);
+                same1("#member6","#f6","#intro6",'-25%');
 	},function(){
-                $("#intro6").fadeOut("quick");
-                $("#f6").animate({left: '-140%'},500);
-                same2();
+                same2("#intro6","#f6",'-140%');
         });  
         
         $("#member7").hover(function(){		
-                same1();
-                $("#member7").animate({opacity:'1.0'},200);
-                $("#f7").animate({left: '-25%'},700);
-                $("#intro7").fadeIn(1000);
+                same1("#member7","#f7","#intro7",'-25%');
 	},function(){
-                $("#intro7").fadeOut("quick");
-                $("#f7").animate({left: '-140%'},500);
-                same2();
+                same2("#intro7","#f7",'-140%');
         });
         $("#member8").hover(function(){		
                 same1();
@@ -102,4 +73,72 @@ $(document).ready(function(){
                 same2();
         });         
        
+});*/
+
+$(document).ready(function(){
+  $("#member1").hover(function(){
+    $.doTimeout('hover',400,function(){same1("#member1","#f1","#intro1",'-45%');},'hover');
+        }
+  ,function(){
+        same2("#intro1","#f1",'-140%');
+  });
+
+  $("#member2").hover(function(){
+    $.doTimeout('hover',400,function(){same1("#member2","#f2","#intro2",'-15%');},'hover');
+        }
+  ,function(){
+         same2("#intro2","#f2",'-108%',);
+  });
+
+  $("#member3")
+  .hover(function(){
+    $.doTimeout('hover',400,function(){same1("#member3","#f3","#intro3",'-36%');},'hover');
+        }
+  ,function(){
+       same2("#intro3","#f3",'-140%');
+  });
+
+  $("#member4")
+  .hover(function(){
+    $.doTimeout('hover',400,function(){same1("#member4","#f4","#intro4",'-30%');},'hover');
+        }
+  ,function(){
+        same2("#intro4","#f4",'-140%');
+  });
+
+  $("#member5")
+  .hover(function(){
+    $.doTimeout('hover',400,function(){same1("#member5","#f5","#intro5",'-22%');},'hover');
+        }
+  ,function(){
+        same2("#intro5","#f5",'-140%');
+  });
+
+  $("#member6")
+  .hover(function(){
+    $.doTimeout('hover',400,function(){same1("#member6","#f6","#intro6",'-25%');},'hover');
+        }
+  ,function(){
+       same2("#intro6","#f6",'-140%');
+  });
+
+  $("#member7")
+  .hover(function(){
+    $.doTimeout('hover',400,function(){same1("#member7","#f7","#intro7",'-25%');},'hover');
+        }
+  ,function(){
+        same2("#intro7","#f7",'-140%');
+  });
+
+  $("#member8")
+  .hover(function(){
+    $.doTimeout('hover',400,function(){same1();
+        $("#member8").animate({opacity:'1.0'},200);
+        $("#intro8").fadeIn(1000);},'hover');
+        }
+  ,function(){
+        $("#intro8").fadeOut("quick");
+        same2();
+  }); 
+
 });
