@@ -187,17 +187,18 @@ header
 .intro
 {
   position:absolute;
-  left:27%;
-  top:25%;
-  height:250px;
-  width:600px;
+  left:25%;
+  top:10%;
+  height:220px;
+  width:540px;
   border-radius:25px;
   padding:20px;
-  background-color:#231815;
-  opacity:0.9;
-  color:white;
+  background-color:#FFF5EE;
+  border-width:8px;
+  border-style:dotted;
+  border-color:#704214;
   font-family:Microsoft JhengHei;
-  font-size:20px;
+  font-size:18px;
   display:none;
 }
 
