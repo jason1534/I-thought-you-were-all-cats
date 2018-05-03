@@ -187,28 +187,28 @@ header
 .intro
 {
   position:absolute;
-  left:25%;
-  top:10%;
-  height:220px;
-  width:540px;
+  left:25vw;
+  top:20vh;
+  height:20vw;
+  width:47vw;
   border-radius:25px;
-  padding:20px;
+  padding:1.5vw;
   background-color:#FFF5EE;
-  border-width:8px;
+  border-width:0.7vw;
   border-style:dotted;
   border-color:#704214;
   font-family:Microsoft JhengHei;
-  font-size:18px;
+  font-size:1.5vw;
   display:none;
 }
 
 .name{
-  font-size: 25px;
+  font-size: 3vw;
   font-weight:bold;
 }
 
 .department{
-  font-size:20px;
+  font-size:2vw;
 }
 #member1
 {
