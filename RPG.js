@@ -1,27 +1,36 @@
-var roleplayer=getById("txName").value;         //若使用者沒修改，就是預設的名稱：永馨
+var roleplayer=getById("txName").value;         //若使用者沒修改，就是預設的名稱：張天豪
 var initArr=new Array("lbName","txName","btnStart","scene_init");
 var plotArr=new Array("character","convers","sensor","scene_plot");
 var scene=0;                                    //現在是哪個場景
+
 //這個陣列是用來對應每個角色的不同個性的圖檔，就不用記檔名了
 var player=[];
 player["I"]={normal: "I",happy: "IHappy",sad: "ISad",confused: "IConfuse", urgent: "IUrgent", end: "IEnd"};
 player["Jen"]={normal: "Jen",happy: "JenHappy",sad: "JenSad", end: "JenEnd"};
 player["her"]={normal: "her",happy: "herHappy",sad: "herSad", end: "herEnd"};
+
 //這個陣列儲存每個場景的人物是哪個圖檔(統一jpg檔所以只要存檔名不用附檔名)
 var charArr=new Array(player["I"].confused,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,player["I"].normal,player["Jen"].normal,player["Jen"].normal);
+
 //這個陣列儲存每個場景是否可以按下一頁(換到下個對話或動作),若是數字則跳到抉擇陣列的部分
 var cntiArr=new Array(true,true,true,true,true,true,true,true,false,0,true,true);
+
 //這個陣列儲存每個場景的背景
 var bgArr=new Array("house","house","house","house","house","house","house","house","house","house","house","house");
+
 //這個陣列是儲存抉擇的部分
 var choice=[];
 choice[0]=new Array("走吧！","離家出走這樣不好吧...");
+
 //這個陣列儲存每個場景人物的對話
 var convArr=[];
+
 //簡寫各個元件
 var character=getById("character"), plot=getById("scene_plot"), conv=getById("convers"), sensor=getById("sensor"), select1=getById("select1"), select2=getById("select2");
+
 //一開始將其他場景隱藏
 hideArr(plotArr);
+
 //一開始將抉擇隱藏
 hideChoice();
 
@@ -44,6 +53,10 @@ sensor.onclick=function(){
             character.style.background="url(pic/"+charArr[scene]+".jpg)";
             conv.innerHTML=convArr[scene];
             plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+            plot.style.backgroundRepeat="no-repeat";
+            plot.style.backgroundAttachment="fixed";
+            plot.style.backgroundPosition="center";
+            plot.style.backgroundSize="cover";
         }
     }else{
         //會需要抉擇的場景
@@ -72,6 +85,10 @@ sensor.onclick=function(){
                     character.style.background="url(pic/"+charArr[scene]+".jpg)";
                     conv.innerHTML=convArr[scene];
                     plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
                     hideChoice();
                 }
             }
@@ -81,12 +98,20 @@ sensor.onclick=function(){
                     character.style.background="url(pic/"+charArr[scene]+".jpg)";
                     conv.innerHTML=convArr[scene];
                     plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
                     hideChoice();
                     show(sensor);
                     fireClick(sensor);
                 }
             }
             plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+            plot.style.backgroundRepeat="no-repeat";
+            plot.style.backgroundAttachment="fixed";
+            plot.style.backgroundPosition="center";
+            plot.style.backgroundSize="cover";
         }
     }
 }

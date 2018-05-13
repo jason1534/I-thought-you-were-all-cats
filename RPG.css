@@ -7,8 +7,11 @@
     z-index: -1000;
 }
 #scene_init{
-    background-size: cover;
     background:url(pic/B.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;    
 }
 #lbName{
     position: absolute;
@@ -45,7 +48,11 @@ div{
     cursor:default;
 }
 #scene_plot{
-    background:url(pic/B.png);
+    background:url(pic/house.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover; 
 }
 #character{
     position: absolute;
@@ -53,7 +60,7 @@ div{
     top:220px;
     width: 108px;
     height: 110px;
-    background:url(pic/I.png);
+    background:url(pic/I.jpg);
 }
 #convers{
     position: absolute;
@@ -68,7 +75,14 @@ div{
 #sensor{
     z-index:1000;   /* sensor類似於背景，但是變成全景點選，因此要改在最前面 */
 }
-#select1,#select2{ cursor: pointer; background-color:green; font-size:24px; position:absolute; left: 150px; z-index: 1500; }
+#select1,#select2{ 
+    cursor: pointer; 
+    background-color:red; 
+    font-size:24px; 
+    position:absolute; 
+    left: 150px; 
+    z-index: 1500; 
+}
 #select1{
     top: 240px;
 }
