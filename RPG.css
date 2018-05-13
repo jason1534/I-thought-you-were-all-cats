@@ -1,3 +1,4 @@
+/*背景*/
 .bg{
     position: absolute;
     left:0px;
@@ -6,6 +7,7 @@
     height: 740px;
     z-index: -1000;
 }
+/*初始畫面*/
 #scene_init{
     background:url(pic/B.png);
     background-repeat: no-repeat;
@@ -47,6 +49,8 @@ div{
                                     not supported by any browser */
     cursor:default;
 }
+
+/*故事背景圖*/
 #scene_plot{
     background:url(pic/house.jpg);
     background-repeat: no-repeat;
@@ -54,6 +58,8 @@ div{
     background-position: center;
     background-size: cover; 
 }
+
+/*角色圖*/
 #character{
     position: absolute;
     left:10px;
@@ -72,9 +78,12 @@ div{
     padding:10px;
     font-size:18px;
 }
+
 #sensor{
     z-index:1000;   /* sensor類似於背景，但是變成全景點選，因此要改在最前面 */
 }
+
+/*選項*/
 #select1,#select2{ 
     cursor: pointer; 
     background-color:red; 
