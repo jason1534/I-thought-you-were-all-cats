@@ -1,5 +1,5 @@
 var roleplayer=getById("txName").value;         //若使用者沒修改，就是預設的名稱：張天豪
-var initArr=new Array("lbName","txName","btnStart","scene_init");
+var initArr=new Array("lbName","txName","btnStart","scene_init","cat","topic");
 var plotArr=new Array("character","convers","sensor","scene_plot");
 var scene=0;                                    //現在是哪個場景
 
@@ -55,7 +55,7 @@ sensor.onclick=function(){
         roleplayer+"：不要把朕跟那些阿宅相並論，鏟屎官說過朕就是至高無上的皇帝",
         "野貓：哈哈哈他說什麼你都信?就是受不了你們這些家貓，一個個嬌生慣養又都是中二病末期，來來來！敢不敢跟哥出去長長眼界阿，哥帶你去吃吃到飽歐",
         roleplayer+"：吃…吃到飽！？仔細想想朕的確是應該巡視巡視自己的土地...好！就任命你帶路吧！我倒要看看市井小民們平常的生活有多精彩",
-        false,"野貓:好好好~跟著哥包準你有糖吃~","野貓:走啦！跟著貓哥幹，肯定難波萬！");
+        false,"野貓：好好好~跟著哥包準你有糖吃~","野貓：走啦！跟著貓哥幹，肯定難波萬！");
     //對話改在這裡
 
     if(cntiArr[scene]){
@@ -151,7 +151,7 @@ function show(elem){
     elem.style.display="block";
 }
 function hideConv(){
-    conv.innerHTML="";
+    conv.innerHTML="......";
     hide(sensor);
 }
 function hideChoice(){
