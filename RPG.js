@@ -1,5 +1,5 @@
 var roleplayer=getById("txName").value;         //若使用者沒修改，就是預設的名稱：張天豪
-var initArr=new Array("lbName","txName","btnStart","scene_init","cat","topic");
+var initArr=new Array("lbName","txName","btnStart","scene_init","cat","topic","aboutus");
 var plotArr=new Array("character","convers","sensor","scene_plot");
 var scene=0;                                    //現在是哪個場景
 

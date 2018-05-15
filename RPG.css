@@ -34,6 +34,12 @@ body,html{
     height: 400px;
     z-index: 1000;
 }
+#aboutus{
+    position: absolute;
+    right:10px;
+    top:0px;
+    z-index: 1000;
+}
 #lbName{
     position: absolute;
     left:70px;
@@ -90,7 +96,7 @@ div{
 #convers{
     position: absolute;
     left:0px;
-    top:500px;
+    bottom:0px;
     width: 99%;
     height: 90px;
     border-radius:25px;
