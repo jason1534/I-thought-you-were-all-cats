@@ -132,3 +132,9 @@ div{
 #select2{
     top: 280px;
 }
+/*離開物件測試*/
+#leave{
+    position: absolute;
+    top:20px;
+    right:20px;
+}

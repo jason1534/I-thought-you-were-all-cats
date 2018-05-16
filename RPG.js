@@ -41,6 +41,7 @@ getById("btnStart").onclick=function(){
     //場景是由背景圖、人物框、對話框組成
     hideArr(initArr);       //先關閉按下開始的畫面
     showArr(plotArr);
+    hide(leave);
 }
 /*************************************這邊處理劇情部分***********************************/
 sensor.onclick=function(){
@@ -101,6 +102,7 @@ sensor.onclick=function(){
                     plot.style.backgroundPosition="center";
                     plot.style.backgroundSize="cover";
                     hideChoice();
+                    show(leave);
                 }
             }
             select2.onclick=function(){
