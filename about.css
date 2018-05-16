@@ -81,23 +81,26 @@ header
   position: absolute;
   left: 24%;
   bottom: -20%;
-  height: 730px;
+  height: 40vw;
   opacity:1.0;
+  z-index:1;
 }
 .title
 {
   position: absolute;
-  left: 43%;
+  left: 40%;
   bottom: -0%;
-  height: 400px;
+  height: 20vw;
+  z-index:2;
 }
 .upcat
 {
   position: absolute;
   left: 49.1%;
   bottom: -20%;
-  height: 730px;
+  height: 40vw;
   opacity:0.0;
+  z-index:1;
 }
 #f1
 {
@@ -187,27 +190,27 @@ header
 .intro
 {
   position:absolute;
-  left:27%;
-  top:25%;
-  height:250px;
-  width:600px;
+  left:25vw;
+  top:20vh;
+  height:31vh;
+  width:42vw;
   border-radius:25px;
-  padding:20px;
+  padding:1.5vw;
   background-color:#231815;
   opacity:0.9;
   color:white;
   font-family:Microsoft JhengHei;
-  font-size:20px;
+  font-size:1vw;
   display:none;
 }
 
 .name{
-  font-size: 25px;
+  font-size: 2vw;
   font-weight:bold;
 }
 
 .department{
-  font-size:20px;
+  font-size:1.5vw;
 }
 #member1
 {
