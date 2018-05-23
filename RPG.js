@@ -12,6 +12,9 @@ player["her"]={normal: "her",happy: "herHappy",sad: "herSad", end: "herEnd"};
 //這個陣列儲存每個場景的人物是哪個圖檔(統一jpg檔所以只要存檔名不用附檔名)
 var charArr=new Array(player["I"].confused,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,player["I"].normal,player["Jen"].normal,player["Jen"].normal);
 
+//角色圖片位置更改
+var charposArr =new Array(0,1,0,1,0,1,0,1,0,0,1,1);
+
 //這個陣列儲存每個場景是否可以按下一頁(換到下個對話或動作),若是數字則跳到抉擇陣列的部分
 var cntiArr=new Array(true,true,true,true,true,true,true,true,false,0,true,true);
 
@@ -62,7 +65,8 @@ sensor.onclick=function(){
     if(cntiArr[scene]){
         if((scene+1)<charArr.length){           //以防練習時出錯(超出陣列範圍)
             scene++;
-            character.style.background="url(pic/"+charArr[scene]+".jpg)";
+            //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+            characterposition();
             conv.innerHTML=convArr[scene];
             plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
             plot.style.backgroundRepeat="no-repeat";
@@ -159,6 +163,22 @@ function hideConv(){
 function hideChoice(){
     hide(select1);
     hide(select2);
+}
+
+function characterposition(){
+	if(charposArr[scene]==0){
+		character.style.background="url(pic/"+charArr[scene]+".jpg)";
+		character.style.left="20px";
+		character.style.top="220px";
+		character.style.width="123px";
+		character.style.height="110px";
+	}else{
+		character.style.background="url(pic/"+charArr[scene]+".jpg)";
+		character.style.left="600px";
+		character.style.top="220px";
+		character.style.width="123px";
+		character.style.height="110px";
+	}
 }
 //觸發點擊事件的方法
 function fireClick(node){
