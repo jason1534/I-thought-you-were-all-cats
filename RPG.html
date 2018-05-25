@@ -6,6 +6,41 @@
 <link rel="stylesheet" type="text/css" media="screen" href="RPG.css"/>
 </head>
 <body>
+<!-- FB initial -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '777531655774612',
+      xfbml      : true,
+      version    : 'v3.0'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+    document.getElementById('login_status').addEventListener('load', func);
+    function func() {
+      FB.getLoginStatus(function(response) {
+        console.log(response);
+        if (response.status === 'connected') { 
+          FB.api('/me', function(response) {
+            document.getElementById('login_status').innerHTML = "logged in as " + response.name;
+            console.log('logged in as ' + response.name);
+          });
+        } else {
+          document.getElementById('login_status').innerHTML = "not logged in";
+        }
+      });
+    }
+ </script>
 <!-- choice part -->
 <div id="select2">選項2</div>
 <div id="select1">選項1</div>
@@ -22,6 +57,16 @@
 <!-- end plot -->
 
 <!-- init start -->
+<div class="fb-login-button"
+	data-max-rows="1"
+	data-size="medium"
+	data-button-type="continue_with"
+	data-show-faces="false"
+	data-auto-logout-link="false"
+	data-use-continue-as="false"
+	login_text="login with your facebook">
+</div>
+<div id="login_status"></div>
 <div id="lbName">主角名:</div><input type="text" id="txName" autofocus value="張天豪">
 <input type="button" id="btnStart" value="開始">
 <a href="about.html" id="aboutus">
