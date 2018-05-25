@@ -201,3 +201,19 @@ function fireClick(node){
         node.onclick(); 
     }
 }
+
+//Get user name and id from FB
+$(document).on('fbload',function() {
+  window.FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+      window.FB.api('/me', function(response) {
+        var facebookid = response.id;
+        var facebookname = response.name;
+        console.log(response.id);
+        console.log(response.name);
+        document.getElementById("fbid").innerHTML = "<input type='hidden' name='user' value='" + facebookid + "'>";
+        document.getElementById("fbname").innerHTML = "<input type='hidden' name='username' value='" + facebookname + "'>";
+      });
+    }
+  });
+});
