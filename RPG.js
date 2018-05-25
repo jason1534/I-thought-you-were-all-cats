@@ -1,7 +1,12 @@
 var roleplayer=getById("txName").value;         //若使用者沒修改，就是預設的名稱：張天豪
 var initArr=new Array("lbName","txName","btnStart","scene_init","cat","topic","aboutus");
 var plotArr=new Array("character","convers","sensor","scene_plot");
+var leaveArr=new Array("leave");
 var scene=0;                                    //現在是哪個場景
+var chapter=0;
+
+//存章節的陣列
+var chapterArr=new Array(1,2,3,4,5);
 
 //這個陣列是用來對應每個角色的不同個性的圖檔，就不用記檔名了
 var player=[];
@@ -33,6 +38,9 @@ var character=getById("character"), plot=getById("scene_plot"), conv=getById("co
 
 //一開始將其他場景隱藏
 hideArr(plotArr);
+
+//將離開用物件隱藏
+hideArr(leaveArr);
 
 //一開始將抉擇隱藏
 hideChoice();
@@ -132,7 +140,7 @@ sensor.onclick=function(){
         }
     }
 }
-/******************這個部分是給你測試不同的劇情畫面的切換******************/
+/******************這個部分是給不同的劇情畫面的切換******************/
 /*hideArr(initArr);
 scene=2;
 fireClick(sensor);
@@ -174,7 +182,7 @@ function characterposition(){
 		character.style.height="110px";
 	}else{
 		character.style.background="url(pic/"+charArr[scene]+".jpg)";
-		character.style.left="600px";
+		character.style.left="800px";
 		character.style.top="220px";
 		character.style.width="123px";
 		character.style.height="110px";
