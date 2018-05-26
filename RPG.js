@@ -1,47 +1,56 @@
 var roleplayer=getById("txName").value;         //若使用者沒修改，就是預設的名稱：張天豪
 var initArr=new Array("lbName","txName","btnStart","scene_init","cat","topic","aboutus");
 var plotArr=new Array("character","convers","sensor","scene_plot");
-var leaveArr=new Array("leave");
+var switchArr=new Array("switchpic","btnnext");
 var scene=0;                                    //現在是哪個場景
 var chapter=0;
 
-//存章節的陣列
-var chapterArr=new Array(1,2,3,4,5);
+//存章節各元素的陣列
+var conversationArr=new Array();
+var characterArr=new Array();
+var continueArr=new Array();
+var backgroundArr=new Array();
+var characterposArr=new Array();
+
 
 //這個陣列是用來對應每個角色的不同個性的圖檔，就不用記檔名了
 var player=[];
-player["I"]={normal: "I",happy: "IHappy",sad: "ISad",confused: "IConfuse", urgent: "IUrgent", end: "IEnd"};
-player["Jen"]={normal: "Jen",happy: "JenHappy",sad: "JenSad", end: "JenEnd"};
-player["her"]={normal: "her",happy: "herHappy",sad: "herSad", end: "herEnd"};
+	player["I"]={normal: "I",happy: "IHappy",sad: "ISad",confused: "IConfuse", urgent: "IUrgent", end: "IEnd"};
+	player["Jen"]={normal: "Jen",happy: "JenHappy",sad: "JenSad", end: "JenEnd"};
+	player["her"]={normal: "her",happy: "herHappy",sad: "herSad", end: "herEnd"};
 
 //這個陣列儲存每個場景的人物是哪個圖檔(統一jpg檔所以只要存檔名不用附檔名)
-var charArr=new Array(player["I"].confused,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,player["I"].normal,player["Jen"].normal,player["Jen"].normal);
+//var charArr=new Array(player["I"].confused,player["Jen"].normal,player["I"].normal,player["Jen"].normal,
+//	player["I"].normal,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,
+//	player["I"].normal,player["Jen"].normal,player["Jen"].normal);
 
 //角色圖片位置更改
-var charposArr =new Array(0,1,0,1,0,1,0,1,0,0,1,1);
+//var charposArr =new Array(0,1,0,1,0,1,0,1,0,0,1,1);
 
 //這個陣列儲存每個場景是否可以按下一頁(換到下個對話或動作),若是數字則跳到抉擇陣列的部分
-var cntiArr=new Array(true,true,true,true,true,true,true,true,false,0,true,true);
+//var cntiArr=new Array(true,true,true,true,true,true,true,true,false,0,true,true);
 
 //這個陣列儲存每個場景的背景
-var bgArr=new Array("house","house","house","house","house","house","house","house","house","house","house","house");
+//var bgArr=new Array("house","house","house","house","house","house","house","house","house","house","house","house");
 
 //這個陣列是儲存抉擇的部分
 var choice=[];
-choice[0]=new Array("走吧！","離家出走這樣不好吧...");
+	choice[0]=new Array("走吧！","離家出走這樣不好吧...");
 
 //這個陣列儲存每個場景人物的對話
 var convArr=[];
 
 //簡寫各個元件
-var character=getById("character"), plot=getById("scene_plot"), conv=getById("convers"), sensor=getById("sensor"), select1=getById("select1"), select2=getById("select2");
+var character=getById("character"), plot=getById("scene_plot"), conv=getById("convers"), sensor=getById("sensor"), 
+	select1=getById("select1"), select2=getById("select2"), leave=getById("leave");
 
 //一開始將其他場景隱藏
 hideArr(plotArr);
 
+hideArr(switchArr);
 //將離開用物件隱藏
-hideArr(leaveArr);
-
+//hideArr(leaveArr);
+hide(leave);
 //一開始將抉擇隱藏
 hideChoice();
 
@@ -54,11 +63,31 @@ getById("btnStart").onclick=function(){
     showArr(plotArr);
     hide(leave);
 }
+
+leave.onclick=function(){
+    chapter++;
+    scene=0;
+    showArr(switchArr);
+    hideArr(plotArr);
+    hide(leave);
+    convArr=new Array(conversationArr[chapter][0]);
+    conv.innerHTML=convArr;
+}
+
+getById("btnnext").onclick=function(){
+	hideArr(initArr);
+	hideArr(switchArr);
+    showArr(plotArr);
+    hide(leave);
+}
+
 /*************************************這邊處理劇情部分***********************************/
 sensor.onclick=function(){
+
     //這個陣列比較特別，因為我們的roleplayer會隨著使用者輸入後修改，因此要放在這邊設定
     //若原本的部分是抉擇，就將對話統一改成false，讓陣列與陣列對齊
-    convArr=new Array("喵~星期三下午好無聊啊~鏟屎官又不知道去哪裡鬼混了，真是該罰~朕每天管理朝政既勞心又勞力，也不多給我吃幾個罐罐……",
+    //對話改在這裡
+    conversationArr[0]=new Array("喵~星期三下午好無聊啊~鏟屎官又不知道去哪裡鬼混了，真是該罰~朕每天管理朝政既勞心又勞力，也不多給我吃幾個罐罐……",
         "野貓："+roleplayer+"，喵哈哈哈哈~",
         roleplayer+"：誰！？",
         "野貓：窗外窗外~~你這傢伙真是笑死我了喵~",
@@ -68,7 +97,28 @@ sensor.onclick=function(){
         "野貓：哈哈哈他說什麼你都信?就是受不了你們這些家貓，一個個嬌生慣養又都是中二病末期，來來來！敢不敢跟哥出去長長眼界阿，哥帶你去吃吃到飽歐",
         roleplayer+"：吃…吃到飽！？仔細想想朕的確是應該巡視巡視自己的土地...好！就任命你帶路吧！我倒要看看市井小民們平常的生活有多精彩",
         false,"野貓：好好好~跟著哥包準你有糖吃~","野貓：走啦！跟著貓哥幹，肯定難波萬！");
-    //對話改在這裡
+
+    characterArr[0]=new Array(player["I"].confused,player["Jen"].normal,player["I"].normal,player["Jen"].normal,
+					player["I"].normal,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,
+					player["I"].normal,player["Jen"].normal,player["Jen"].normal);    
+    characterposArr[0] =new Array(0,1,0,1,0,1,0,1,0,0,1,1);
+	continueArr[0]=new Array(true,true,true,true,true,true,true,true,false,0,true,true);
+	backgroundArr[0]=new Array("house","house","house","house","house","house","house","house","house","house","house","house");
+
+
+    conversationArr[1]=new Array("1","2","3");
+    characterArr[1]=new Array(player["I"].confused,player["Jen"].normal,player["I"].normal);
+	characterposArr[1]=new Array(0,1,0);
+	continueArr[1]=new Array(true,true,true);
+	backgroundArr[1]=new Array("house","house","house");
+    //changechapter(chapter);
+
+
+    convArr=conversationArr[chapter];
+    charArr=characterArr[chapter];
+    charposArr=characterposArr[chapter];
+    cntiArr=continueArr[chapter];
+    bgArr=backgroundArr[chapter];
 
     if(cntiArr[scene]){
         if((scene+1)<charArr.length){           //以防練習時出錯(超出陣列範圍)
@@ -129,6 +179,7 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     show(sensor);
+                    show(leave);
                     fireClick(sensor);
                 }
             }
@@ -188,6 +239,14 @@ function characterposition(){
 		character.style.height="110px";
 	}
 }
+
+function changechapter(chapter){
+	leave.onclick=function(){
+		chapter++;
+		return chapter;
+	}
+}
+
 //觸發點擊事件的方法
 function fireClick(node){
     // 不同瀏覽器有不同的寫法
