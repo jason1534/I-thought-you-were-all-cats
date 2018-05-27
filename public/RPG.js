@@ -70,7 +70,7 @@ leave.onclick=function(){
     showArr(switchArr);
     hideArr(plotArr);
     hide(leave);
-    convArr=new Array(conversationArr[chapter][0]);
+    convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
     conv.innerHTML=convArr;
 }
 
