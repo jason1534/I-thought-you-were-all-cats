@@ -28,7 +28,7 @@ const port = 41781
 //var router = express.Router();
 
 // create ssh server
-var server = https.createServer(options, app).listen(port, function() {
-    console.log(`Listening on port ${port}`)
-    app.use(express.static(__dirname + '/public'))
-});
+// var server = https.createServer(options, app).listen(port, function() {
+//     console.log(`Listening on port ${port}`)
+//     app.use(express.static(__dirname + '/public'))
+// });
