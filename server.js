@@ -1,8 +1,8 @@
 //initial
 //var fs = require('fs')
-http = require('http'),
-    https = require('https'),
-    express = require('express');
+//http = require('http'),
+//    https = require('https'),
+//    express = require('express');
 
 //var options = {
 //    key: fs.readFileSync('./ssl/private.key'),
@@ -16,7 +16,7 @@ var app = express(); //移過來的
 //app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 //const app = express()//我移到前面宣告
-const port = 41781
+const port = 8790
 
 // mongo 
 //var MongoClient = require('mongodb').MongoClient;
@@ -32,3 +32,6 @@ const port = 41781
 //     console.log(`Listening on port ${port}`)
 //     app.use(express.static(__dirname + '/public'))
 // });
+app.listen(port,() =>{
+    console.log(`Listening on port ${port}`)
+})
