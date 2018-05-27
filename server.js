@@ -1,19 +1,19 @@
 //initial
-var fs = require('fs')
+//var fs = require('fs')
 http = require('http'),
     https = require('https'),
     express = require('express');
 
-var options = {
-    key: fs.readFileSync('./ssl/private.key'),
-    cert: fs.readFileSync('./ssl/certificate.crt'),
-};
+//var options = {
+//    key: fs.readFileSync('./ssl/private.key'),
+//    cert: fs.readFileSync('./ssl/certificate.crt'),
+//};
 var app = express(); //移過來的
-var multer = require('multer');
-var moment = require('moment');
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+//var multer = require('multer');
+//var moment = require('moment');
+//var bodyParser = require('body-parser');
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 //const app = express()//我移到前面宣告
 const port = 41781
