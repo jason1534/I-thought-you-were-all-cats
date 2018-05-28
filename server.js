@@ -5,8 +5,8 @@ var https = require('https'),fs = require("fs");
 //    express = require('express');
 
 var options = {
-    key: fs.readFileSync('./private.key'),
-    cert: fs.readFileSync('./certificate.pem'),
+    key: fs.readFileSync('./privatekey.pem'),
+    cert: fs.readFileSync('./certification.pem'),
 };
 const express = require(`express`)
 var app = express(); //移過來的
