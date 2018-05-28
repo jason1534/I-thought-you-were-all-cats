@@ -161,3 +161,13 @@ div{
     cursor:pointer;
 	z-index: 2000;
 }
+
+#btnlogin{
+    position: absolute;
+    left: 200px;
+    top:180px;
+    width: 250px;
+    height: 40px;
+    font-size:21px;
+    cursor:pointer;
+}
