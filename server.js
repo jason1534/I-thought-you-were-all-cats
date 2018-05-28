@@ -1,13 +1,13 @@
 //initial
 //var fs = require('fs')
 //http = require('http'),
-//    https = require('https'),
+var https = require('https'),fs = require("fs");
 //    express = require('express');
 
-//var options = {
-//    key: fs.readFileSync('./ssl/private.key'),
-//    cert: fs.readFileSync('./ssl/certificate.crt'),
-//};
+var options = {
+    key: fs.readFileSync('./private.key'),
+    cert: fs.readFileSync('./certificate.pem'),
+};
 const express = require(`express`)
 var app = express(); //移過來的
 //var multer = require('multer');
@@ -29,10 +29,10 @@ const port = 8790
 //var router = express.Router();
 
 // create ssh server
-// var server = https.createServer(options, app).listen(port, function() {
-//     console.log(`Listening on port ${port}`)
-//     app.use(express.static(__dirname + '/public'))
-// });
-app.listen(port,() =>{
+https.createServer(options, app).listen(port, function() {
     console.log(`Listening on port ${port}`)
-})
+    app.use(express.static(__dirname + '/public'))
+});
+//app.listen(port,() =>{
+//    console.log(`Listening on port ${port}`)
+//})
