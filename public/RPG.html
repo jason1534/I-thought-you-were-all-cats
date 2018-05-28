@@ -26,7 +26,6 @@
    }(document, 'script', 'facebook-jssdk'));
 </script>
 <script>
-    document.getElementById('login_status').addEventListener('load', func);
     function func() {
       FB.getLoginStatus(function(response) {
         console.log(response);
