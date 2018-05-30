@@ -1,0 +1,13 @@
+{ "columns":1,
+ "image":"..\/red1.png",
+ "imageheight":195,
+ "imagewidth":320,
+ "margin":0,
+ "name":"red1",
+ "spacing":0,
+ "tilecount":1,
+ "tileheight":195,
+ "tilewidth":320,
+ "type":"tileset",
+ "version":1.2
+}

@@ -1,0 +1,13 @@
+{ "columns":2,
+ "image":"..\/cloud.jpg",
+ "imageheight":128,
+ "imagewidth":192,
+ "margin":0,
+ "name":"cloud",
+ "spacing":0,
+ "tilecount":4,
+ "tileheight":64,
+ "tilewidth":96,
+ "type":"tileset",
+ "version":1.2
+}
