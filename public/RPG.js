@@ -36,7 +36,7 @@ var character=getById("character"), plot=getById("scene_plot"), conv=getById("co
 	select1=getById("select1"), select2=getById("select2"), select3=getById("select3"), leave=getById("leave"), 
 	history1=getById("history1"), history2=getById("history2"), potatochip=getById("potatochip"), idform=getById("idform"),
     txName=getById("txName"), btnlogin=getById("btnlogin"), btnreset=getById("btnreset"), umm=getById("umm"),
-    switchpic=getById("switchpic"), fbbtn=getById("fbbluebtn");
+    switchpic=getById("switchpic"), fbbtn=getById("fbbluebtn"), littlecat=getById("cat") ;
 
 //一開始將其他場景隱藏
 hideArr(plotArr);
@@ -48,11 +48,13 @@ hide(btnlogin);
 hide(btnreset);
 hide(umm);
 hide(switchpic);
+hide(littlecat);
 
 hide(leave);
 hide(history1);
 hide(history2);
 hide(potatochip);
+
 //一開始將抉擇隱藏
 hideChoice();
 
@@ -87,8 +89,20 @@ getById("btnStart").onclick=function(){
     show(btnlogin);
     show(btnreset);
     show(umm);
+    show(littlecat);
     hide(btnStart);
     hide(fbbtn);
+  
+    var pos = 400;
+    var mv = setInterval(frame, 10);
+    function frame() {
+        if (pos == 150) {
+          clearInterval(mv);
+        } else {
+          pos--; 
+          littlecat.style.top = pos + 'px'; 
+        }
+      }
 }
 //離開時先把新章節存入
 leave.onclick=function(){

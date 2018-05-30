@@ -22,7 +22,7 @@ body,html{
 #cat{
     position: absolute;
     left: -1%;
-    top: 28%;
+    top: 100%;
     z-index: -1001;
 }
 #topic{
