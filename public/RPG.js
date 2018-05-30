@@ -70,19 +70,17 @@ getById("umm").onclick=function(){
     hide(btnreset);
     hide(umm);
 }
-btnlogin.onclick=function(){
-    roleplayer=getById("txName").value;         //假如使用者修改過名字，這個值就不會是預設的"永馨"
-    //接著將場景切換到一開始的劇情(可按跳過!)
-    //場景是由背景圖、人物框、對話框組成
-    hideArr(initArr);       //先關閉按下開始的畫面
-    showArr(plotArr);
-    hide(leave);
-    hide(idform);
-    hide(txName);
-    hide(btnlogin);
-    hide(btnreset);
-    hide(umm);
-}
+// btnlogin.onclick=function(){
+//     roleplayer=getById("txName").value;
+//     hideArr(initArr);
+//     showArr(plotArr);
+//     hide(leave);
+//     hide(idform);
+//     hide(txName);
+//     hide(btnlogin);
+//     hide(btnreset);
+//     hide(umm);
+// }
 getById("btnStart").onclick=function(){
     show(txName);
     show(idform);
@@ -136,8 +134,8 @@ sensor.onclick=function(){
         roleplayer+"：大膽刁民竟如此嘲笑朕",
         "野貓：哈哈哈！「大膽刁民」哈哈哈，你這傢伙中二病吧你",
         roleplayer+"：不要把朕跟那些阿宅相並論，鏟屎官說過朕就是至高無上的皇帝",
-        "野貓：哈哈哈他說什麼你都信?就是受不了你們這些家貓，一個個嬌生慣養又都是中二病末期，來來來！敢不敢跟哥出去長長眼界阿，哥帶你去吃吃到飽歐",
-        roleplayer+"：吃…吃到飽！？仔細想想朕的確是應該巡視巡視自己的土地...好！就任命你帶路吧！我倒要看看市井小民們平常的生活有多精彩",
+        "野貓：他說什麼你都信?就是受不了你們這些家貓，一個個都嬌生慣養，來！敢不敢跟哥出去長長眼界，哥帶你去吃吃到飽歐",
+        roleplayer+"：吃…吃到飽！？仔細想想朕的確是應該巡視巡視自己的土地...我倒要看看市井小民們平常的生活有多精彩",
         false,"野貓：好好好~跟著哥包準你有糖吃~","野貓：走啦！跟著貓哥幹，肯定難波萬！");
     characterArr[0]=new Array(player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,
 					player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal,
@@ -644,7 +642,16 @@ function testAPI() {
 //      },
 //      success:function(data){}
 //    });
-    btnlogin.onclick=function(){  
+    btnlogin.onclick=function(){ 
+        roleplayer=getById("txName").value;
+        hideArr(initArr);
+        showArr(plotArr);
+        hide(leave);
+        hide(idform);
+        hide(txName);
+        hide(btnlogin);
+        hide(btnreset);
+        hide(umm); 
       event.preventDefault();
       $.ajax({
         method:"get",
