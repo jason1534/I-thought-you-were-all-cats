@@ -127,7 +127,7 @@ leave.onclick=function(){
     plot.style.backgroundAttachment="fixed";
     plot.style.backgroundPosition="center";
     plot.style.backgroundSize="cover";
-    gameshow(game);
+    $("#game").show();
 }
 
 getById("btnnext").onclick=function(){
@@ -691,7 +691,7 @@ function testAPI() {
 }
 
 //game start
-var game = new Phaser.Game(1280, 480, Phaser.AUTO, 'game');
+var game = new Phaser.Game(960, 480, Phaser.AUTO, 'game');
 var jumpTimer = 0
 var trigger = {left:0,right:0,up:0,space:0};
 var next = {
@@ -768,6 +768,11 @@ var first =  {
     game.physics.arcade.gravity.y = 350
     game.time.desiredFps = 30
     
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.pageAlignHorizontally = true;
+    game.scale.pageAlignVertically = true;
+    Phaser.Canvas.setImageRenderingCrisp(game.canvas);
+
     map = game.add.tilemap('map')
     map.addTilesetImage('red1','red1')
     map.addTilesetImage('road1','road1')
