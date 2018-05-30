@@ -775,24 +775,24 @@ var first =  {
     map.setCollision([1,2,3,4,5,6,7,8],true,layer)
     map.createLayer('lay 1')
     
-    player = game.add.sprite(0,100, 'player')
-    player.scale.set(0.25)
-    player.facing = 'right'
+    player1 = game.add.sprite(0,100, 'player')
+    player1.scale.set(0.25)
+    player1.facing = 'right'
     
-    player.animations.add('left', [10,9,8,7], 18 , true)
-    player.animations.add('right', [1,2,3,4], 18, true)
-    player.animations.add('rightup', [16,17,18], 3,false)
-    player.animations.add('leftup', [25,24,23], 3,false)
-    player.animations.add('rightupst', [14,15], 2,false)
-    player.animations.add('leftupst', [27,26], 2,false)
-    player.animations.add('rightdown', [19,20], 2,false)
-    player.animations.add('leftdown', [22,21], 2,false)
+    player1.animations.add('left', [10,9,8,7], 18 , true)
+    player1.animations.add('right', [1,2,3,4], 18, true)
+    player1.animations.add('rightup', [16,17,18], 3,false)
+    player1.animations.add('leftup', [25,24,23], 3,false)
+    player1.animations.add('rightupst', [14,15], 2,false)
+    player1.animations.add('leftupst', [27,26], 2,false)
+    player1.animations.add('rightdown', [19,20], 2,false)
+    player1.animations.add('leftdown', [22,21], 2,false)
     
-    game.physics.enable(player,Phaser.Physics.ARCADE)
+    game.physics.enable(player1,Phaser.Physics.ARCADE)
 
     game.world.setBounds(0,0, 1280, 480)
-    player.body.collideWorldBounds = true
-    game.camera.follow(player)
+    player1.body.collideWorldBounds = true
+    game.camera.follow(player1)
     cursors = game.input.keyboard.createCursorKeys()
     this.cursors = game.input.keyboard.createCursorKeys(); 
     
@@ -826,47 +826,47 @@ var first =  {
 
   update:()=>{
     //this.custom.isDown
-    this.game.physics.arcade.collide(this.player, this.layer)
-    if ((cursors.left.isDown || trigger.left === 1)&& player.body.onFloor()) {
-      if (this.player.x >= 0){
-         this.player.body.velocity.x = -180
-        this.player.play('left')
-        if (this.player.facing !== 'left')
-            this.player.facing = 'left'
+    this.game.physics.arcade.collide(this.player1, this.layer)
+    if ((cursors.left.isDown || trigger.left === 1)&& player1.body.onFloor()) {
+      if (this.player1.x >= 0){
+         this.player1.body.velocity.x = -180
+        this.player1.play('left')
+        if (this.player1.facing !== 'left')
+            this.player1.facing = 'left'
       }
     }
 
-    else if ((cursors.right.isDown || trigger.right === 1)&& player.body.onFloor()) {
-      if(this.player.x <= 1200){        
-        this.player.body.velocity.x = 180
-        this.player.play('right')
-        if (this.player.facing !== 'right') 
-            this.player.facing = 'right'
+    else if ((cursors.right.isDown || trigger.right === 1)&& player1.body.onFloor()) {
+      if(this.player1.x <= 1200){        
+        this.player1.body.velocity.x = 180
+        this.player1.play('right')
+        if (this.player1.facing !== 'right') 
+            this.player1.facing = 'right'
       }
     }
-    else if ((cursors.up.isDown || trigger.up === 1)&& player.body.onFloor()&& game.time.now > jumpTimer ) {    
-        if (this.player.facing === 'right')  {
-           this.player.play('rightup')          
-           this.player.body.velocity.x = 200
-           this.player.body.velocity.y += -200
+    else if ((cursors.up.isDown || trigger.up === 1)&& player1.body.onFloor()&& game.time.now > jumpTimer ) {    
+        if (this.player1.facing === 'right')  {
+           this.player1.play('rightup')          
+           this.player1.body.velocity.x = 200
+           this.player1.body.velocity.y += -200
            jumpTimer = game.time.now + 750
         }
-        else if (this.player.facing === 'left'){
-           this.player.play('leftup')
-           this.player.body.velocity.x = -200
-           this.player.body.velocity.y += -200
+        else if (this.player1.facing === 'left'){
+           this.player1.play('leftup')
+           this.player1.body.velocity.x = -200
+           this.player1.body.velocity.y += -200
            jumpTimer = game.time.now + 750
         }
     }
     else {
-        if(this.player.body.onFloor()){
-            this.player.body.velocity.x = 0
-            if (this.player.facing === 'left') player.frame = 9
-            if (this.player.facing === 'right') player.frame = 0
+        if(this.player1.body.onFloor()){
+            this.player1.body.velocity.x = 0
+            if (this.player1.facing === 'left') player1.frame = 9
+            if (this.player1.facing === 'right') player1.frame = 0
             //this.player.animations.stop()
         }
     }
-    if (this.player.body.x > 600) {//
+    if (this.player1.body.x > 600) {//
         //console.log(trigger.space)
         if (this.custom.isDown || trigger.space == 1) {
               game.state.start('next');
