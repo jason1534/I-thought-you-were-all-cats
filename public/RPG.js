@@ -1,9 +1,10 @@
 var roleplayer=getById("txName").value;         //若使用者沒修改，就是預設的名稱：張天豪
-var initArr=new Array("lbName","txName","btnStart","btnlogin","scene_init","cat","topic","aboutus");
+var initArr=new Array("lbName","btnStart","scene_init","cat","aboutus");
 var plotArr=new Array("character","convers","sensor","scene_plot");
-var switchArr=new Array("switchpic","btnnext");
-var scene=0;                                    //現在是哪個場景
-var chapter=0;
+var switchArr=new Array("btnnext");
+//var objectArr=new Array("history1")
+var scene=0;  //現在是哪個場景
+var chapter=0;//debug章節改這裡不用按太多次
 
 //存章節各元素的陣列
 var conversationArr=new Array();
@@ -16,62 +17,89 @@ var characterposArr=new Array();
 //這個陣列是用來對應每個角色的不同個性的圖檔，就不用記檔名了
 var player=[];
 	player["I"]={normal: "I",happy: "IHappy",sad: "ISad",confused: "IConfuse", urgent: "IUrgent", end: "IEnd"};
-	player["Jen"]={normal: "Jen",happy: "JenHappy",sad: "JenSad", end: "JenEnd"};
-	player["her"]={normal: "her",happy: "herHappy",sad: "herSad", end: "herEnd"};
-
-//這個陣列儲存每個場景的人物是哪個圖檔(統一jpg檔所以只要存檔名不用附檔名)
-//var charArr=new Array(player["I"].confused,player["Jen"].normal,player["I"].normal,player["Jen"].normal,
-//	player["I"].normal,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,
-//	player["I"].normal,player["Jen"].normal,player["Jen"].normal);
-
-//角色圖片位置更改
-//var charposArr =new Array(0,1,0,1,0,1,0,1,0,0,1,1);
-
-//這個陣列儲存每個場景是否可以按下一頁(換到下個對話或動作),若是數字則跳到抉擇陣列的部分
-//var cntiArr=new Array(true,true,true,true,true,true,true,true,false,0,true,true);
-
-//這個陣列儲存每個場景的背景
-//var bgArr=new Array("house","house","house","house","house","house","house","house","house","house","house","house");
+	player["wild"]={normal: "wild",happy: "wildHappy",sad: "wildSad", end: "wildEnd"};
+	player["turtle"]={normal: "turtle",happy: "turtleHappy",sad: "turtleSad", end: "turtleEnd"};
 
 //這個陣列是儲存抉擇的部分
 var choice=[];
-	choice[0]=new Array("走吧！","離家出走這樣不好吧...");
+	choice[0]=new Array("走吧！","離家出走這樣不好吧...","");
+	choice[1]=new Array("熱蘭遮城","普羅民遮城","鄭成功的家");//給第一章的第一個選擇問題
+	choice[2]=new Array("Let's Rock n' roll","Call me maybe!","可能牠的手就長那樣吧");
+	choice[3]=new Array("贔屭(ㄅㄧˋㄒㄧˋ)","贔屭(ㄅㄟˋㄌㄟˇ)","贔屭(ㄅㄧㄝ ㄌㄨˋ)");
+    choice[4]=new Array("赤崁樓的烏龜","保安宮內的龜","曜西");
 
 //這個陣列儲存每個場景人物的對話
 var convArr=[];
 
 //簡寫各個元件
 var character=getById("character"), plot=getById("scene_plot"), conv=getById("convers"), sensor=getById("sensor"), 
-	select1=getById("select1"), select2=getById("select2"), leave=getById("leave");
+	select1=getById("select1"), select2=getById("select2"), select3=getById("select3"), leave=getById("leave"), 
+	history1=getById("history1"), history2=getById("history2"), potatochip=getById("potatochip"), idform=getById("idform"),
+    txName=getById("txName"), btnlogin=getById("btnlogin"), btnreset=getById("btnreset"), umm=getById("umm"),
+    switchpic=getById("switchpic");
 
 //一開始將其他場景隱藏
 hideArr(plotArr);
-
 hideArr(switchArr);
 //將離開用物件隱藏
-//hideArr(leaveArr);
+hide(idform);
+hide(txName);
+hide(btnlogin);
+hide(btnreset);
+hide(umm);
+hide(switchpic);
+
 hide(leave);
+hide(history1);
+hide(history2);
+hide(potatochip);
 //一開始將抉擇隱藏
 hideChoice();
 
 /*******************************初始畫面(輸入主角按名並開始)******************************/
-getById("btnStart").onclick=function(){
+getById("umm").onclick=function(){
     roleplayer=getById("txName").value;         //假如使用者修改過名字，這個值就不會是預設的"永馨"
     //接著將場景切換到一開始的劇情(可按跳過!)
     //場景是由背景圖、人物框、對話框組成
     hideArr(initArr);       //先關閉按下開始的畫面
     showArr(plotArr);
     hide(leave);
+    hide(idform);
+    hide(txName);
+    hide(btnlogin);
+    hide(btnreset);
+    hide(umm);
 }
-
+getById("btnStart").onclick=function(){
+    show(txName);
+    show(idform);
+    show(btnlogin);
+    show(btnreset);
+    show(umm);
+    hide(btnStart);
+}
+//離開時先把新章節存入
 leave.onclick=function(){
     chapter++;
     scene=0;
     showArr(switchArr);
+    show(switchpic);
     hideArr(plotArr);
     hide(leave);
     convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
     conv.innerHTML=convArr;
+    charArr=new Array(characterArr[chapter][0]);
+    character.style.background="url(pic/"+charArr[scene]+".jpg)";
+	character.style.left="25px";
+	character.style.top="100px";
+	character.style.width="350px";
+	character.style.height="451px";
+	bgArr=new Array(backgroundArr[chapter][0]);
+	plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+    plot.style.backgroundRepeat="no-repeat";
+    plot.style.backgroundAttachment="fixed";
+    plot.style.backgroundPosition="center";
+    plot.style.backgroundSize="cover";
 }
 
 getById("btnnext").onclick=function(){
@@ -79,14 +107,14 @@ getById("btnnext").onclick=function(){
 	hideArr(switchArr);
     showArr(plotArr);
     hide(leave);
+    hide(switchpic);
 }
 
 /*************************************這邊處理劇情部分***********************************/
 sensor.onclick=function(){
-
     //這個陣列比較特別，因為我們的roleplayer會隨著使用者輸入後修改，因此要放在這邊設定
     //若原本的部分是抉擇，就將對話統一改成false，讓陣列與陣列對齊
-    //對話改在這裡
+    //開始篇
     conversationArr[0]=new Array("喵~星期三下午好無聊啊~鏟屎官又不知道去哪裡鬼混了，真是該罰~朕每天管理朝政既勞心又勞力，也不多給我吃幾個罐罐……",
         "野貓："+roleplayer+"，喵哈哈哈哈~",
         roleplayer+"：誰！？",
@@ -97,20 +125,106 @@ sensor.onclick=function(){
         "野貓：哈哈哈他說什麼你都信?就是受不了你們這些家貓，一個個嬌生慣養又都是中二病末期，來來來！敢不敢跟哥出去長長眼界阿，哥帶你去吃吃到飽歐",
         roleplayer+"：吃…吃到飽！？仔細想想朕的確是應該巡視巡視自己的土地...好！就任命你帶路吧！我倒要看看市井小民們平常的生活有多精彩",
         false,"野貓：好好好~跟著哥包準你有糖吃~","野貓：走啦！跟著貓哥幹，肯定難波萬！");
-
-    characterArr[0]=new Array(player["I"].confused,player["Jen"].normal,player["I"].normal,player["Jen"].normal,
-					player["I"].normal,player["Jen"].normal,player["I"].normal,player["Jen"].normal,player["I"].normal,
-					player["I"].normal,player["Jen"].normal,player["Jen"].normal);    
+    characterArr[0]=new Array(player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,
+					player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal,
+					player["I"].normal,player["wild"].normal,player["wild"].normal);    
     characterposArr[0] =new Array(0,1,0,1,0,1,0,1,0,0,1,1);
-	continueArr[0]=new Array(true,true,true,true,true,true,true,true,false,0,true,true);
+	continueArr[0]=new Array(true,true,true,true,true,true,true,true,false,0,true,true);//倒數第三個那個number是指哪一個選項陣列
 	backgroundArr[0]=new Array("house","house","house","house","house","house","house","house","house","house","house","house");
-
-
-    conversationArr[1]=new Array("1","2","3");
-    characterArr[1]=new Array(player["I"].confused,player["Jen"].normal,player["I"].normal);
-	characterposArr[1]=new Array(0,1,0);
-	continueArr[1]=new Array(true,true,true);
-	backgroundArr[1]=new Array("house","house","house");
+//第一章開始
+    conversationArr[1]=new Array("喵？我們來這裡幹嘛？這裡看起來不像是吃到飽阿？",
+    	"別急~你知道這裡是哪裡嗎？",
+    	false,"NO!","喵~這裡就是人類口中的赤崁樓喵","FK!",
+    	"刺砍樓？真是血腥，沒想到朕的領地之內竟有如此險惡的地方",
+    	"……(嘆氣)……嘛，總之我們先進去吧",
+    	"等等，門口竟有門衛守著，看來不能冒然進去阿",
+    	"別擔心別擔心，只要拿出免死金牌就沒問題了",
+    	"免死金牌？野貓兄竟有如此特權嗎",
+    	"哼哼哼，我特別幫兄弟你也準備了一張，別說哥對你不好啊",
+    	"歐歐歐看起來好厲害喵",
+    	"那當然！只要拿著這張免死金牌，在台南市區內妳可以直著走、斜著走、橫著走，絕對沒有人會攔你",
+    	"這...這太貴重了，野貓兄請容我今後喚你一聲大哥",
+    	"客氣客氣，那咱們就進去吧",
+    	"那個人(指荷蘭人)怎麼一臉很委屈的樣子阿，他是不是做錯了什麼事",
+    	"喔~這你就有所不知了吧，這人本來還是跪著的呢",
+    	"喵！？居然向朕以外的人下跪！哪來的大膽刁民！想篡奪王位嗎？",
+    	"恩…乖…這個拿著(無奈臉",
+    	false,"喵？好多字啊…總之是朕誤會了對吧？果然朕才是九五之尊喵",
+    	"孩子…有病要吃藥知道嗎…",
+    	"恩！？旁邊的小賣部在賣什麼？成功洋芋片？",
+    	false,"歐~那個阿~今年剛推出的新產品，好像還特別請鄭成功他老人家出來代言呢！",
+    	"真的阿！？那他的手勢是什麼意思啊？",
+    	false,"NO!","FK!","是歐…不過牠的畫風怎麼跟我平常看到的人類不太一樣啊？",
+    	"恩……可能是修過圖吧？聽說人類拍照都要開些濾鏡什麼的，所以才跟我們平常看到的人類長得不一樣吧喵~",
+    	"原來如此，大哥真聰明，難怪鏟屎官的相片朕都覺得跟真實有點落差~一定是特效開很強~所以朕就是要吃這個洋芋片吃到飽嗎？",
+    	"當然不是阿~不過也快到了喵~",
+    	"噔愣~~",
+    	"哇~~好多魚阿~(口水",
+    	"哥沒騙你吧~這些魚每天被觀光客餵食的肥滋滋的，哥早就想吃吃看了，趁著今天帶著兄弟你，咱倆就把魚分了吧",
+    	"烏龜：且慢且慢，爪下留情啊兩位",
+    	"誰！？",
+    	"是老夫阿~上面上面~",
+    	"喵！？這烏龜也太大了",
+    	"老夫可不是普通的烏龜，老夫是贔屭。",
+    	"什麼？你說你是…",
+    	false,"no!","FK!","是啊，看看旁邊一整排的兄弟們，咱們就是被稱為龍生九子的贔屭，也被奉為龍的傳人呢！這些魚都是咱的老朋友了，吃不得啊",
+    	"大哥…",
+    	"恩…聽牠這麼一說還當真下不了嘴…",
+    	"可是難得的吃到飽…",
+    	"老夫說個故事補償你們吧",
+    	"可是故事不能當飯吃啊…話說你揹著那麼大塊石頭要幹嘛呢？((拍打，抓抓",
+    	"哈哈哈我也來((拍打",
+    	"這就跟我要說的故事有關了，且聽老夫娓娓道來吧…",
+    	false,"如此這般……",
+    	"恩…總之你們經歷了很多辛酸血淚啊…朕也為之動容",
+    	"是啊…不過讓人心酸的是咱原本是有十個兄弟的，但在當時渡海的過程中，最小的弟弟不幸沉入了海中而不知去向(默默流淚",
+    	"喵？這麼一說我好像有在其他地方看過跟你們很像的龜",
+    	"朕知道！大哥說的是",
+        false,"FK!","對啊就是那隻龜，看來你也不是那麼孤陋寡聞呢","no!",
+        "那是~朕可是時刻心懸民間呢~",
+        "這…難道真的會是咱們的小弟嗎…我們可愛的弟弟…(流淚",
+        "別哭啊喵~再哭下去這池子的水都要滿出來了",
+        "但…但是…老夫…老夫的弟弟啊~~(痛哭)牠…牠還那麼小那麼無知的時候…竟然就…(爆哭",
+        "怎麼一談到牠弟弟就這麼不冷靜啊…剛剛不是挺老成的嗎…",
+        "別勸牠了，我看牠八成是弟控沒錯了",
+        "原來這就是弟控嗎…別哭了龜爺，朕去幫你打探打探吧",
+        "感謝你們…這樣吧…要是你們成功打探消息回來，池子的魚你們選一隻拿走吧",
+        "龜爺你這是為了弟弟出賣老朋友的節奏啊…(汗",
+        "那就萬事拜託了"
+    	);
+    characterArr[1]=new Array(player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,
+    				player["wild"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal
+    				,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal
+    				,player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal
+    				,player["wild"].normal,player["I"].normal,player["I"].normal,player["wild"].normal,player["I"].normal
+    				,player["I"].normal,player["wild"].normal,player["I"].normal,player["I"].normal,player["wild"].normal
+    				,player["I"].normal,player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal
+    				,player["wild"].normal,player["I"].normal,player["wild"].normal,player["turtle"].normal,player["I"].normal
+    				,player["turtle"].normal,player["I"].normal,player["turtle"].normal,player["I"].normal,player["turtle"].normal
+    				,player["turtle"].normal,player["turtle"].normal,player["turtle"].normal,player["I"].normal,player["wild"].normal
+    				,player["I"].normal,player["turtle"].normal,player["I"].normal,player["wild"].normal,player["turtle"].normal
+    				,player["I"].normal,player["turtle"].normal,player["I"].normal,player["turtle"].normal,player["wild"].normal
+    				,player["I"].normal,player["I"].normal,player["wild"].normal,player["wild"].normal,player["wild"].normal//這裡是最後一個選擇結束
+                    ,player["I"].normal,player["turtle"].normal,player["I"].normal,player["turtle"].normal,player["I"].normal
+                    ,player["wild"].normal,player["I"].normal,player["turtle"].normal,player["wild"].normal,player["turtle"].normal
+                    );
+	characterposArr[1]=new Array(0,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,1,0,1,0,1,0,1,0,1,1,0,1,1,0,1,0,1,0,0,1,0
+					,1,0,1,0,1,0,1,0,1,1,0,1,1,0,0,1,1,1//這裡是最後一個選擇結束
+                    ,0,1,0,1,0,1,0,1,1,1);
+	continueArr[1]=new Array(true,false,1,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true
+					,10000,true,true,true,10001,true,true,false,2,true,true,true,true,true,true,true,true,true,true,true,true
+					,true,true,false,3,true,true,true,true,true,true,true,true,true,10002,true,true,true,true,true
+                    ,false,4,true,true,true//這裡是最後一個選擇結束
+                    ,true,true,true,true,true,true,true,true,true,true);
+	backgroundArr[1]=new Array("redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse"
+					,"redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","mr.chung","mr.chung"
+					,"mr.chung","mr.chung","mr.chung","mr.chung","mr.chung","souvenir","souvenir","souvenir","souvenir","souvenir"
+					,"souvenir","souvenir","souvenir","souvenir","souvenir","souvenir","fish","fish","fish","fish","fish","fish"
+					,"turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone"
+					,"turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone"
+					,"turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone"
+                    ,"turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone"
+                    ,"turtlestone","turtlestone");
     //changechapter(chapter);
 
 
@@ -120,7 +234,7 @@ sensor.onclick=function(){
     cntiArr=continueArr[chapter];
     bgArr=backgroundArr[chapter];
 
-    if(cntiArr[scene]){
+    if(cntiArr[scene]==true){
         if((scene+1)<charArr.length){           //以防練習時出錯(超出陣列範圍)
             scene++;
             //character.style.background="url(pic/"+charArr[scene]+".jpg)";
@@ -132,23 +246,25 @@ sensor.onclick=function(){
             plot.style.backgroundPosition="center";
             plot.style.backgroundSize="cover";
         }
-    }else{
+    }else if(cntiArr[scene]==false){
         //會需要抉擇的場景
         if((scene+1)<charArr.length){           //以防練習時出錯(超出陣列範圍)
             scene++;
-            character.style.background="url(pic/"+charArr[scene]+".jpg)";
+            characterposition();
+            //character.style.background="url(pic/"+charArr[scene]+".jpg)";
             //將對話與切換下個場景的sensor隱藏
             hideConv();
             //接著顯示抉擇選項(此處只有兩種選擇
             //這邊顯示抉擇的選項有點複雜，
             //根據上面的cntiArr陣列，我們的第一個抉擇(其實是陣列的第一個索引，也就是從0開始)是0
             //而對應到了choice陣列，choice陣列的第一個(索引從0開始)抉擇選項是一個陣列
-            //而這個陣列的第一個選項是"嗯!"、第二個選項是"我有事......"
             //因此遇到抉擇時就這樣以此類推。
             select1.innerHTML=choice[parseInt(cntiArr[scene])][0];
             select2.innerHTML=choice[parseInt(cntiArr[scene])][1];
+            select3.innerHTML=choice[parseInt(cntiArr[scene])][2];
             show(select1);
             show(select2);
+            show(select3);
             //這邊處理使用者點擊選項後的結果
             //使用者選擇的結果只有兩種：
             //1:繼續下一個對話(可能是下一段劇情，或者詢問者給予你的抉擇做感想)
@@ -165,12 +281,63 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     show(leave);
+                }else if(parseInt(cntiArr[scene])==1){
+                	scene++;
+                	characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(leave);
+                }else if(parseInt(cntiArr[scene])==2){
+                	scene++;
+                	characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(leave);
+                }else if(parseInt(cntiArr[scene])==3){
+                	scene++;
+                	characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(sensor);
+                    fireClick(sensor);
+                    fireClick(sensor);
+                }else if(parseInt(cntiArr[scene])==4){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(leave);
                 }
             }
             select2.onclick=function(){
                 if(parseInt(cntiArr[scene])==0){
                     scene++;
-                    character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
                     conv.innerHTML=convArr[scene];
                     plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
                     plot.style.backgroundRepeat="no-repeat";
@@ -181,6 +348,128 @@ sensor.onclick=function(){
                     show(sensor);
                     show(leave);
                     fireClick(sensor);
+                }else if(parseInt(cntiArr[scene])==1){
+                	scene=scene+1;
+                	characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(sensor);
+                    fireClick(sensor);
+                    scene++;
+                }else if(parseInt(cntiArr[scene])==2){
+                	scene++;
+                	characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(leave);
+                }else if(parseInt(cntiArr[scene])==3){
+                	scene++;
+                	characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(leave);
+                }else if(parseInt(cntiArr[scene])==4){
+                    scene=scene+1;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(sensor);
+                    fireClick(sensor);
+                    scene++;
+                }
+            }
+            select3.onclick=function(){
+                if(parseInt(cntiArr[scene])==0){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(leave);
+                }else if(parseInt(cntiArr[scene])==1){
+                	scene++;
+                	characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(leave);
+                    fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
+                    fireClick(sensor);
+                }else if(parseInt(cntiArr[scene])==2){
+                	scene++;
+                	characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(sensor);
+                    fireClick(sensor);
+                    fireClick(sensor);
+                }else if(parseInt(cntiArr[scene])==3){
+                	scene++;
+                	characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(leave);
+                    fireClick(sensor);
+                }else if(parseInt(cntiArr[scene])==4){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(leave);
+                    fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
+                    fireClick(sensor);
                 }
             }
             plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
@@ -189,6 +478,33 @@ sensor.onclick=function(){
             plot.style.backgroundPosition="center";
             plot.style.backgroundSize="cover";
         }
+    }else if(cntiArr[scene]==10000){
+    	scene++;
+    	hideConv();
+       	show(history1);
+       	history1.onclick=function(){
+       		hide(history1);
+       		fireClick(sensor);
+       		show(sensor);
+       	}
+    }else if(cntiArr[scene]==10001){
+    	scene++;
+    	hideConv();
+       	show(potatochip);
+       	potatochip.onclick=function(){
+       		hide(potatochip);
+       		fireClick(sensor);
+       		show(sensor);
+       	}
+    }else if(cntiArr[scene]==10002){
+    	scene++;
+    	hideConv();
+       	show(history2);
+       	history2.onclick=function(){
+       		hide(history2);
+       		fireClick(sensor);
+       		show(sensor);
+       	}
     }
 }
 /******************這個部分是給不同的劇情畫面的切換******************/
@@ -222,21 +538,22 @@ function hideConv(){
 function hideChoice(){
     hide(select1);
     hide(select2);
+    hide(select3);
 }
 
 function characterposition(){
 	if(charposArr[scene]==0){
 		character.style.background="url(pic/"+charArr[scene]+".jpg)";
-		character.style.left="20px";
-		character.style.top="220px";
-		character.style.width="123px";
-		character.style.height="110px";
+		character.style.left="25px";
+		character.style.top="100px";
+		character.style.width="350px";
+		character.style.height="451px";
 	}else{
 		character.style.background="url(pic/"+charArr[scene]+".jpg)";
-		character.style.left="800px";
-		character.style.top="220px";
-		character.style.width="123px";
-		character.style.height="110px";
+		character.style.left="580px";
+		character.style.top="100px";
+		character.style.width="350px";
+		character.style.height="451px";
 	}
 }
 
@@ -262,17 +579,73 @@ function fireClick(node){
 }
 
 //Get user name and id from FB
-$(document).on('fbload',function() {
-  window.FB.getLoginStatus(function(response) {
-    if (response.status === 'connected') {
-      window.FB.api('/me', function(response) {
-        var facebookid = response.id;
-        var facebookname = response.name;
-        console.log(response.id);
-        console.log(response.name);
-        document.getElementById("fbid").innerHTML = "<input type='hidden' name='user' value='" + facebookid + "'>";
-        document.getElementById("fbname").innerHTML = "<input type='hidden' name='username' value='" + facebookname + "'>";
+//FB initial
+function statusChangeCallback(response) {
+  console.log('statusChangeCallback');
+  console.log(response);
+
+  if (response.status === 'connected') {
+    testAPI();
+  } else {
+    document.getElementById('status').innerHTML = 'Please log ' +
+      'into this app.';
+  }
+}
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '777531655774612',
+    cookie     : true,  // enable cookies to allow the server to access 
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.11' // use graph api version 2.8
+  });
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+};
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+function testAPI() {
+  console.log('Welcome!  Fetching your information.... ');
+  FB.api('/me', function(response) {
+    console.log('Successful login for: ' + response.name);
+    console.log(JSON.stringify(response));
+    fb_id = response.id;
+//  $.get({
+//      url: "./login_data",
+//      method:"GET",
+//      type:"get",
+//      data:{
+//        id: response.id,
+//        name:response.name,
+//      },
+//      success:function(data){}
+//    });
+    loginbtn.onclick=function(){  
+      event.preventDefault();
+      $.ajax({
+        method:"get",
+        url:"./login_data",
+        data:{
+        id: response.id,
+        name:response.name,
+         //   id:$("response").val(),
+       //     NAME:$("#fbnamee").val(),
+          NICKNAME:$("#txName").val(),
+        },
+        success:function(data){
+          $("#login_check").text(data)
+        }
       });
     }
-  });
-});
+  })
+}

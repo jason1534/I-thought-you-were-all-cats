@@ -6,25 +6,6 @@
 <link rel="stylesheet" type="text/css" media="screen" href="RPG.css"/>
 </head>
 <body>
-<!-- FB initial -->
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '777531655774612',
-      xfbml      : true,
-      version    : 'v3.0'
-    });
-    FB.AppEvents.logPageView();
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 <script>
     function func() {
       FB.getLoginStatus(function(response) {
@@ -43,6 +24,7 @@
 <!-- choice part -->
 <div id="select2">選項2</div>
 <div id="select1">選項1</div>
+<div id="select3">選項3</div>
 
 <!-- plot part -->
 <div id="sensor" class="bg"></div>
@@ -50,10 +32,12 @@
 朕每天管理朝政既勞心又勞力，也不多給我吃幾個罐罐……</div>
 <div id="character"></div>
 <div id="scene_plot" class="bg"></div>
-
+<div id="history1" class="object"><img src="pic/history1.jpg"></div>
+<div id="history2" class="object"><img src="pic/history1.jpg"></div>
+<div id="potatochip" class="object"><img src="pic/potatochip.jpg"></div>
 <!-- 之後這邊可能要改成css 的display屬性 -->
-<div id="leave"><img src="pic/I.jpg"></div>
-<div id="switchpic"><img src="pic/B.png"></div>
+<div id="leave"><img src="pic/btnnext.png"></div>
+<div id="switchpic" class="bg"></div>
 <input type="button" id="btnnext" value="下一章">
 <!-- end plot -->
 
@@ -67,22 +51,24 @@
 	data-use-continue-as="false"
 	login_text="login with your facebook">
 </div>
-<button type="button" onclick="func()">click to confirm your status</button>
+<!-- <button type="button" onclick="func()">click to confirm your status</button> -->
 <div id="login_status"></div>
 
-<form>
-	<div id="lbName">主角名:</div><input type="text" id="txName" name="userid" autofocus value="張天豪">
-	<div id="fbid"></div>
-	<div id="fbname"></div>
-	<input type="submit" id="btnlogin" value="登入">
-</form>
-<input type="button" id="btnStart" value="開始">
+<div id="lbName"></div><input type="text" id="txName" name="userid" autofocus value="張天豪">
+<div id="fbid"></div>
+<div id="fbname"></div>
+<input type="submit" id="btnlogin" class="btncheck" value="">
+<input type="reset" id="btnreset" class="btnreset" value="">
+
+<div id="btnStart"><img src="pic/startbtn.png"></div>
+<div id="idform"><img src="pic/idform.png"></div>
+<div id="umm"><img src="pic/umm.png"></div>
+<!-- <input type="button" id="btnStart" value="開始"> -->
 
 <a href="about.html" id="aboutus">
     <img src="pic/About_us_icon.jpg">
 </a>
-<img src="pic/C01.png" id="cat">
-<img src="pic/T01.png" id="topic">
+<img src="pic/littlecat.png" id="cat">
 <div id="scene_init" class="bg"></div>
 
 <!-- end init -->

@@ -3,30 +3,20 @@
 //http = require('http'),
 var https = require('https'),fs = require("fs");
 //    express = require('express');
-
 var options = {
-    key: fs.readFileSync('./privatekey.pem'),
-    cert: fs.readFileSync('./certification.pem'),
+    key: fs.readFileSync('./ssl/private.key'),
+    cert: fs.readFileSync('./ssl/certificate.crt'),
 };
+//var options = {
+//    key: fs.readFileSync('./privatekey.pem'),
+//    cert: fs.readFileSync('./certification.pem'),
+//};
 const express = require(`express`)
 var app = express(); //移過來的
-//var multer = require('multer');
-//var moment = require('moment');
-//var bodyParser = require('body-parser');
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(express.static(__dirname + '/public'));
 //const app = express()//我移到前面宣告
-const port = 8790
-
-// mongo 
-//var MongoClient = require('mongodb').MongoClient;
-//var url = "mongodb://wp2017_groupi:vic32823@luffy.ee.ncku.edu.tw:27017/wp2017_groupi";
-
-// Express Router
-
-// 建立 Router 物件
-//var router = express.Router();
+const port = 10132
 
 // create ssh server
 https.createServer(options, app).listen(port, function() {
@@ -36,3 +26,27 @@ https.createServer(options, app).listen(port, function() {
 //app.listen(port,() =>{
 //    console.log(`Listening on port ${port}`)
 //})
+var mysql = require('mysql');
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "uidd2018_groupN",
+  password: "catteam"
+});
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  });
+
+//login system
+app.get('/login_data',function(req, res){
+  var id = req.param('id') ;
+  var nm = req.param('name');
+  var nicknm = req.param('NICKNAME');
+  var sql ="INSERT INTO `uidd2018_groupN`.`midterm` (`id`,`name`, `nickname`) VALUES ('"+id+"','"+nm+"','"+nicknm+"')";
+  console.log(sql)
+  con.query(sql,function(err,result){
+   if (err) throw err;
+    console.log("signup");
+    res.send(`Welcome! Little ${req.query.NICKNAME} `)
+  } );
+});
