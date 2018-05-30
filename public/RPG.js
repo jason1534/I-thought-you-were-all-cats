@@ -42,6 +42,7 @@ var character=getById("character"), plot=getById("scene_plot"), conv=getById("co
 hideArr(plotArr);
 hideArr(switchArr);
 //將離開用物件隱藏
+hide(game);
 hide(idform);
 hide(txName);
 hide(btnlogin);
