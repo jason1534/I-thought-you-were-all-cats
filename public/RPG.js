@@ -209,7 +209,7 @@ sensor.onclick=function(){
     				,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal
     				,player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal
     				,player["wild"].normal,player["I"].normal,player["I"].normal,player["wild"].normal,player["I"].normal
-    				,player["I"].normal,player["wild"].normal,player["I"].normal,player["I"].normal,player["wild"].normal
+    				,player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["wild"].normal
     				,player["I"].normal,player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal
     				,player["wild"].normal,player["I"].normal,player["wild"].normal,player["turtle"].normal,player["I"].normal
     				,player["turtle"].normal,player["I"].normal,player["turtle"].normal,player["I"].normal,player["turtle"].normal
