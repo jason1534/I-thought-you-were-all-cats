@@ -127,7 +127,7 @@ leave.onclick=function(){
     plot.style.backgroundAttachment="fixed";
     plot.style.backgroundPosition="center";
     plot.style.backgroundSize="cover";
-    show(game);
+    gameshow(game);
 }
 
 getById("btnnext").onclick=function(){
@@ -558,6 +558,9 @@ function hide(elem){
 }
 function show(elem){
     elem.style.display="block";
+}
+function gameshow(elem){
+    elem.style.display="initial";
 }
 function hideConv(){
     conv.innerHTML="......";
