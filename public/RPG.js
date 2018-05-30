@@ -36,7 +36,7 @@ var character=getById("character"), plot=getById("scene_plot"), conv=getById("co
 	select1=getById("select1"), select2=getById("select2"), select3=getById("select3"), leave=getById("leave"), 
 	history1=getById("history1"), history2=getById("history2"), potatochip=getById("potatochip"), idform=getById("idform"),
     txName=getById("txName"), btnlogin=getById("btnlogin"), btnreset=getById("btnreset"), umm=getById("umm"),
-    switchpic=getById("switchpic");
+    switchpic=getById("switchpic"), fbbtn=getById("fbbluebtn");
 
 //一開始將其他場景隱藏
 hideArr(plotArr);
@@ -70,6 +70,19 @@ getById("umm").onclick=function(){
     hide(btnreset);
     hide(umm);
 }
+btnlogin.onclick=function(){
+    roleplayer=getById("txName").value;         //假如使用者修改過名字，這個值就不會是預設的"永馨"
+    //接著將場景切換到一開始的劇情(可按跳過!)
+    //場景是由背景圖、人物框、對話框組成
+    hideArr(initArr);       //先關閉按下開始的畫面
+    showArr(plotArr);
+    hide(leave);
+    hide(idform);
+    hide(txName);
+    hide(btnlogin);
+    hide(btnreset);
+    hide(umm);
+}
 getById("btnStart").onclick=function(){
     show(txName);
     show(idform);
@@ -77,6 +90,7 @@ getById("btnStart").onclick=function(){
     show(btnreset);
     show(umm);
     hide(btnStart);
+    hide(fbbtn);
 }
 //離開時先把新章節存入
 leave.onclick=function(){
@@ -630,7 +644,7 @@ function testAPI() {
 //      },
 //      success:function(data){}
 //    });
-    loginbtn.onclick=function(){  
+    btnlogin.onclick=function(){  
       event.preventDefault();
       $.ajax({
         method:"get",
