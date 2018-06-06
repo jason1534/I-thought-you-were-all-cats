@@ -4,7 +4,7 @@ var plotArr=new Array("character","convers","sensor","scene_plot");
 var switchArr=new Array("btnnext");
 //var objectArr=new Array("history1")
 var scene=0;  //現在是哪個場景
-var chapter=3;//debug章節改這裡不用按太多次
+var chapter=0;//debug章節改這裡不用按太多次
 
 //存章節各元素的陣列
 var conversationArr=new Array();
