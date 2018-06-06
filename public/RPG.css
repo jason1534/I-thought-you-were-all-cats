@@ -176,6 +176,14 @@ div{
     cursor:pointer;
 }
 
+.back{
+    position: absolute;
+    top:20px;
+    right:20px;
+    z-index: 2000;
+    cursor: pointer;
+}
+
 #switchpic{
     position: absolute;
     background:url(pic/background.png);

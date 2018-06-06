@@ -4,7 +4,7 @@ var plotArr=new Array("character","convers","sensor","scene_plot");
 var switchArr=new Array("btnnext");
 //var objectArr=new Array("history1")
 var scene=0;  //現在是哪個場景
-var chapter=0;//debug章節改這裡不用按太多次
+var chapter=2;//debug章節改這裡不用按太多次
 
 //存章節各元素的陣列
 var conversationArr=new Array();
@@ -16,9 +16,9 @@ var characterposArr=new Array();
 
 //這個陣列是用來對應每個角色的不同個性的圖檔，就不用記檔名了
 var player=[];
-	player["I"]={normal: "I",happy: "IHappy",sad: "ISad",confused: "IConfuse", urgent: "IUrgent", end: "IEnd"};
-	player["wild"]={normal: "wild",happy: "wildHappy",sad: "wildSad", end: "wildEnd"};
-	player["turtle"]={normal: "turtle",happy: "turtleHappy",sad: "turtleSad", end: "turtleEnd"};
+	player["I"]={normal: "I",happy: "IHappy",sad: "ISad",angry: "IAngry", surprise: "Isurprise", end: "IEnd"};
+	player["wild"]={normal: "wild",say: "wildSay",suck: "wildsuck", ya: "wildYA"};
+	player["turtle"]={normal: "turtle",happy: "turtleHappy",sad: "turtleSad", angry: "turtleAngry"};
 
 //這個陣列是儲存抉擇的部分
 var choice=[];
@@ -27,21 +27,24 @@ var choice=[];
 	choice[2]=new Array("Let's Rock n' roll","Call me maybe!","可能牠的手就長那樣吧");
 	choice[3]=new Array("贔屭(ㄅㄧˋㄒㄧˋ)","贔屭(ㄅㄟˋㄌㄟˇ)","贔屭(ㄅㄧㄝ ㄌㄨˋ)");
     choice[4]=new Array("赤崁樓的烏龜","保安宮內的龜","曜西");
+    choice[5]=new Array("10","9","8");
 
 //這個陣列儲存每個場景人物的對話
 var convArr=[];
 
 //簡寫各個元件
 var character=getById("character"), plot=getById("scene_plot"), conv=getById("convers"), sensor=getById("sensor"), 
-	select1=getById("select1"), select2=getById("select2"), select3=getById("select3"), leave=getById("leave"), 
+	select1=getById("select1"), select2=getById("select2"), select3=getById("select3"), leave=getById("leave"), backbtn1=getById("back1"),
+    backbtn2=getById("back2"), backbtn3=getById("back3"),
 	history1=getById("history1"), history2=getById("history2"), potatochip=getById("potatochip"), idform=getById("idform"),
     txName=getById("txName"), btnlogin=getById("btnlogin"), btnreset=getById("btnreset"), umm=getById("umm"),
-    switchpic=getById("switchpic"), fbbtn=getById("fbbluebtn"), littlecat=getById("cat"), game=getById("game");
+    switchpic=getById("switchpic"), fbbtn=getById("fbbluebtn"), littlecat=getById("cat"), game=getById("game"),
+    history3=getById("history3"), bottle=getById("bottle");
 
 //一開始將其他場景隱藏
 hideArr(plotArr);
 hideArr(switchArr);
-//將離開用物件隱藏
+//初始畫面
 hide(game);
 hide(idform);
 hide(txName);
@@ -50,11 +53,17 @@ hide(btnreset);
 hide(umm);
 hide(switchpic);
 hide(littlecat);
-
+//按鈕
 hide(leave);
+hide(backbtn1);
+hide(backbtn2);
+hide(backbtn3);
+//功能物件
 hide(history1);
 hide(history2);
+hide(history3);
 hide(potatochip);
+hide(bottle);
 
 //一開始將抉擇隱藏
 hideChoice();
@@ -95,7 +104,7 @@ getById("btnStart").onclick=function(){
     hide(fbbtn);
   
     var pos = 400;
-    var mv = setInterval(frame, 10);
+    var mv = setInterval(frame, 5);
     function frame() {
         if (pos == 150) {
           clearInterval(mv);
@@ -128,6 +137,22 @@ leave.onclick=function(){
     plot.style.backgroundPosition="center";
     plot.style.backgroundSize="cover";
     $("#game").show();
+}
+
+backbtn1.onclick=function(){
+    scene=scene-2;
+    fireClick(sensor);
+    hide(backbtn1);
+}
+backbtn2.onclick=function(){
+    scene=scene-3;
+    fireClick(sensor);
+    hide(backbtn2);
+}
+backbtn3.onclick=function(){
+    scene=scene-4;
+    fireClick(sensor);
+    hide(backbtn3);
 }
 
 getById("btnnext").onclick=function(){
@@ -218,7 +243,7 @@ sensor.onclick=function(){
         "原來這就是弟控嗎…別哭了龜爺，朕去幫你打探打探吧",
         "感謝你們…這樣吧…要是你們成功打探消息回來，池子的魚你們選一隻拿走吧",
         "龜爺你這是為了弟弟出賣老朋友的節奏啊…(汗",
-        "那就萬事拜託了"
+        "那就萬事拜託了",
     	);
     characterArr[1]=new Array(player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,
     				player["wild"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal
@@ -253,6 +278,51 @@ sensor.onclick=function(){
 					,"turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone"
                     ,"turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone"
                     ,"turtlestone","turtlestone");
+
+    conversationArr[2]= new Array("終於到了，這裡就是石龜弟弟的所在地嗎?",
+        "的確是這裡沒錯，我們進去吧","你…你們是誰(O.O)?",
+        "你是不是有一群失散多年的哥哥呀？我們是受你的哥哥們委託來探望你的喵~",
+        "騙…騙人…那你說說看我的哥哥們到底有幾個啊？",
+        false,"你們根本不認識我的哥哥們，你們這些騙子！","哥哥…我的九個哥哥們…原來他們還記得我…嚶嚶","你們根本不認識我的哥哥們，你們這些騙子！",
+        "看來還真的是你呀",
+        "是的是我…我就是當年落水的石龜…",
+        false,
+        "想當年我太貪玩，不小心就掉進了港口裡，那裏好黑好冷，當時的人類也不打算把我撈上來，我就在那裡待上了將近一百年了嗚嗚",//scene=13
+        "可憐的孩子…還好你沒有溺死…",
+        "好不容易被撈上來後，想說可以和哥哥們團圓了，結果被搬到這間廟來，還被人類遵奉為「白蓮聖母」，說我帶來吉祥之兆",
+        "哇~這是要飛黃騰達的前奏啊喵",
+        "結果勒~就把我丟在這間廟的後面，我只能孤獨地默默待在這陰暗的角落想著哥哥們嗚嗚嗚",
+        "……可憐的孩子",
+        "太感人了~~不過你放心吧，你的哥哥們都過得很好，還交了一群魚朋友呢",
+        "是啊是啊，為了你牠們連朋友都不要了呢",
+        "真的嗎…不愧是我的哥哥們，兩百多年沒見了還是跟以前一樣疼我",
+        "你這弟弟還真的挺蠢萌的…講話還自帶顏文字…難怪養出一堆弟控…",
+        "恩？",
+        ".......",
+        "好啦好啦~既然確定了你的安全，我們就趕快回去找龜爺吧",
+        "也是，不然不知道要哭成什麼樣子了",
+        "等等…你說我的哥哥們哭得很慘嗎？",
+        "是啊~他們說到你就哭得唏利嘩啦的，眼睛都快哭腫了",
+        "這可不行…這樣吧…我背上的水對治療眼睛有很大的功效，你們裝一些回去給他們敷眼睛吧",
+        false,
+        "其實當時的人們都用各式各樣的容器去裝，茶壺茶罐都有，裡面的水是有點黃的，當時日本人怕裡面有病毒之類的東西還特別檢查。",
+        "好~裝好了~那我們出發吧~",
+        "謝謝你們~幫我跟哥哥們問好~");
+    characterArr[2]=new Array(player["I"].surprise,player["wild"].say,player["turtle"].sad,player["I"].happy,player["turtle"].sad,
+                player["I"].normal,player["turtle"].sad,player["turtle"].sad,player["turtle"].sad,player["wild"].suck,player["turtle"].sad,
+                player["turtle"].sad,player["turtle"].sad,player["wild"].say,player["turtle"].angry,player["wild"].say,player["turtle"].sad
+                ,player["wild"].say,player["I"].normal,player["wild"].say,player["turtle"].happy,player["wild"].suck,player["turtle"].happy
+                ,player["wild"].suck,player["I"].happy,player["wild"].ya,player["turtle"].normal,player["I"].surprise,player["turtle"].happy
+                ,player["I"].happy,player["turtle"].happy,player["wild"].normal,player["turtle"].happy);
+    characterposArr[2]=new Array(0,1,1,0,1,0,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,0,1,1,0,1,0,1,1,1);
+    continueArr[2]=new Array(true,true,true,true,false,5,true,true,true,true,10003,true,true,true,true,true,true,true,true,true,true,
+                true,true,true,true,true,true,true,10004,true,true,true,9999);
+    backgroundArr[2]=new Array("temple","temple","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother"
+                ,"turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother"
+                ,"turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother"
+                ,"turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother"
+                ,"turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother");
+
     //changechapter(chapter);
 
 
@@ -309,6 +379,7 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     show(leave);
+                    show(backbtn1);
                 }else if(parseInt(cntiArr[scene])==1){
                 	scene++;
                 	characterposition();
@@ -321,6 +392,7 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     show(leave);
+                    show(backbtn1);
                 }else if(parseInt(cntiArr[scene])==2){
                 	scene++;
                 	characterposition();
@@ -333,6 +405,7 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     show(leave);
+                    show(backbtn1);
                 }else if(parseInt(cntiArr[scene])==3){
                 	scene++;
                 	characterposition();
@@ -359,6 +432,19 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     show(leave);
+                    show(backbtn1);
+                }else if(parseInt(cntiArr[scene])==5){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(backbtn1);
                 }
             }
             select2.onclick=function(){
@@ -401,7 +487,7 @@ sensor.onclick=function(){
                     plot.style.backgroundPosition="center";
                     plot.style.backgroundSize="cover";
                     hideChoice();
-                    show(leave);
+                    show(backbtn2);
                 }else if(parseInt(cntiArr[scene])==3){
                 	scene++;
                 	characterposition();
@@ -413,8 +499,22 @@ sensor.onclick=function(){
                     plot.style.backgroundPosition="center";
                     plot.style.backgroundSize="cover";
                     hideChoice();
-                    show(leave);
+                    show(backbtn2);
                 }else if(parseInt(cntiArr[scene])==4){
+                    scene=scene+1;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(sensor);
+                    fireClick(sensor);
+                    scene++;
+                }else if(parseInt(cntiArr[scene])==5){
                     scene=scene+1;
                     characterposition();
                     //character.style.background="url(pic/"+charArr[scene]+".jpg)";
@@ -443,6 +543,7 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     show(leave);
+                    show(backbtn3);
                 }else if(parseInt(cntiArr[scene])==1){
                 	scene++;
                 	characterposition();
@@ -454,9 +555,9 @@ sensor.onclick=function(){
                     plot.style.backgroundPosition="center";
                     plot.style.backgroundSize="cover";
                     hideChoice();
-                    show(leave);
                     fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
                     fireClick(sensor);
+                    show(backbtn3);
                 }else if(parseInt(cntiArr[scene])==2){
                 	scene++;
                 	characterposition();
@@ -482,8 +583,8 @@ sensor.onclick=function(){
                     plot.style.backgroundPosition="center";
                     plot.style.backgroundSize="cover";
                     hideChoice();
-                    show(leave);
                     fireClick(sensor);
+                    show(backbtn3);
                 }else if(parseInt(cntiArr[scene])==4){
                     scene++;
                     characterposition();
@@ -495,8 +596,22 @@ sensor.onclick=function(){
                     plot.style.backgroundPosition="center";
                     plot.style.backgroundSize="cover";
                     hideChoice();
-                    show(leave);
                     fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
+                    fireClick(sensor);
+                    show(backbtn3);
+                }else if(parseInt(cntiArr[scene])==5){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(backbtn3);
+                    fireClick(sensor);
                     fireClick(sensor);
                 }
             }
@@ -506,6 +621,8 @@ sensor.onclick=function(){
             plot.style.backgroundPosition="center";
             plot.style.backgroundSize="cover";
         }
+    }else if(cntiArr[scene]==9999){
+       show(leave);
     }else if(cntiArr[scene]==10000){
     	scene++;
     	hideConv();
@@ -533,6 +650,24 @@ sensor.onclick=function(){
        		fireClick(sensor);
        		show(sensor);
        	}
+    }else if(cntiArr[scene]==10003){
+        scene++;
+        hideConv();
+        show(history3);
+        history3.onclick=function(){
+            hide(history3);
+            fireClick(sensor);
+            show(sensor);
+        }
+    }else if(cntiArr[scene]==10004){
+        scene++;
+        hideConv();
+        show(bottle);
+        bottle.onclick=function(){
+            hide(bottle);
+            fireClick(sensor);
+            show(sensor);
+        }
     }
 }
 /******************這個部分是給不同的劇情畫面的切換******************/
