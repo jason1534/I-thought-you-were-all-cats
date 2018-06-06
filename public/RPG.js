@@ -398,7 +398,6 @@ sensor.onclick=function(){
                     plot.style.backgroundPosition="center";
                     plot.style.backgroundSize="cover";
                     hideChoice();
-                    show(leave);
                     show(backbtn1);
                 }else if(parseInt(cntiArr[scene])==2){
                 	scene++;
@@ -411,7 +410,6 @@ sensor.onclick=function(){
                     plot.style.backgroundPosition="center";
                     plot.style.backgroundSize="cover";
                     hideChoice();
-                    show(leave);
                     show(backbtn1);
                 }else if(parseInt(cntiArr[scene])==3){
                 	scene++;
@@ -438,7 +436,6 @@ sensor.onclick=function(){
                     plot.style.backgroundPosition="center";
                     plot.style.backgroundSize="cover";
                     hideChoice();
-                    show(leave);
                     show(backbtn1);
                 }else if(parseInt(cntiArr[scene])==5){
                     scene++;
