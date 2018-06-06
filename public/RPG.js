@@ -4,7 +4,7 @@ var plotArr=new Array("character","convers","sensor","scene_plot");
 var switchArr=new Array("btnnext");
 //var objectArr=new Array("history1")
 var scene=0;  //現在是哪個場景
-var chapter=2;//debug章節改這裡不用按太多次
+var chapter=3;//debug章節改這裡不用按太多次
 
 //存章節各元素的陣列
 var conversationArr=new Array();
@@ -323,6 +323,14 @@ sensor.onclick=function(){
                 ,"turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother"
                 ,"turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother");
 
+    conversationArr[3]= new Array("龜爺~~~",
+        "你們終於回來了，怎麼樣怎麼樣？是老夫的弟弟嗎？(淚",
+        "哎呀別哭了龜爺，的確是牠，牠很精神呢！還托我們帶了治眼睛的水給你們",
+        "是嗎…太好了…老夫此生無憾了…按照約定，池子的魚你們挑一隻走吧…");
+    characterArr[3]=new Array(player["I"].surprise,player["turtle"].sad,player["wild"].suck,player["turtle"].happy);
+    characterposArr[3]=new Array(0,1,1,1);
+    continueArr[3]=new Array(true,true,true,true);
+    backgroundArr[3]=new Array("redturtle","redturtle","redturtle","redturtle");
     //changechapter(chapter);
 
 
