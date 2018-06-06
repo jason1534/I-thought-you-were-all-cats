@@ -387,7 +387,6 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     show(leave);
-                    show(backbtn1);
                 }else if(parseInt(cntiArr[scene])==1){
                 	scene++;
                 	characterposition();
