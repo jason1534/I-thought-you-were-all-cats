@@ -4,7 +4,7 @@ var plotArr=new Array("character","convers","sensor","scene_plot");
 var switchArr=new Array("btnnext");
 //var objectArr=new Array("history1")
 var scene=0;  //現在是哪個場景
-var chapter=0;//debug章節改這裡不用按太多次
+var chapter=1;//debug章節改這裡不用按太多次
 
 //存章節各元素的陣列
 var conversationArr=new Array();
@@ -39,7 +39,7 @@ var character=getById("character"), plot=getById("scene_plot"), conv=getById("co
 	history1=getById("history1"), history2=getById("history2"), potatochip=getById("potatochip"), idform=getById("idform"),
     txName=getById("txName"), btnlogin=getById("btnlogin"), btnreset=getById("btnreset"), umm=getById("umm"),
     switchpic=getById("switchpic"), fbbtn=getById("fbbluebtn"), littlecat=getById("cat"), game=getById("game"),
-    history3=getById("history3"), bottle=getById("bottle");
+    history3=getById("history3"), bottle=getById("bottle"), idcard=getById("idcard");
 
 //一開始將其他場景隱藏
 hideArr(plotArr);
@@ -64,7 +64,7 @@ hide(history2);
 hide(history3);
 hide(potatochip);
 hide(bottle);
-
+hide(idcard);
 //一開始將抉擇隱藏
 hideChoice();
 
@@ -196,6 +196,7 @@ sensor.onclick=function(){
     	"哼哼哼，我特別幫兄弟你也準備了一張，別說哥對你不好啊",
     	"歐歐歐看起來好厲害喵",
     	"那當然！只要拿著這張免死金牌，在台南市區內妳可以直著走、斜著走、橫著走，絕對沒有人會攔你",
+        false,
     	"這...這太貴重了，野貓兄請容我今後喚你一聲大哥",
     	"客氣客氣，那咱們就進去吧",
     	"那個人(指荷蘭人)怎麼一臉很委屈的樣子阿，他是不是做錯了什麼事",
@@ -247,7 +248,7 @@ sensor.onclick=function(){
     	);
     characterArr[1]=new Array(player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,
     				player["wild"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal
-    				,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal
+    				,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal
     				,player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal
     				,player["wild"].normal,player["I"].normal,player["I"].normal,player["wild"].normal,player["I"].normal
     				,player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["wild"].normal
@@ -261,16 +262,16 @@ sensor.onclick=function(){
                     ,player["I"].normal,player["turtle"].normal,player["I"].normal,player["turtle"].normal,player["I"].normal
                     ,player["wild"].normal,player["I"].normal,player["turtle"].normal,player["wild"].normal,player["turtle"].normal
                     );
-	characterposArr[1]=new Array(0,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,1,0,1,0,1,0,1,0,1,1,0,1,1,0,1,0,1,0,0,1,0
+	characterposArr[1]=new Array(0,1,0,1,1,1,0,1,0,1,0,1,0,1,1,0,1,0,1,0,1,0,0,1,0,1,1,0,1,0,1,0,1,0,1,1,0,1,1,0,1,0,1,0,0,1,0
 					,1,0,1,0,1,0,1,0,1,1,0,1,1,0,0,1,1,1//這裡是最後一個選擇結束
                     ,0,1,0,1,0,1,0,1,1,1);
-	continueArr[1]=new Array(true,false,1,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true
+	continueArr[1]=new Array(true,false,1,true,true,true,true,true,true,true,true,true,true,10005,true,true,true,true,true,true
 					,10000,true,true,true,10001,true,true,false,2,true,true,true,true,true,true,true,true,true,true,true,true
 					,true,true,false,3,true,true,true,true,true,true,true,true,true,10002,true,true,true,true,true
                     ,false,4,true,true,true//這裡是最後一個選擇結束
                     ,true,true,true,true,true,true,true,true,true,true);
 	backgroundArr[1]=new Array("redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse"
-					,"redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","mr.chung","mr.chung"
+					,"redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","mr.chung","mr.chung"
 					,"mr.chung","mr.chung","mr.chung","mr.chung","mr.chung","souvenir","souvenir","souvenir","souvenir","souvenir"
 					,"souvenir","souvenir","souvenir","souvenir","souvenir","souvenir","fish","fish","fish","fish","fish","fish"
 					,"turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone"
@@ -490,6 +491,7 @@ sensor.onclick=function(){
                     plot.style.backgroundAttachment="fixed";
                     plot.style.backgroundPosition="center";
                     plot.style.backgroundSize="cover";
+                    fireClick(sensor);
                     hideChoice();
                     show(backbtn2);
                 }else if(parseInt(cntiArr[scene])==3){
@@ -669,6 +671,15 @@ sensor.onclick=function(){
         show(bottle);
         bottle.onclick=function(){
             hide(bottle);
+            fireClick(sensor);
+            show(sensor);
+        }
+    }else if(cntiArr[scene]==10005){
+        scene++;
+        hideConv();
+        show(idcard);
+        idcard.onclick=function(){
+            hide(idcard);
             fireClick(sensor);
             show(sensor);
         }
