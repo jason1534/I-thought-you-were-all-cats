@@ -214,3 +214,11 @@ div{
     z-index: 2000;
     cursor: pointer;
 }
+
+.object img {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 3px;
+    box-shadow: 0 10px 30px -8px #000;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
