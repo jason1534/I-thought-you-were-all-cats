@@ -152,20 +152,28 @@ div{
     cursor: pointer; 
     background-color:gray;
     color:white;
-    font-size:26px; 
+    font-size:28px;
+    font-weight:200; 
     font-family:Microsoft JhengHei;
     position:absolute; 
-    left: 400px; 
-    z-index: 1500; 
+    left: 380px; 
+    z-index: 1500;
+    box-shadow: 0 10px 30px -4px #000;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    padding: 1px 15px;
+    border-radius: 8px;
 }
 #select1{
     top: 240px;
 }
 #select2{
     top: 280px;
+    margin-top: 15px;
 }
 #select3{
     top: 320px;
+    margin-top: 30px;
 }
 /*離開物件測試*/
 #leave{

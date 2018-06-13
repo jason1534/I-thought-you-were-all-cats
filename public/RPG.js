@@ -369,9 +369,9 @@ sensor.onclick=function(){
             select1.innerHTML=choice[parseInt(cntiArr[scene])][0];
             select2.innerHTML=choice[parseInt(cntiArr[scene])][1];
             select3.innerHTML=choice[parseInt(cntiArr[scene])][2];
-            show(select1);
-            show(select2);
-            show(select3);
+            showsel(select1);
+            showsel(select2);
+            showsel(select3);
             //這邊處理使用者點擊選項後的結果
             //使用者選擇的結果只有兩種：
             //1:繼續下一個對話(可能是下一段劇情，或者詢問者給予你的抉擇做感想)
@@ -720,6 +720,9 @@ function hideChoice(){
     hide(select1);
     hide(select2);
     hide(select3);
+}
+function showsel(elem){
+    elem.style.display="list-item";
 }
 
 function characterposition(){
