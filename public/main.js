@@ -111,16 +111,15 @@ var first =  {
 	//物件
 	vend = game.add.sprite(1500,(phaserhei-214),'vend')
 	vend.scale.set(0.06)
-	house = game.add.sprite(2200,(phaserhei-308),'house')
+	house = game.add.sprite(2000,(phaserhei-308),'house')
 	house.scale.set(0.4)
-	inter_group = game.add.physicsGroup()
-	inter_group.add(house)
-	inter_group.add(vend)
+	game.physics.enable(vend,Phaser.Physics.ARCADE)
+	game.physics.enable(house,Phaser.Physics.ARCADE)
 	house.body.allowGravity = false
 	vend.body.allowGravity = false
 	house.body.immovable = true
 	vend.body.immovable = true
-	
+
 	coins = game.add.physicsGroup()
 	for(var i = 0;i < 10;i++) {
 		coin = coins.create(100+i*200,(phaserhei-128),'coin')
@@ -154,7 +153,7 @@ var first =  {
 	cat_player.animations.add('jumpdownleft',,2,false)
 	cat_player.animations.add('jumpdownright',,2,false)*/
 	//世界設定
-	game.world.setBounds(0,0, 3200, 480)
+	game.world.setBounds(0,0, 4800, 480)
 	cat_player.body.collideWorldBounds = true
 	game.camera.follow(cat_player)
 	
@@ -193,14 +192,38 @@ var first =  {
 	//this.custom.isDown
 	game.physics.arcade.collide(this.cat_player, this.layer);
 	
-	//移動驚嘆號
+	//驚嘆號
 	mark.visible = false
-	game.physics.arcade.overlap(this.cat_player, this.inter_group,function(){
-		mark.body.x = cat_player.body.x+35
-		mark.body.y = cat_player.body.y-50
-		mark.visible = true
+	mark.body.x = cat_player.body.x+35
+	mark.body.y = cat_player.body.y-50
+	//進入關卡
+    if (this.cat_player.body.x > 310 && this.cat_player.body.x < 660) {
+		if(flag.p1 != 1){
+			mark.visible = true
+			if (custom.isDown || trigger.space == 1) {
+				flag.p1 = 1
+				game.state.start('next')
+			}
+		}
+    } 
+	game.physics.arcade.overlap(this.cat_player, this.house,function(){
+		if(flag.p2 != 1){
+			mark.visible = true
+			if (custom.isDown || trigger.space == 1) {
+				flag.p2 = 1
+				//game.state.start('next')
+			}
+		}
 	});
-	//硬幣
+	game.physics.arcade.overlap(this.cat_player, this.vend,function(){
+		if(flag.p3 != 1){
+			mark.visible = true
+			if (custom.isDown || trigger.space == 1) {
+				flag.p3 = 1
+				//game.state.start('next')
+			}
+		}
+	});
 	game.physics.arcade.overlap(cat_player, coins,function(cat_player,coin){
 		coin.kill()
 		coinnumber ++
@@ -242,18 +265,6 @@ var first =  {
 			//this.cat_player.animations.stop()
         }
     }
-	//進入關卡
-    if (this.cat_player.body.x > 310 && this.cat_player.body.x < 660) {//
-		if(this.flag.p1 != 1){
-			mark.body.x = cat_player.body.x+35
-			mark.body.y = cat_player.body.y-50
-			mark.visible = true
-			if (this.custom.isDown || trigger.space == 1) {
-				this.flag.p1 = 1
-				game.state.start('next')
-			}
-		}
-    } 
   },
   
    render:()=>{
