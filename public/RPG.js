@@ -771,7 +771,7 @@ function statusChangeCallback(response) {
   if (response.status === 'connected') {
     testAPI();
   } else {
-    document.getElementById('status').innerHTML = 'Please log ' +
+    document.getElementById('login_status').innerHTML = 'Please log ' +
       'into this app.';
   }
 }
@@ -860,7 +860,11 @@ var next = {
     },
     create: function () {
         $('#game').css({ display: 'none' })
-        
+        hideArr(initArr);
+        hideArr(switchArr);
+        showArr(plotArr);
+        hide(leave);
+        hide(switchpic);
     },
     update: function () {
         
@@ -1110,5 +1114,6 @@ var first =  {
 game.state.add('first', first);
 game.state.add('next', next);
 game.state.start('first');
+
 
 //game end

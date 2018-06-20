@@ -12,21 +12,6 @@
 </head>
 <body>
 <div id="game"></div>
-<script>
-    function func() {
-      FB.getLoginStatus(function(response) {
-        console.log(response);
-        if (response.status === 'connected') { 
-          FB.api('/me', function(response) {
-            document.getElementById('login_status').innerHTML = "logged in as " + response.name;
-            console.log('logged in as ' + response.name);
-          });
-        } else {
-          document.getElementById('login_status').innerHTML = "not logged in";
-        }
-      });
-    }
- </script>
 <!-- choice part -->
 <ul>
   <li id="select1">選項1</li>
@@ -64,6 +49,8 @@
 	data-auto-logout-link="true"
 	data-use-continue-as="false"
 	login_text="login with your facebook"
+  scope="public_profile,email" 
+  onlogin="checkLoginState();"
   id="fbbluebtn">
 </div>
 <!-- <button type="button" onclick="func()">click to confirm your status</button> -->
