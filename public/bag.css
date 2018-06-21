@@ -1,0 +1,141 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+body{
+    height: 100%;
+    overflow: hidden;
+}
+#enter_bag {
+    background-image: url("asset/bag/b1.png");
+    background-size: contain;
+    width: 8vw;
+    height: 8vw;
+    right: 1vw;
+    background-repeat:no-repeat;   
+    position: absolute;
+    border-radius:1vw;    
+}
+#back_img {
+    background-image: url("asset/bag/b2.png");
+    background-size: contain;
+    width: 8vw;
+    height: 8vw;
+    right: 1vw;
+    background-repeat:no-repeat;   
+    position: absolute;
+    display: none;
+    border-radius:1vw;    
+}
+
+
+#menu {
+    background-image: url("asset/bag/background.png");
+    background-size: cover;
+    width: 85vw;
+    height: 75vh; 
+    right: 1vw;
+    top:15vh;
+    background-repeat:no-repeat;   
+    position: absolute;
+    margin: 0vw;
+    padding: 2vw;    
+    display: none;
+    border-radius:1vw;    
+}
+
+#look {
+    background-color: burlywood;
+    background-size: cover;
+    width: 68vw;
+    height: 84vh; 
+    top: 6vh;
+    background-repeat:no-repeat;   
+    position: fixed;
+    display: none;
+    left: 19vw;
+    margin: 0vw;
+    padding: 2vw;  
+    border-radius:1vw;         
+}
+
+#item_img{
+    background-image: url("asset/bag/background2.png");
+    background-size: contain;
+    width: 14vw;
+    height: 14vw; 
+    margin-left: 7%;
+    margin-top: 3%;    
+    background-repeat:no-repeat;
+    display: block;
+}
+#item_detail{
+    background-color: blanchedalmond;
+    background-size: contain;
+    width: 55vw;
+    height: 43vh; 
+    margin-left: 7%;
+    margin-top: 3%;    
+    background-repeat:no-repeat;
+    display: block;
+    border-radius:1vw;
+    padding: 2vw; 
+    font-size:1.5em;        
+}
+
+#tag {
+    background-size: contain;
+    width: 20vw;
+    height: 8vw; 
+    left: 10vw;
+    background-repeat:no-repeat;   
+    position: absolute;
+    display: block;
+    border-radius:1vw;    
+}
+
+#look_bag {
+    background-image: url("asset/bag/look_bag.png");
+    background-size: contain;
+    width: 30vw;
+    height: 43vw; 
+    margin-left: 10%;
+    display:inline-block;       
+    background-repeat:no-repeat;   
+}
+#look_text {
+    background-image: url("asset/bag/look_text.png");
+    background-size: contain;
+    width: 30vw;
+    height: 43vw; 
+    margin-left: 10%; 
+    display:inline-block;   
+    background-repeat:no-repeat;   
+}
+
+.items {
+    background-image: url("asset/bag/background2.png");
+    background-size: contain;
+    width: 14vw;
+    height: 14vw; 
+    margin-left: 7%;
+    margin-top: 3%;    
+    background-repeat:no-repeat;
+    display: none;       
+}
+.histories {
+    background-image: url("asset/bag/background2.png");
+    background-size: contain;
+    width: 14vw;
+    height: 14vw; 
+    margin-left: 7%;
+    margin-top: 3%;        
+    background-repeat:no-repeat;
+    display: none;       
+}
+
+.item_img{
+    width: 12vw;
+    height: 14vw; 
+}
+
