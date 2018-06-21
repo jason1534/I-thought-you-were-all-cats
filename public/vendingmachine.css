@@ -1,6 +1,6 @@
 #vendingmachine
 {
-    background-image: url(../classmade/asset/VM/all.png);
+    background-image: url(asset/VM/all.png);
     background-size: contain;
     width: 25vw;
     height: 91vh;
@@ -29,7 +29,7 @@
 }
 
 #buy_img_contain{
-    background-image: url(../classmade/asset/bag/background2.png);
+    background-image: url(asset/bag/background2.png);
     background-size: contain;
     width: 14vw;
     height: 13vw;

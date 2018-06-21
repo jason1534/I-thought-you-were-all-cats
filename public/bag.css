@@ -7,7 +7,7 @@ body{
     overflow: hidden;
 }
 #enter_bag {
-    background-image: url("../classmade/asset/bag/b1.png");
+    background-image: url("asset/bag/b1.png");
     background-size: contain;
     width: 8vw;
     height: 8vw;
@@ -17,7 +17,7 @@ body{
     border-radius:1vw;    
 }
 #back_img {
-    background-image: url("../classmade/asset/bag/b2.png");
+    background-image: url("asset/bag/b2.png");
     background-size: contain;
     width: 8vw;
     height: 8vw;
@@ -30,7 +30,7 @@ body{
 
 
 #menu {
-    background-image: url("../classmade/asset/bag/background.png");
+    background-image: url("asset/bag/background.png");
     background-size: cover;
     width: 85vw;
     height: 75vh; 
@@ -60,7 +60,7 @@ body{
 }
 
 #item_img{
-    background-image: url("../classmade/asset/bag/background2.png");
+    background-image: url("asset/bag/background2.png");
     background-size: contain;
     width: 14vw;
     height: 14vw; 
@@ -95,7 +95,7 @@ body{
 }
 
 #look_bag {
-    background-image: url("../classmade/asset/bag/look_bag.png");
+    background-image: url("asset/bag/look_bag.png");
     background-size: contain;
     width: 30vw;
     height: 43vw; 
@@ -104,7 +104,7 @@ body{
     background-repeat:no-repeat;   
 }
 #look_text {
-    background-image: url("../classmade/asset/bag/look_text.png");
+    background-image: url("asset/bag/look_text.png");
     background-size: contain;
     width: 30vw;
     height: 43vw; 
@@ -114,7 +114,7 @@ body{
 }
 
 .items {
-    background-image: url("../classmade/asset/bag/background2.png");
+    background-image: url("asset/bag/background2.png");
     background-size: contain;
     width: 14vw;
     height: 14vw; 
@@ -124,7 +124,7 @@ body{
     display: none;       
 }
 .histories {
-    background-image: url("../classmade/asset/bag/background2.png");
+    background-image: url("asset/bag/background2.png");
     background-size: contain;
     width: 14vw;
     height: 14vw; 
