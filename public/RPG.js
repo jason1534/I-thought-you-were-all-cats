@@ -4,7 +4,7 @@ var plotArr=new Array("character","convers","sensor","scene_plot");
 var switchArr=new Array("btnnext");
 //var objectArr=new Array("history1")
 var scene=0;  //現在是哪個場景
-var chapter=0;//debug章節改這裡不用按太多次
+var chapter=5;//debug章節改這裡不用按太多次
 
 //存章節各元素的陣列
 var conversationArr=new Array();
@@ -16,7 +16,7 @@ var characterposArr=new Array();
 
 //這個陣列是用來對應每個角色的不同個性的圖檔，就不用記檔名了
 var player=[];
-	player["I"]={normal: "I",happy: "IHappy",sad: "ISad",angry: "IAngry", surprise: "Isurprise", end: "IEnd"};
+	player["I"]={normal: "I",happy: "IHappy",sad: "ISad",angry: "IAngry", surprise: "Isurprise"};
 	player["wild"]={normal: "wild",say: "wildSay",suck: "wildsuck", ya: "wildYA"};
 	player["turtle"]={normal: "turtle",happy: "turtleHappy",sad: "turtleSad", angry: "turtleAngry"};
 
@@ -28,18 +28,21 @@ var choice=[];
 	choice[3]=new Array("贔屭(ㄅㄧˋㄒㄧˋ)","贔屭(ㄅㄟˋㄌㄟˇ)","贔屭(ㄅㄧㄝ ㄌㄨˋ)");
     choice[4]=new Array("赤崁樓的烏龜","保安宮內的龜","曜西");
     choice[5]=new Array("10","9","8");
-
+    choice[6]=new Array("犯賤吧！","錢多吧！","以上皆是")
+    choice[7]=new Array("為了藝術","霓虹人的傑作","清朝的遺跡");
+    choice[8]=new Array("往西走","往東走","不走了")
 //這個陣列儲存每個場景人物的對話
 var convArr=[];
 
 //簡寫各個元件
 var character=getById("character"), plot=getById("scene_plot"), conv=getById("convers"), sensor=getById("sensor"), 
 	select1=getById("select1"), select2=getById("select2"), select3=getById("select3"), leave=getById("leave"), backbtn1=getById("back1"),
-    backbtn2=getById("back2"), backbtn3=getById("back3"),
-	history1=getById("history1"), history2=getById("history2"), potatochip=getById("potatochip"), idform=getById("idform"),
-    txName=getById("txName"), btnlogin=getById("btnlogin"), btnreset=getById("btnreset"), umm=getById("umm"),
-    switchpic=getById("switchpic"), fbbtn=getById("fbbluebtn"), littlecat=getById("cat"), game=getById("game"),
-    history3=getById("history3"), bottle=getById("bottle"), idcard=getById("idcard");
+    backbtn2=getById("back2"), backbtn3=getById("back3"), idform=getById("idform"), txName=getById("txName"),
+    btnlogin=getById("btnlogin"), btnreset=getById("btnreset"), umm=getById("umm"), switchpic=getById("switchpic"), 
+    fbbtn=getById("fbbluebtn"), littlecat=getById("cat"), game=getById("game"),
+	history1=getById("history1"), history2=getById("history2"), potatochip=getById("potatochip"), 
+    history3=getById("history3"), bottle=getById("bottle"), idcard=getById("idcard"), coin=getById("coin"),
+    history4=getById("history4");
 
 //一開始將其他場景隱藏
 hideArr(plotArr);
@@ -62,9 +65,11 @@ hide(backbtn3);
 hide(history1);
 hide(history2);
 hide(history3);
+hide(history4);
 hide(potatochip);
 hide(bottle);
 hide(idcard);
+hide(coin);
 //一開始將抉擇隱藏
 hideChoice();
 
@@ -221,7 +226,7 @@ sensor.onclick=function(){
     	"喵！？這烏龜也太大了",
     	"老夫可不是普通的烏龜，老夫是贔屭。",
     	"什麼？你說你是…",
-    	false,"no!","FK!","是啊，看看旁邊一整排的兄弟們，咱們就是被稱為龍生九子的贔屭，也被奉為龍的傳人呢！這些魚都是咱的老朋友了，吃不得啊",
+    	false,"是啊，看看旁邊一整排的兄弟們，咱們就是被稱為龍生九子的贔屭，也被奉為龍的傳人呢！這些魚都是咱的老朋友了，吃不得啊","no!","FK!",
     	"大哥…",
     	"恩…聽牠這麼一說還當真下不了嘴…",
     	"可是難得的吃到飽…",
@@ -241,10 +246,22 @@ sensor.onclick=function(){
         "但…但是…老夫…老夫的弟弟啊~~(痛哭)牠…牠還那麼小那麼無知的時候…竟然就…(爆哭",
         "怎麼一談到牠弟弟就這麼不冷靜啊…剛剛不是挺老成的嗎…",
         "別勸牠了，我看牠八成是弟控沒錯了",
-        "原來這就是弟控嗎…別哭了龜爺，朕去幫你打探打探吧",
-        "感謝你們…這樣吧…要是你們成功打探消息回來，池子的魚你們選一隻拿走吧",
-        "龜爺你這是為了弟弟出賣老朋友的節奏啊…(汗",
-        "那就萬事拜託了",
+        "原來這就是弟控嗎…別哭了龜爺，朕去幫你打探打探吧!大哥也會幫你的！",
+        "幫忙打探當然可以，但是哥的行情價可不低呀喵~龜爺你懂得吧？",
+        "這…這樣吧…雖然池子裡的魚不能給你們，但是池子裡人類亂丟的錢你們可以盡量拿，應該會有用的",
+        false,
+        "啊？人類為什麼沒事要丟錢在水池裡阿？",
+        false,"太單純了吧","當然不止！","反正人類沒事找事做也不是一天兩天了",
+        "老夫的弟弟就拜託你們了",
+        "交給我們吧龜爺！",
+        "喵？原來不是「刺砍樓」而是「赤崁樓」嗎！？",
+        "是赤嵌樓喔喵~這可是人類世界有名的古蹟呢~",
+        "可是油漆看起來很新ㄝ，整個bling bling的，一點都沒有古蹟破爛的感覺",
+        "再過幾年應該就可以成功還原破爛感了吧喵~",
+        "話說大哥你知道剛剛提到的保安宮在哪裡嗎？朕其實不知道路呢~",
+        "說來慚愧，哥也有點忘記保安宮怎麼走了喵~不如我們先去問問我道上的兄弟們吧！",
+        "野貓兄果然四海之內皆兄弟呢~佩服佩服~",
+        "所以說跟著哥有糖吃啊喵~走！哥帶你去我們的據點混個眼熟"
     	);
     characterArr[1]=new Array(player["I"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,
     				player["wild"].normal,player["wild"].normal,player["I"].normal,player["wild"].normal,player["I"].normal
@@ -260,16 +277,19 @@ sensor.onclick=function(){
     				,player["I"].normal,player["turtle"].normal,player["I"].normal,player["turtle"].normal,player["wild"].normal
     				,player["I"].normal,player["I"].normal,player["wild"].normal,player["wild"].normal,player["wild"].normal//這裡是最後一個選擇結束
                     ,player["I"].normal,player["turtle"].normal,player["I"].normal,player["turtle"].normal,player["I"].normal
-                    ,player["wild"].normal,player["I"].normal,player["turtle"].normal,player["wild"].normal,player["turtle"].normal
-                    );
+                    ,player["wild"].normal,player["I"].normal,player["wild"].say,player["turtle"].normal,player["turtle"].normal
+                    ,player["I"].surprise,player["wild"].suck,player["wild"].suck,player["wild"].suck,player["wild"].suck
+                    ,player["turtle"].normal,player["I"].happy,player["I"].normal,player["wild"].say,player["I"].normal,player["wild"].say
+                    ,player["I"].normal,player["wild"].say,player["I"].normal,player["wild"].ya);
 	characterposArr[1]=new Array(0,1,0,1,1,1,0,1,0,1,0,1,0,1,1,0,1,0,1,0,1,0,0,1,0,1,1,0,1,0,1,0,1,0,1,1,0,1,1,0,1,0,1,0,0,1,0
 					,1,0,1,0,1,0,1,0,1,1,0,1,1,0,0,1,1,1//這裡是最後一個選擇結束
-                    ,0,1,0,1,0,1,0,1,1,1);
+                    ,0,1,0,1,0,1,0,1,1,1,0,0,0,0,1,1,0,0,1,0,1,0,1,0,1);
 	continueArr[1]=new Array(true,false,1,true,true,true,true,true,true,true,true,true,true,10005,true,true,true,true,true,true
 					,10000,true,true,true,10001,true,true,false,2,true,true,true,true,true,true,true,true,true,true,true,true
 					,true,true,false,3,true,true,true,true,true,true,true,true,true,10002,true,true,true,true,true
                     ,false,4,true,true,true//這裡是最後一個選擇結束
-                    ,true,true,true,true,true,true,true,true,true,true);
+                    ,true,true,true,true,true,true,true,true,10006,true,false,6,true,true,true,true,true,true,true,true,true,true
+                    ,true,true,9999);
 	backgroundArr[1]=new Array("redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse"
 					,"redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","redhouse","mr.chung","mr.chung"
 					,"mr.chung","mr.chung","mr.chung","mr.chung","mr.chung","souvenir","souvenir","souvenir","souvenir","souvenir"
@@ -278,9 +298,64 @@ sensor.onclick=function(){
 					,"turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone"
 					,"turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone"
                     ,"turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone"
-                    ,"turtlestone","turtlestone");
+                    ,"turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone","turtlestone"
+                    ,"turtlestone","redhousefront","redhousefront","redhousefront","redhousefront","redhousefront","redhousefront"
+                    ,"redhousefront","redhousefront");
 
-    conversationArr[2]= new Array("終於到了，這裡就是石龜弟弟的所在地嗎?",
+    conversationArr[2]= new Array("跟緊了喵~接下來要走的圓環可不簡單歐"
+                    ,"喵！？這裡的路好奇怪啊~為什麼大家都在繞圈圈阿？繞得朕頭都暈了"
+                    ,"圓環可是台南最能歷練外來者的地方之一呢！你知道為什麼台南會有那麼多圓環路段嗎？"
+                    ,false,"NO!","沒錯！就是日(ㄋㄧˊ)本(ㄏㄨㄥˋ）人規劃的結果！認真跟著哥搞懂圓環，你以後就有炫耀的資本了喵","Stupid"
+                    ,false
+                    ,"朕會努力學習的大哥！"
+                    ,"有前途！來吧咱們過馬路~"
+                    ,"等等呀大哥，紅燈吶！"
+                    ,"別急~你仔細看看旁邊的牌子"
+                    ,"喵！？這是什麼啊…「機慢車紅燈可右轉」？什麼鬼阿喵，連朕都知道紅燈右轉是要開罰單的"
+                    ,"這你就有所不知了喵~這就是台南圓環神奇的地方~可以正大光明地紅燈右轉~"
+                    ,"好炫！真的是學到一課了喵"
+                    ,"記得以後在圓環遇到紅燈，就要瀟灑地給他右轉過去，然後鄙視一下停下來等紅燈的無知者"
+                    ,"朕記住了！"
+                    ,"好啦我們也快要到據點了~繼續走吧~");
+    characterArr[2]=new Array(player["wild"].say,player["I"].normal,player["wild"].say,player["I"].normal,player["wild"].ya
+                    ,player["wild"].ya,player["wild"].ya,player["I"].normal,player["I"].happy,player["wild"].say
+                    ,player["I"].angry,player["wild"].say,player["I"].surprise,player["wild"].say,player["I"].surprise
+                    ,player["wild"].ya,player["I"].happy,player["wild"].say);
+    characterposArr[2]=new Array(1,0,1,0,1,1,1,0,0,1,0,1,0,1,0,1,0,1);
+    continueArr[2]=new Array(true,true,false,7,true,true,10007,true,true,true,true,true,true,true,true,true,true,9999);
+    backgroundArr[2]=new Array("circle","circle","circle","circle","circle","circle","circle","circle","circle","circle"
+                    ,"circle","circle","circle","circle","circle","circle","circle","circle");
+
+    conversationArr[3]= new Array("到啦~這裡就是我們野貓的據點之一「神農街」",
+                    "哇~真是個詩情畫意的地方呢~",//神農街劇情中斷，先接百元販賣機
+                    "這是什麼啊？百元販賣機？",
+                    "沒有用過ㄝ，又是人類無聊的發明吧",
+                    "喵！？大獎是小魚乾ㄝ！大哥！！！",
+                    "真假？快！我們快試試",
+                    "可是朕身上沒有100塊",
+                    "傻啦你，我們不是在龜爺池子裡拿硬幣了嗎",
+                    "大哥你真聰明",
+                    false,
+                    "……",
+                    "……",
+                    "什麼鬼阿喵！！！我要的是魚乾rrrrr",
+                    "哪來的大膽刁民竟敢放此等垃圾欺騙朕！",
+                    "可惡的人類，哥不會再上當了",
+                    "人類的套路實在太深了……可是魚乾……等朕有錢了再來試試手氣吧",
+                    "(看來這孩子還是著了人類的道了……)沒錯，現在還是龜爺的事比較重要，繼續往巷子內走吧");
+    characterArr[3]=new Array(player["wild"].say,player["I"].happy,
+                    player["I"].surprise,player["wild"].suck,player["I"].surprise,player["wild"].ya,player["I"].angry
+                    ,player["wild"].suck,player["I"].happy,player["I"].happy,player["wild"].suck,player["I"].normal
+                    ,player["wild"].normal,player["I"].normal,player["wild"].say,player["I"].normal,player["wild"].suck);
+    characterposArr[3]=new Array(1,0,
+                    0,1,0,1,0,1,0,0,1,0,1,0,1,0,1);
+    continueArr[3]=new Array(true,true,
+                    true,true,true,true,true,true,10008,true,true,true,true,true,true,true);
+    backgroundArr[3]=new Array("oldstreet","oldstreet",
+                    "100solder","100solder","100solder","100solder","100solder","100solder","100solder","100solder",
+                    "100solder","100solder","100solder","100solder","100solder","100solder","100solder");
+
+    conversationArr[4]= new Array("終於到了，這裡就是石龜弟弟的所在地嗎?",
         "的確是這裡沒錯，我們進去吧","你…你們是誰(O.O)?",
         "你是不是有一群失散多年的哥哥呀？我們是受你的哥哥們委託來探望你的喵~",
         "騙…騙人…那你說說看我的哥哥們到底有幾個啊？",
@@ -309,31 +384,50 @@ sensor.onclick=function(){
         "其實當時的人們都用各式各樣的容器去裝，茶壺茶罐都有，裡面的水是有點黃的，當時日本人怕裡面有病毒之類的東西還特別檢查。",
         "好~裝好了~那我們出發吧~",
         "謝謝你們~幫我跟哥哥們問好~");
-    characterArr[2]=new Array(player["I"].surprise,player["wild"].say,player["turtle"].sad,player["I"].happy,player["turtle"].sad,
+    characterArr[4]=new Array(player["I"].surprise,player["wild"].say,player["turtle"].sad,player["I"].happy,player["turtle"].sad,
                 player["I"].normal,player["turtle"].sad,player["turtle"].sad,player["turtle"].sad,player["wild"].suck,player["turtle"].sad,
                 player["turtle"].sad,player["turtle"].sad,player["wild"].say,player["turtle"].angry,player["wild"].say,player["turtle"].sad
                 ,player["wild"].say,player["I"].normal,player["wild"].say,player["turtle"].happy,player["wild"].suck,player["turtle"].happy
                 ,player["wild"].suck,player["I"].happy,player["wild"].ya,player["turtle"].normal,player["I"].surprise,player["turtle"].happy
                 ,player["I"].happy,player["turtle"].happy,player["wild"].normal,player["turtle"].happy);
-    characterposArr[2]=new Array(0,1,1,0,1,0,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,0,1,1,0,1,0,1,1,1);
-    continueArr[2]=new Array(true,true,true,true,false,5,true,true,true,true,10003,true,true,true,true,true,true,true,true,true,true,
+    characterposArr[4]=new Array(0,1,1,0,1,0,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,0,1,1,0,1,0,1,1,1);
+    continueArr[4]=new Array(true,true,true,true,false,5,true,true,true,true,10003,true,true,true,true,true,true,true,true,true,true,
                 true,true,true,true,true,true,true,10004,true,true,true,9999);
-    backgroundArr[2]=new Array("temple","temple","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother"
+    backgroundArr[4]=new Array("temple","temple","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother"
                 ,"turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother"
                 ,"turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother"
                 ,"turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother"
                 ,"turtlebrother","turtlebrother","turtlebrother","turtlebrother","turtlebrother");
 
-    conversationArr[3]= new Array("龜爺~~~",
+    conversationArr[5]= new Array("龜爺~~~",
         "你們終於回來了，怎麼樣怎麼樣？是老夫的弟弟嗎？(淚",
         "哎呀別哭了龜爺，的確是牠，牠很精神呢！還托我們帶了治眼睛的水給你們",
-        "是嗎…太好了…老夫此生無憾了…按照約定，池子的魚你們挑一隻走吧…");
-    characterArr[3]=new Array(player["I"].surprise,player["turtle"].sad,player["wild"].suck,player["turtle"].happy);
-    characterposArr[3]=new Array(0,1,1,1);
-    continueArr[3]=new Array(true,true,true,true);
-    backgroundArr[3]=new Array("redturtle","redturtle","redturtle","redturtle");
+        "是嗎…太好了…老夫此生無憾了…感謝你們的幫忙，老夫不會忘記這份恩情的",
+        "你太客氣了龜爺~那麼我們現在往哪裡走呢？",
+        false,"野貓兄，這裡是哪裡啊，走了這麼久怎麼感覺甚麼也沒有?","去成大","大便啦",
+        "哎呀你先別急嘛~跟著我走準沒錯，我有哪一次有虧待過你嗎?",
+        "沒有沒有，野貓兄，今天就屬你功勞最大了，帶著朕到處遊歷四方，到處長見識了呢！",
+        "朕必須好好嘉許你，改天叫人刻一塊碑送給你，紀念此一偉大盛事，上面必須記載朕與你拯救身處水深火熱的贔屭們…",
+        "好了好了碑就免了，要是真送我一塊碑我還得往哪擺阿?你還是先把你的中二病給治好吧！瞧，我們已經快到了！",
+        "挖這夕陽也太美麗了，朕從沒看過這麼優美的景色",
+        "ㄟㄟ你的反應也太浮誇了吧，到底是有多常被關在家阿，這點程度的風景就痛哭流涕?",
+        "能看到這樣的風景朕此生無憾了，大哥，朕真是發自內心由衷地感謝你啊，能否讓你繼續著你，看看這個世界更多更美好的風景阿~",
+        "那你不回你的主人身邊了嗎?不怕他會擔心嗎?",
+        "沒關係啦他只是負責鏟屎的，偶爾回去看看便是，反正也就早晚能看到他而已，還是去四處遊歷比較實在，看看屬於朕的天下到底有多遼闊！",
+        "那好吧！我就繼續帶你四處吃香喝辣，順便把你的中二病給治好，我們走吧！",
+        );
+    characterArr[5]=new Array(player["I"].surprise,player["turtle"].sad,player["wild"].suck,player["turtle"].happy
+                    ,player["wild"].normal,player["I"].happy,player["I"].happy,player["wild"].normal
+                    ,player["I"].happy,player["wild"].normal,player["I"].happy,player["I"].happy,player["wild"].suck
+                    ,player["I"].happy,player["wild"].suck,player["I"].happy,player["wild"].suck,player["I"].happy,player["wild"].suck
+                    );
+    characterposArr[5]=new Array(0,1,1,1,0,0,0,0,0,1,0,0,1,0,1,0,1,0,1);
+    continueArr[5]=new Array(true,true,true,true,false,8,true,true,true,true,true,true,true,true,true,true,true
+                    ,true,9999);
+    backgroundArr[5]=new Array("redturtle","redturtle","redturtle","redturtle","redturtle","redturtle","redturtle"
+                    ,"redturtle","redturtle","redturtle","redturtle","redturtle","redturtle"
+                    ,"sunset","sunset","sunset","sunset","sunset","sunset");
     //changechapter(chapter);
-
 
     convArr=conversationArr[chapter];
     charArr=characterArr[chapter];
@@ -424,8 +518,8 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     show(sensor);
-                    fireClick(sensor);
-                    fireClick(sensor);
+                    scene++;
+                    scene++;
                 }else if(parseInt(cntiArr[scene])==4){
                     scene++;
                     characterposition();
@@ -450,6 +544,44 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     show(backbtn1);
+                }else if(parseInt(cntiArr[scene])==6){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(backbtn1);
+                }else if(parseInt(cntiArr[scene])==7){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(backbtn1);
+                }else if(parseInt(cntiArr[scene])==8){//往結局-關夕平台
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(sensor);
+                    scene++;
+                    scene++;
                 }
             }
             select2.onclick=function(){
@@ -504,6 +636,7 @@ sensor.onclick=function(){
                     plot.style.backgroundAttachment="fixed";
                     plot.style.backgroundPosition="center";
                     plot.style.backgroundSize="cover";
+                    fireClick(sensor);
                     hideChoice();
                     show(backbtn2);
                 }else if(parseInt(cntiArr[scene])==4){
@@ -534,6 +667,48 @@ sensor.onclick=function(){
                     show(sensor);
                     fireClick(sensor);
                     scene++;
+                }else if(parseInt(cntiArr[scene])==6){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    fireClick(sensor);
+                    hideChoice();
+                    show(backbtn2);
+                }else if(parseInt(cntiArr[scene])==7){
+                    scene=scene+1;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(sensor);
+                    fireClick(sensor);
+                    scene++;
+                }else if(parseInt(cntiArr[scene])==8){//到成大找張天豪老師
+                    scene=scene+1;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    //show(sensor);
+                    fireClick(sensor);
+                    //scene++;
+                    show(backbtn2);
                 }
             }
             select3.onclick=function(){
@@ -590,6 +765,7 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     fireClick(sensor);
+                    fireClick(sensor);
                     show(backbtn3);
                 }else if(parseInt(cntiArr[scene])==4){
                     scene++;
@@ -619,6 +795,48 @@ sensor.onclick=function(){
                     show(backbtn3);
                     fireClick(sensor);
                     fireClick(sensor);
+                }else if(parseInt(cntiArr[scene])==6){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(sensor);
+                    fireClick(sensor);
+                    fireClick(sensor);
+                }else if(parseInt(cntiArr[scene])==7){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
+                    fireClick(sensor);
+                    show(backbtn3);
+                }else if(parseInt(cntiArr[scene])==8){//結局看要去哪
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    fireClick(sensor);
+                    fireClick(sensor);
+                    show(backbtn3);
                 }
             }
             plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
@@ -680,6 +898,33 @@ sensor.onclick=function(){
         show(idcard);
         idcard.onclick=function(){
             hide(idcard);
+            fireClick(sensor);
+            show(sensor);
+        }
+    }else if(cntiArr[scene]==10006){
+        scene++;
+        hideConv();
+        show(coin);
+        coin.onclick=function(){
+            hide(coin);
+            fireClick(sensor);
+            show(sensor);
+        }
+    }else if(cntiArr[scene]==10007){
+        scene++;
+        hideConv();
+        show(history4);
+        history4.onclick=function(){
+            hide(history4);
+            fireClick(sensor);
+            show(sensor);
+        }
+    }else if(cntiArr[scene]==10008){
+        scene++;
+        hideConv();
+        show(bottle);
+        bottle.onclick=function(){
+            hide(bottle);
             fireClick(sensor);
             show(sensor);
         }
