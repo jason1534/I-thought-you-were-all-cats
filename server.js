@@ -23,9 +23,8 @@ https.createServer(options, app).listen(port, function() {
     console.log(`Listening on port ${port}`)
     app.use(express.static(__dirname + '/public'))
 });
-//app.listen(port,() =>{
-//    console.log(`Listening on port ${port}`)
-//})
+
+//mysql
 var mysql = require('mysql');
 var con = mysql.createConnection({
   host: "localhost",
@@ -36,6 +35,21 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
   });
+//check user system
+//app.get('/check_data',function(req, res){
+//  var id = req.param('id') ;
+//  var nm = req.param('name');
+//  var nicknm = req.param('NICKNAME');
+//  var sql ="SELECT id,nickname FROM `uidd2018_groupN`.`midterm` WHERE id='"+id+"';"
+ 
+//  console.log(sql)
+//  con.query(sql,function(err,result){
+//   if (err) throw err;
+//    console.log("start check");
+//    if(result[0].id.length!=0)
+//    res.send(`Welcome Back ${req.query.name}! your cat is ${req.query.NICKNAME}`)
+//  } );
+//});
 
 //login system
 app.get('/login_data',function(req, res){
@@ -50,3 +64,18 @@ app.get('/login_data',function(req, res){
     res.send(`Welcome! Little ${req.query.NICKNAME} `)
   } );
 });
+
+//save chapter
+app.get('/chapter_data',function(req, res){
+  var id = req.param('id') ; 
+  var chapter = req.param('chapter');
+  var sql ="UPDATE `uidd2018_groupN`.`midterm` SET `chapter`='"+chapter+"' WHERE `id`='"+id+"'";
+  console.log(sql)
+  con.query(sql,function(err,result){
+   if (err) throw err;
+    console.log("save chapter"+chapter);
+  } );
+});
+
+
+

@@ -4,7 +4,7 @@ var plotArr=new Array("character","convers","sensor","scene_plot");
 var switchArr=new Array("btnnext");
 //var objectArr=new Array("history1")
 var scene=0;  //現在是哪個場景
-var chapter=5;//debug章節改這裡不用按太多次
+var chapter=2;//debug章節改這裡不用按太多次
 
 //存章節各元素的陣列
 var conversationArr=new Array();
@@ -98,30 +98,25 @@ getById("umm").onclick=function(){
 //     hide(btnreset);
 //     hide(umm);
 // }
-getById("btnStart").onclick=function(){
-    show(txName);
-    show(idform);
-    show(btnlogin);
-    show(btnreset);
-    show(umm);
-    show(littlecat);
-    hide(btnStart);
-    hide(fbbtn);
-  
-    var pos = 400;
-    var mv = setInterval(frame, 5);
-    function frame() {
-        if (pos == 150) {
-          clearInterval(mv);
-        } else {
-          pos--; 
-          littlecat.style.top = pos + 'px'; 
-        }
-      }
-}
+function save_chapter(chapter){
+  FB.api('/me', function(response) {
+event.preventDefault();
+      $.ajax({
+        method:"get",
+        url:"./chapter_data",
+        data:{
+        id: response.id,
+        chapter: chapter,
+        },
+        success:function(data){}
+             });
+          })
+          }
+
 //離開時先把新章節存入
 leave.onclick=function(){
     chapter++;
+    save_chapter(chapter);//存章節到後端
     scene=0;
     //showArr(switchArr);
     //show(switchpic);
@@ -1014,10 +1009,12 @@ function statusChangeCallback(response) {
   console.log(response);
 
   if (response.status === 'connected') {
+    show(btnStart);
     testAPI();
   } else {
     document.getElementById('login_status').innerHTML = 'Please log ' +
       'into this app.';
+    hide(btnStart);
   }
 }
 function checkLoginState() {
@@ -1043,22 +1040,49 @@ window.fbAsyncInit = function() {
   js.src = "https://connect.facebook.net/en_US/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
 function testAPI() {
   console.log('Welcome!  Fetching your information.... ');
   FB.api('/me', function(response) {
     console.log('Successful login for: ' + response.name);
     console.log(JSON.stringify(response));
     fb_id = response.id;
-//  $.get({
-//      url: "./login_data",
-//      method:"GET",
-//      type:"get",
-//      data:{
+
+getById("btnStart").onclick=function(){
+//      event.preventDefault();
+//      $.ajax({
+//        method:"get",
+//        url:"./check_data",
+//        data:{
 //        id: response.id,
 //        name:response.name,
-//      },
-//      success:function(data){}
-//    });
+//        NICKNAME:$("#txName").val(),
+//        },
+//        success:function(data){
+//          //$("#strcheck").text(data)
+//          chapter=data;
+//        }
+//     });
+    show(txName);
+    show(idform);
+    show(btnlogin);
+    show(btnreset);
+    show(umm);
+    show(littlecat);
+    hide(btnStart);
+    hide(fbbtn);
+  
+    var pos = 400;
+    var mv = setInterval(frame, 5);
+    function frame() {
+        if (pos == 150) {
+          clearInterval(mv);
+        } else {
+          pos--; 
+          littlecat.style.top = pos + 'px'; 
+        }
+      }
+}
     btnlogin.onclick=function(){ 
         roleplayer=getById("txName").value;
         hideArr(initArr);
