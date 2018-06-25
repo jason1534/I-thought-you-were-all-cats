@@ -1,6 +1,6 @@
 #vendingmachine
 {
-    background-image: url(asset/VM/all.png);
+    background-image: url(assets/VM/all.png);
     background-size: contain;
     width: 25vw;
     height: 91vh;
@@ -29,7 +29,7 @@
 }
 
 #buy_img_contain{
-    background-image: url(asset/bag/background2.png);
+    background-image: url(assets/bag/background2.png);
     background-size: contain;
     width: 14vw;
     height: 13vw;
@@ -42,26 +42,59 @@
     background-color: blanchedalmond;
     background-size: contain;
     width: 39vw;
-    height: 18vh;
+    height: 22vh;
     top: 0%;
-    margin-top: 5%;
+    margin-top: 1%;
     background-repeat: no-repeat;
     float: right;
     border-radius: 1vw;
     padding: 2vw;
-    font-size: 1.5em;        
+    font-size: 1.5em; 
+    overflow: scroll;       
 }
 #vmt{
     width: 7vw;
     height: 7vw; 
 }
-
-#buy_img{
-    width: 12vw;
-    height: 14vw; 
+#buy_animation {
+    background-image: url(assets/VM/animation.png);
+    background-size: contain;
+    width: 47vw;
+    height: 82vh;
+    right: 25vw;
+    top: 5vh;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0vw;
+    padding: 2vw;
+    display: none;
+    border-radius: 1vw;    
 }
-#congratulations
-{
+#buy_img{
+        background-size: contain;
+    width: 13vw;
+    height: 13vw;
+    margin-left: -3%;
+    margin-top: -1%;
+    background-repeat: no-repeat;
+}
+#congratulations{
     font-size: 2em;
     margin:0px auto;
+    display: inline;
+}
+#click_to{
+    font-size: 1em;
+    margin: 0px auto;
+    float: right;
+}
+#draw{
+    margin-top: 160%;
+    width: 70%;
+    height: 20%;
+    top: 50%;
+    margin-left: 15%;
+    display: block;
+    font-size: 1.5em;
+    border-radius: 4vw;       
 }

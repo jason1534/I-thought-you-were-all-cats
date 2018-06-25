@@ -60,7 +60,7 @@ body{
 }
 
 #item_img{
-        background-image: url(assets/bag/background2.png);
+    background-image: url(assets/bag/background2.png);
     background-size: contain;
     width: 28vw;
     height: 28vw;

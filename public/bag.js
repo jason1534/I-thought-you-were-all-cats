@@ -2,7 +2,7 @@ var state = 0;//0 in game/ 1 in bag /2 in item
 const items_num = 16;
 const history_num = 5;
 var item_select = "";
-var item_exist = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var item_exist = [1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0];
 var history_exist = [0,0,0,0,0];
 var item_img_source = {
     item1: "assets/item/item1.png",
