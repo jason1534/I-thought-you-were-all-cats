@@ -5,6 +5,8 @@ var switchArr=new Array("btnnext");
 //var objectArr=new Array("history1")
 var scene=0;  //現在是哪個場景
 //var chapter=0;//debug章節改這裡不用按太多次
+var chapter = window.sessionStorage.getItem("chapter_data");
+var roleplayer = window.sessionStorage.getItem("roleplayer_data");
 
 //存章節各元素的陣列
 var conversationArr=new Array();
@@ -498,6 +500,20 @@ sensor.onclick=function(){
    
     //changechapter(chapter);
 
+            convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
+            conv.innerHTML=convArr;
+            charArr=new Array(characterArr[chapter][0]);
+            character.style.background="url(pic/"+charArr[scene]+".jpg)";
+            character.style.left="25px";
+            character.style.top="100px";
+            character.style.width="350px";
+            character.style.height="451px";
+            bgArr=new Array(backgroundArr[chapter][0]);
+            plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+            plot.style.backgroundRepeat="no-repeat";
+            plot.style.backgroundAttachment="fixed";
+            plot.style.backgroundPosition="center";
+            plot.style.backgroundSize="cover";
     convArr=conversationArr[chapter];
     charArr=characterArr[chapter];
     charposArr=characterposArr[chapter];
@@ -1207,6 +1223,7 @@ getById("btnStart").onclick=function(){
       });
                window.sessionStorage.setItem("chapter_data", "0");
                window.sessionStorage.setItem("roleplayer_data", $("#txName").val());
+               chapter=0;
     }
   
               var pos = 400;
@@ -1234,20 +1251,6 @@ getById("btnStart").onclick=function(){
             chapter =data.split(" ")[1];
             window.sessionStorage.setItem("chapter_data", chapter);
             window.sessionStorage.setItem("roleplayer_data", roleplayer);
-            convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
-            conv.innerHTML=convArr;
-            charArr=new Array(characterArr[chapter][0]);
-            character.style.background="url(pic/"+charArr[scene]+".jpg)";
-            character.style.left="25px";
-            character.style.top="100px";
-            character.style.width="350px";
-            character.style.height="451px";
-            bgArr=new Array(backgroundArr[chapter][0]);
-            plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-            plot.style.backgroundRepeat="no-repeat";
-            plot.style.backgroundAttachment="fixed";
-            plot.style.backgroundPosition="center";
-            plot.style.backgroundSize="cover";
 
               }
         }
@@ -1256,8 +1259,6 @@ getById("btnStart").onclick=function(){
   })
 }
 
-chapter = window.sessionStorage.getItem("chapter_data");
-roleplayer = window.sessionStorage.getItem("roleplayer_data");
 
 //game start
 var phaserwidth = window.innerWidth;
