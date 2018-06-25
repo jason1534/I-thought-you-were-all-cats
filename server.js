@@ -35,28 +35,34 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
   });
+
 //check user system
-//app.get('/check_data',function(req, res){
-//  var id = req.param('id') ;
-//  var nm = req.param('name');
-//  var nicknm = req.param('NICKNAME');
-//  var sql ="SELECT id,nickname FROM `uidd2018_groupN`.`midterm` WHERE id='"+id+"';"
+app.get('/check_data',function(req, res){
+  var id = req.param('id') ;
+  console.log(id);
+  var nicknm = req.param('NICKNAME');
+  var chapter = req.param('chapter');
+  var sql ="SELECT id,nickname,chapter FROM `uidd2018_groupN`.`midterm` WHERE id='"+id+"';"
  
-//  console.log(sql)
-//  con.query(sql,function(err,result){
-//   if (err) throw err;
-//    console.log("start check");
-//    if(result[0].id.length!=0)
-//    res.send(`Welcome Back ${req.query.name}! your cat is ${req.query.NICKNAME}`)
-//  } );
-//});
+  console.log(sql)
+  con.query(sql,function(err,result){
+   if (err) throw err;
+    console.log("start check");
+//    console.log(result);
+    if(result.length!=0){
+    res.send(result[0].nickname+" "+result[0].chapter)}
+    else{
+    res.send("0")}
+    
+  } );
+});
 
 //login system
 app.get('/login_data',function(req, res){
   var id = req.param('id') ;
   var nm = req.param('name');
   var nicknm = req.param('NICKNAME');
-  var sql ="INSERT INTO `uidd2018_groupN`.`midterm` (`id`,`name`, `nickname`) VALUES ('"+id+"','"+nm+"','"+nicknm+"')";
+  var sql ="INSERT INTO `uidd2018_groupN`.`midterm` (`id`,`name`, `nickname`,`chapter`) VALUES ('"+id+"','"+nm+"','"+nicknm+"','0')";
   console.log(sql)
   con.query(sql,function(err,result){
    if (err) throw err;

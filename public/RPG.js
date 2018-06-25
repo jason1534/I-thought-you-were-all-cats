@@ -1,10 +1,10 @@
-var roleplayer=getById("txName").value;         //若使用者沒修改，就是預設的名稱：張天豪
+//var roleplayer=getById("txName").value;         //若使用者沒修改，就是預設的名稱：張天豪
 var initArr=new Array("lbName","btnStart","scene_init","cat","aboutus");
 var plotArr=new Array("character","convers","sensor","scene_plot");
 var switchArr=new Array("btnnext");
 //var objectArr=new Array("history1")
 var scene=0;  //現在是哪個場景
-var chapter=2;//debug章節改這裡不用按太多次
+//var chapter=0;//debug章節改這裡不用按太多次
 
 //存章節各元素的陣列
 var conversationArr=new Array();
@@ -1049,40 +1049,23 @@ function testAPI() {
     fb_id = response.id;
 
 getById("btnStart").onclick=function(){
-//      event.preventDefault();
-//      $.ajax({
-//        method:"get",
-//        url:"./check_data",
-//        data:{
-//        id: response.id,
-//        name:response.name,
-//        NICKNAME:$("#txName").val(),
-//        },
-//        success:function(data){
-//          //$("#strcheck").text(data)
-//          chapter=data;
-//        }
-//     });
-    show(txName);
-    show(idform);
-    show(btnlogin);
-    show(btnreset);
-    show(umm);
-    show(littlecat);
-    hide(btnStart);
-    hide(fbbtn);
-  
-    var pos = 400;
-    var mv = setInterval(frame, 5);
-    function frame() {
-        if (pos == 150) {
-          clearInterval(mv);
-        } else {
-          pos--; 
-          littlecat.style.top = pos + 'px'; 
-        }
-      }
-}
+      event.preventDefault();
+        $.ajax({
+        method:"get",
+        url:"./check_data",
+        data:{
+        id: response.id
+        },
+        success:function(data){
+          if (data=="0"){
+             show(txName);
+             show(idform);
+             show(btnlogin);
+             show(btnreset);
+             show(umm);
+             show(littlecat);
+             hide(btnStart);
+             hide(fbbtn);
     btnlogin.onclick=function(){ 
         roleplayer=getById("txName").value;
         hideArr(initArr);
@@ -1108,9 +1091,45 @@ getById("btnStart").onclick=function(){
           $("#login_check").text(data)
         }
       });
+               window.sessionStorage.setItem("chapter_data", "0");
+               window.sessionStorage.setItem("roleplayer_data", $("#txName").val());
     }
+  
+              var pos = 400;
+              var mv = setInterval(frame, 5);
+              function frame() {
+                   if (pos == 150) {
+                      clearInterval(mv);
+                 } else {
+                      pos--; 
+                      littlecat.style.top = pos + 'px'; 
+                        }
+                               }
+          
+                        }
+          else{
+        hideArr(initArr);
+        showArr(plotArr);
+        hide(leave);
+        hide(idform);
+        hide(txName);
+        hide(btnlogin);
+        hide(btnreset);
+        hide(umm); 
+               roleplayer= data.split(" ")[0];
+               chapter =data.split(" ")[1];
+               window.sessionStorage.setItem("chapter_data", chapter);
+               window.sessionStorage.setItem("roleplayer_data", roleplayer);
+
+              }
+        }
+     });
+}
   })
 }
+
+chapter = window.sessionStorage.getItem("chapter_data");
+roleplayer = window.sessionStorage.getItem("roleplayer_data");
 
 //game start
 var phaserwidth = window.innerWidth;
