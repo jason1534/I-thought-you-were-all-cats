@@ -17,8 +17,10 @@ var characterposArr=new Array();
 //這個陣列是用來對應每個角色的不同個性的圖檔，就不用記檔名了
 var player=[];
 	player["I"]={normal: "I",happy: "IHappy",sad: "ISad",angry: "IAngry", surprise: "Isurprise"};
-	player["wild"]={normal: "wild",say: "wildSay",suck: "wildsuck", ya: "wildYA"};
+	player["wild"]={normal: "wild",say: "wildSay",suck: "wildSuck", ya: "wildYA"};
 	player["turtle"]={normal: "turtle",happy: "turtleHappy",sad: "turtleSad", angry: "turtleAngry"};
+    player["kitty"]={normal: "kitty",happy: "kittyHappy",sad: "kittySad", angry: "kittyAngry"};
+
 
 //這個陣列是儲存抉擇的部分
 var choice=[];
@@ -28,9 +30,10 @@ var choice=[];
 	choice[3]=new Array("贔屭(ㄅㄧˋㄒㄧˋ)","贔屭(ㄅㄟˋㄌㄟˇ)","贔屭(ㄅㄧㄝ ㄌㄨˋ)");
     choice[4]=new Array("赤崁樓的烏龜","保安宮內的龜","曜西");
     choice[5]=new Array("10","9","8");
-    choice[6]=new Array("犯賤吧！","錢多吧！","以上皆是")
+    choice[6]=new Array("犯賤吧！","錢多吧！","以上皆是");
     choice[7]=new Array("為了藝術","霓虹人的傑作","清朝的遺跡");
-    choice[8]=new Array("往西走","往東走","不走了")
+    choice[8]=new Array("往西走","往東走","不走了");
+    choice[9]=new Array("颱風淹水時的交通工具","為了藝術","諾亞方舟的遺跡");
 //這個陣列儲存每個場景人物的對話
 var convArr=[];
 
@@ -345,13 +348,19 @@ sensor.onclick=function(){
                     ,"circle","circle","circle","circle","circle","circle","circle","circle");
 
     conversationArr[3]= new Array("到啦~這裡就是我們野貓的據點之一「神農街」",
-                    "哇~真是個詩情畫意的地方呢~",//神農街劇情中斷，先接百元販賣機
+                    "哇~真是個詩情畫意的地方呢~怎麼會有一艘船呀喵？",//神農街劇情中斷，先接百元販賣機
+                    false,"淹你媽逼","應該是配合歷史的藝術品吧喵~畢竟這條街以前可是很熱鬧的港口要道呢","我還摩西分海勒",
+                    false,
+                    "港口？所以有很多捕魚的囉？(口水",
+                    "或許吧喵，所以祖先貓們才會選擇在這裡設為據點呀",
+                    "大哥說得有道理，祖先們真有眼光~如果朕再早一些出生，也會選這兒作為王朝的喵",
+
                     "這是什麼啊？百元販賣機？",
                     "沒有用過ㄝ，又是人類無聊的發明吧",
                     "喵！？大獎是小魚乾ㄝ！大哥！！！",
                     "真假？快！我們快試試",
                     "可是朕身上沒有100塊",
-                    "傻啦你，我們不是在龜爺池子裡拿硬幣了嗎",
+                    "傻啦你，我們不是在龜爺池子裡拿硬幣了嗎?湊足10枚就可以抽了喵",
                     "大哥你真聰明",
                     false,
                     "……",
@@ -360,18 +369,43 @@ sensor.onclick=function(){
                     "哪來的大膽刁民竟敢放此等垃圾欺騙朕！",
                     "可惡的人類，哥不會再上當了",
                     "人類的套路實在太深了……可是魚乾……等朕有錢了再來試試手氣吧",
-                    "(看來這孩子還是著了人類的道了……)沒錯，現在還是龜爺的事比較重要，繼續往巷子內走吧");
-    characterArr[3]=new Array(player["wild"].say,player["I"].happy,
+                    "(看來這孩子還是著了人類的道了……)沒錯，現在還是龜爺的事比較重要，繼續往巷子內走吧",
+                    "兄弟們~在嗎~",
+                    "老大！",
+                    "只有你在呀?",
+                    "其他人去巡視地盤了老大，最近隔壁I組很不安分呀喵~飆車族什麼的最要不得了嘖嘖",
+                    "現在的年輕人真的是……總之巡邏的事我就放心交給你們了",
+                    "是的老大！",
+                    "大哥？這裡就是你們的據點嗎？就一間廟？",
+                    "喵喵！什麼叫「就一間廟」？這裡可是有名的「藥王廟」！很了不起的！",
+                    "這條街之所以改叫神農街，跟這間廟也有一點關係呢喵~",
+                    "好難懂啊喵~總之是一個厲害的地方呢",
+                    "是呀~不說這些了!保安宮在哪裡才是首要問題喵",
+                    "保安宮？從這裡沿著海安路往南走一段就是保安宮了老大!需要小的護送您嗎？",
+                    "不用啦喵~你們盯緊隔壁I組的飆車族就好，別讓他們鬧事呀!實在講不聽就抄傢伙，知道嗎？",
+                    "是的老大！祝您一路順風！",
+                    "好啦~看來我們已經很接近保安宮了喵~繼續走吧",
+                    "大哥，朕又更崇拜你了！"
+                    );
+    characterArr[3]=new Array(player["wild"].say,player["I"].happy,player["I"].happy,player["wild"].say,player["wild"].say,player["wild"].say
+                    ,player["wild"].say,player["I"].happy,player["wild"].say,player["I"].happy,
+
                     player["I"].surprise,player["wild"].suck,player["I"].surprise,player["wild"].ya,player["I"].angry
                     ,player["wild"].suck,player["I"].happy,player["I"].happy,player["wild"].suck,player["I"].normal
-                    ,player["wild"].normal,player["I"].normal,player["wild"].say,player["I"].normal,player["wild"].suck);
-    characterposArr[3]=new Array(1,0,
-                    0,1,0,1,0,1,0,0,1,0,1,0,1,0,1);
-    continueArr[3]=new Array(true,true,
-                    true,true,true,true,true,true,10008,true,true,true,true,true,true,true);
-    backgroundArr[3]=new Array("oldstreet","oldstreet",
+                    ,player["wild"].normal,player["I"].normal,player["wild"].say,player["I"].normal,player["wild"].suck,
+                    player["wild"].say,player["kitty"].normal,player["wild"].say,player["kitty"].normal,player["wild"].say
+                    ,player["kitty"].normal,player["I"].normal,player["kitty"].normal,player["wild"].say,player["I"].normal,player["wild"].say
+                    ,player["kitty"].normal,player["wild"].say,player["kitty"].normal,player["wild"].say,player["I"].surprise);
+    characterposArr[3]=new Array(1,0,0,1,1,0,1,0,1,0,
+                    0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,1,1,0,0,1,0,1,0);
+    continueArr[3]=new Array(true,false,9,true,true,10002,true,true,true,
+                    true,true,true,true,true,true,true,10008,true,true,true,true,true,true,true,true,true,true,
+                    true,true,true,true,true,true,true,true,true,true,true,true,true,9999);
+    backgroundArr[3]=new Array("oldstreet","oldstreet","oldstreet","oldstreet","oldstreet","oldstreet","oldstreet","oldstreet","oldstreet","oldstreet",
                     "100solder","100solder","100solder","100solder","100solder","100solder","100solder","100solder",
-                    "100solder","100solder","100solder","100solder","100solder","100solder","100solder");
+                    "100solder","100solder","100solder","100solder","100solder","100solder","100solder","medtemple"
+                    ,"medtemple","medtemple","medtemple","medtemple","medtemple","medtemple","medtemple","medtemple"
+                    ,"medtemple","medtemple","medtemple","medtemple","medtemple","medtemple","medtemple");
 
     conversationArr[4]= new Array("終於到了，這裡就是石龜弟弟的所在地嗎?",
         "的確是這裡沒錯，我們進去吧","你…你們是誰(O.O)?",
