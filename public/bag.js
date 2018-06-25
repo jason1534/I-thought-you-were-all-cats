@@ -2,7 +2,7 @@ var state = 0;//0 in game/ 1 in bag /2 in item
 const items_num = 16;
 const history_num = 5;
 var item_select = "";
-var item_exist = [1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0];
+var item_exist = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 var history_exist = [0,0,0,0,0];
 var item_img_source = {
     item1: "assets/item/item1.png",
@@ -76,11 +76,18 @@ $(document).ready(function () {
             if (!item_exist[index - 1]) {
                 $(select).css("display", "none");
             }
+            else
+            {
+                $(select).css("display", "inline-block");
+            }
         }
         for (index = 1; index < history_num + 1; index++) {
             var select = "#history_img" + index;
             if (!history_exist[index - 1]) {
                 $(select).css("display", "none");               
+            }
+            {
+                $(select).css("display", "inline-block");
             }
         }
 
