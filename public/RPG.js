@@ -988,6 +988,7 @@ sensor.onclick=function(){/////////////////
     	hideConv();
        	show(history1);
        	history1.onclick=function(){
+            history_exist[0]=1;
        		hide(history1);
        		fireClick(sensor);
        		show(sensor);
@@ -997,6 +998,7 @@ sensor.onclick=function(){/////////////////
     	hideConv();
        	show(potatochip);
        	potatochip.onclick=function(){
+            item_exist[2] = 1;
        		hide(potatochip);
        		fireClick(sensor);
        		show(sensor);
@@ -1006,6 +1008,7 @@ sensor.onclick=function(){/////////////////
     	hideConv();
        	show(history2);
        	history2.onclick=function(){
+            history_exist[1]=1;
        		hide(history2);
        		fireClick(sensor);
        		show(sensor);
@@ -1015,6 +1018,7 @@ sensor.onclick=function(){/////////////////
         hideConv();
         show(history3);
         history3.onclick=function(){
+            history_exist[4]=1;
             hide(history3);
             fireClick(sensor);
             show(sensor);
@@ -1024,6 +1028,8 @@ sensor.onclick=function(){/////////////////
         hideConv();
         show(bottle);
         bottle.onclick=function(){
+            item_exist[5] = 1;
+            item_exist[4] = 0;
             hide(bottle);
             fireClick(sensor);
             show(sensor);
@@ -1033,6 +1039,7 @@ sensor.onclick=function(){/////////////////
         hideConv();
         show(idcard);
         idcard.onclick=function(){
+            item_exist[1] = 1;
             hide(idcard);
             fireClick(sensor);
             show(sensor);
@@ -1042,6 +1049,7 @@ sensor.onclick=function(){/////////////////
         hideConv();
         show(money);
         money.onclick=function(){
+            item_exist[3] = 1;
             hide(money);
             fireClick(sensor);
             show(sensor);
@@ -1051,6 +1059,7 @@ sensor.onclick=function(){/////////////////
         hideConv();
         show(history4);
         history4.onclick=function(){
+            history_exist[2]=1;
             hide(history4);
             fireClick(sensor);
             show(sensor);
@@ -1060,6 +1069,7 @@ sensor.onclick=function(){/////////////////
         hideConv();
         show(bottle);
         bottle.onclick=function(){
+            item_exist[4] = 1;
             hide(bottle);
             fireClick(sensor);
             show(sensor);
@@ -1069,6 +1079,7 @@ sensor.onclick=function(){/////////////////
         hideConv();
         show(history5);
         history5.onclick=function(){
+            history_exist[3]=1;
             hide(history5);
             fireClick(sensor);
             show(sensor);

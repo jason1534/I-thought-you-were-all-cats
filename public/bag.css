@@ -15,6 +15,7 @@ body{
     background-repeat:no-repeat;   
     position: absolute;
     border-radius:1vw;    
+    z-index: 2000;
 }
 #back_img {
     background-image: url("assets/bag/b2.png");
@@ -26,6 +27,7 @@ body{
     position: absolute;
     display: none;
     border-radius:1vw;    
+    z-index: 2000;
 }
 
 
@@ -41,7 +43,8 @@ body{
     margin: 0vw;
     padding: 2vw;    
     display: none;
-    border-radius:1vw;    
+    border-radius:1vw;
+    z-index: 2000;    
 }
 
 #look {
@@ -56,7 +59,8 @@ body{
     left: 19vw;
     margin: 0vw;
     padding: 2vw;  
-    border-radius:1vw;         
+    border-radius:1vw;
+    z-index: 2001;         
 }
 
 #item_img{
@@ -68,6 +72,7 @@ body{
     margin-top: 3%;
     background-repeat: no-repeat;
     display: inline-block;
+    z-index: 2000;
 }
 #item_detail{
    background-color: blanchedalmond;
@@ -81,7 +86,8 @@ body{
     float: right;
     border-radius: 1vw;
     padding: 2vw;
-    font-size: 1.5em;      
+    font-size: 1.5em;
+    z-index: 2000;      
 }
 
 #tag {
@@ -92,7 +98,8 @@ body{
     background-repeat:no-repeat;   
     position: absolute;
     display: block;
-    border-radius:1vw;    
+    border-radius:1vw; 
+    z-index: 2000;   
 }
 
 #look_bag {
@@ -102,7 +109,8 @@ body{
     height: 43vw; 
     margin-left: 10%;
     display:inline-block;       
-    background-repeat:no-repeat;   
+    background-repeat:no-repeat;
+    z-index: 2000;   
 }
 #look_text {
     background-image: url("assets/bag/look_text.png");
@@ -111,7 +119,8 @@ body{
     height: 43vw; 
     margin-left: 10%; 
     display:inline-block;   
-    background-repeat:no-repeat;   
+    background-repeat:no-repeat;
+    z-index: 2000;   
 }
 
 .items {
@@ -122,7 +131,8 @@ body{
     margin-left: 7%;
     margin-top: 3%;    
     background-repeat:no-repeat;
-    display: none;       
+    display: none;
+    z-index: 2000;       
 }
 .histories {
     background-image: url("assets/bag/background2.png");
@@ -132,12 +142,14 @@ body{
     margin-left: 7%;
     margin-top: 3%;        
     background-repeat:no-repeat;
-    display: none;       
+    display: none;
+    z-index: 2000;       
 }
 
 .item_img{
     width: 95%;
     height: 95%; 
+    z-index: 2000;
 }
 .item_img_in{
     background-image: url("assets/item/item3.png");
@@ -146,5 +158,6 @@ body{
     height: 95%;
     background-repeat:no-repeat;
     display: block;
+    z-index: 2000;
 }
 
