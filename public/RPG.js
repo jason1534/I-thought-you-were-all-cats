@@ -651,6 +651,18 @@ sensor.onclick=function(){
                     show(sensor);
                     scene++;
                     scene++;
+                }else if(parseInt(cntiArr[scene])==9){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(backbtn1);
                 }
             }
             select2.onclick=function(){
@@ -778,6 +790,20 @@ sensor.onclick=function(){
                     fireClick(sensor);
                     //scene++;
                     show(end2);
+                }else if(parseInt(cntiArr[scene])==9){
+                    scene=scene+1;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    show(sensor);
+                    fireClick(sensor);
+                    scene++;
                 }
             }
             select3.onclick=function(){
@@ -904,6 +930,20 @@ sensor.onclick=function(){
                     plot.style.backgroundSize="cover";
                     hideChoice();
                     fireClick(sensor);
+                    fireClick(sensor);
+                    show(backbtn3);
+                }else if(parseInt(cntiArr[scene])==9){
+                    scene++;
+                    characterposition();
+                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    conv.innerHTML=convArr[scene];
+                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+                    plot.style.backgroundRepeat="no-repeat";
+                    plot.style.backgroundAttachment="fixed";
+                    plot.style.backgroundPosition="center";
+                    plot.style.backgroundSize="cover";
+                    hideChoice();
+                    fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
                     fireClick(sensor);
                     show(backbtn3);
                 }
