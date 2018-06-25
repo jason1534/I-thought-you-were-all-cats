@@ -39,7 +39,7 @@ var character=getById("character"), plot=getById("scene_plot"), conv=getById("co
 	select1=getById("select1"), select2=getById("select2"), select3=getById("select3"), leave=getById("leave"), backbtn1=getById("back1"),
     backbtn2=getById("back2"), backbtn3=getById("back3"), idform=getById("idform"), txName=getById("txName"),
     btnlogin=getById("btnlogin"), btnreset=getById("btnreset"), umm=getById("umm"), switchpic=getById("switchpic"), 
-    fbbtn=getById("fbbluebtn"), littlecat=getById("cat"), game=getById("game"),
+    fbbtn=getById("fbbluebtn"), littlecat=getById("cat"), game=getById("game"), end2=getById("end2"),
 	history1=getById("history1"), history2=getById("history2"), potatochip=getById("potatochip"), 
     history3=getById("history3"), bottle=getById("bottle"), idcard=getById("idcard"), coin=getById("coin"),
     history4=getById("history4");
@@ -58,6 +58,7 @@ hide(switchpic);
 hide(littlecat);
 //按鈕
 hide(leave);
+hide(end2);
 hide(backbtn1);
 hide(backbtn2);
 hide(backbtn3);
@@ -137,6 +138,28 @@ leave.onclick=function(){
     plot.style.backgroundPosition="center";
     plot.style.backgroundSize="cover";
     $("#game").show();
+}
+
+end2.onclick=function(){
+    chapter=6;
+    scene=0;
+    //hideArr(plotArr);
+    hide(end2);
+    show(sensor);
+    convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
+    conv.innerHTML=convArr;
+    charArr=new Array(characterArr[chapter][0]);
+    character.style.background="url(pic/"+charArr[scene]+".jpg)";
+    character.style.left="25px";
+    character.style.top="100px";
+    character.style.width="350px";
+    character.style.height="451px";
+    bgArr=new Array(backgroundArr[chapter][0]);
+    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+    plot.style.backgroundRepeat="no-repeat";
+    plot.style.backgroundAttachment="fixed";
+    plot.style.backgroundPosition="center";
+    plot.style.backgroundSize="cover";
 }
 
 backbtn1.onclick=function(){
@@ -422,6 +445,23 @@ sensor.onclick=function(){
     backgroundArr[5]=new Array("redturtle","redturtle","redturtle","redturtle","redturtle","redturtle","redturtle"
                     ,"redturtle","redturtle","redturtle","redturtle","redturtle","redturtle"
                     ,"sunset","sunset","sunset","sunset","sunset","sunset");
+
+    conversationArr[6]= new Array("喵~時間很晚了我該回去找鏟屎官了，不然他沒有我一定活不下去想不開",
+        "那好吧要回家找主人嗎?",
+        "不用，鏟屎的在一間名為成大的鏟屎訓練所上課呢！我們就去那找他吧",
+        "這樣他不就會發現你偷跑出來了嗎?",
+        "他才不會在意那些小事呢！朕要去哪是朕的自由！",
+        "是是是，習聽尊便",
+        "我們到了！看！我家鏟屎的在那裏！",
+        "成大金城武：ㄟ！"+roleplayer+"你怎麼跑出來了?居然還交了新朋友嗎?算了沒關係，我的小乖最棒了",
+        "(在一旁的野貓覺得雞皮疙瘩、不蘇胡)",
+        "喵嗚~還是鏟屎的懷裡最棒惹(一整個大性轉，剛剛的皇帝氣勢都到哪惹)");
+    characterArr[6]=new Array(player["I"].happy,player["wild"].normal,player["I"].angry,player["wild"].say,player["I"].surprise
+                    ,player["wild"].suck,player["I"].happy,player["turtle"].happy,player["wild"].suck,player["I"].happy);
+    characterposArr[6]=new Array(0,1,0,1,0,1,0,1,1,0);
+    continueArr[6]=new Array(true,true,true,true,true,true,true,true,true,true);
+    backgroundArr[6]=new Array("road","road","road","road","road","road","EEbuilding","EEbuilding","EEbuilding","EEbuilding");
+   
     //changechapter(chapter);
 
     convArr=conversationArr[chapter];
@@ -703,7 +743,7 @@ sensor.onclick=function(){
                     //show(sensor);
                     fireClick(sensor);
                     //scene++;
-                    show(backbtn2);
+                    show(end2);
                 }
             }
             select3.onclick=function(){
@@ -1116,10 +1156,24 @@ getById("btnStart").onclick=function(){
         hide(btnlogin);
         hide(btnreset);
         hide(umm); 
-               roleplayer= data.split(" ")[0];
-               chapter =data.split(" ")[1];
-               window.sessionStorage.setItem("chapter_data", chapter);
-               window.sessionStorage.setItem("roleplayer_data", roleplayer);
+            roleplayer= data.split(" ")[0];
+            chapter =data.split(" ")[1];
+            window.sessionStorage.setItem("chapter_data", chapter);
+            window.sessionStorage.setItem("roleplayer_data", roleplayer);
+            convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
+            conv.innerHTML=convArr;
+            charArr=new Array(characterArr[chapter][0]);
+            character.style.background="url(pic/"+charArr[scene]+".jpg)";
+            character.style.left="25px";
+            character.style.top="100px";
+            character.style.width="350px";
+            character.style.height="451px";
+            bgArr=new Array(backgroundArr[chapter][0]);
+            plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+            plot.style.backgroundRepeat="no-repeat";
+            plot.style.backgroundAttachment="fixed";
+            plot.style.backgroundPosition="center";
+            plot.style.backgroundSize="cover";
 
               }
         }
