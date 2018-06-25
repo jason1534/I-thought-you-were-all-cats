@@ -17,7 +17,7 @@ var characterposArr=new Array();
 //這個陣列是用來對應每個角色的不同個性的圖檔，就不用記檔名了
 var player=[];
 	player["I"]={normal: "I",happy: "IHappy",sad: "ISad",angry: "IAngry", surprise: "Isurprise"};
-	player["wild"]={normal: "wild",say: "wildSay",suck: "wildSuck", ya: "wildYA"};
+	player["wild"]={normal: "wild",say: "wildsay",suck: "wildsuck", ya: "wildYA"};
 	player["turtle"]={normal: "turtle",happy: "turtleHappy",sad: "turtleSad", angry: "turtleAngry"};
     player["kitty"]={normal: "kitty",happy: "kittyHappy",sad: "kittySad", angry: "kittyAngry"};
 
