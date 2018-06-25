@@ -22,6 +22,7 @@ var player=[];
 	player["wild"]={normal: "wild",say: "wildsay",suck: "wildsuck", ya: "wildYA"};
 	player["turtle"]={normal: "turtle",happy: "turtleHappy",sad: "turtleSad", angry: "turtleAngry"};
     player["kitty"]={normal: "kitty",happy: "kittyHappy",sad: "kittySad", angry: "kittyAngry"};
+    player["Lily"]={normal: "Lily",happy: "LilyHappy",sad: "Lilysad", angry: "Lilyangry"};
 
 
 //這個陣列是儲存抉擇的部分
@@ -461,12 +462,12 @@ getById("btnnext").onclick=function(){
         "其實當時的人們都用各式各樣的容器去裝，茶壺茶罐都有，裡面的水是有點黃的，當時日本人怕裡面有病毒之類的東西還特別檢查。",
         "好~裝好了~那我們出發吧~",
         "謝謝你們~幫我跟哥哥們問好~");
-    characterArr[4]=new Array(player["I"].surprise,player["wild"].say,player["turtle"].sad,player["I"].happy,player["turtle"].sad,
-                player["I"].normal,player["turtle"].sad,player["turtle"].sad,player["turtle"].sad,player["wild"].suck,player["turtle"].sad,
-                player["turtle"].sad,player["turtle"].sad,player["wild"].say,player["turtle"].angry,player["wild"].say,player["turtle"].sad
-                ,player["wild"].say,player["I"].normal,player["wild"].say,player["turtle"].happy,player["wild"].suck,player["turtle"].happy
-                ,player["wild"].suck,player["I"].happy,player["wild"].ya,player["turtle"].normal,player["I"].surprise,player["turtle"].happy
-                ,player["I"].happy,player["turtle"].happy,player["wild"].normal,player["turtle"].happy);
+    characterArr[4]=new Array(player["I"].surprise,player["wild"].say,player["turtle"].sad,player["I"].happy,player["Lily"].sad,
+                player["I"].normal,player["Lily"].sad,player["Lily"].sad,player["turtle"].sad,player["wild"].suck,player["Lily"].sad,
+                player["Lily"].sad,player["Lily"].sad,player["wild"].say,player["Lily"].angry,player["wild"].say,player["Lily"].sad
+                ,player["wild"].say,player["I"].normal,player["wild"].say,player["Lily"].angry,player["wild"].suck,player["Lily"].angry
+                ,player["wild"].suck,player["I"].happy,player["wild"].ya,player["turtle"].normal,player["I"].surprise,player["Lily"].angry
+                ,player["I"].happy,player["Lily"].angry,player["wild"].normal,player["Lily"].angry);
     characterposArr[4]=new Array(0,1,1,0,1,0,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,0,1,1,0,1,0,1,1,1);
     continueArr[4]=new Array(true,true,true,true,false,5,true,true,true,true,10003,true,true,true,true,true,true,true,true,true,true,
                 true,true,true,true,true,true,true,10004,true,true,true,9999);
