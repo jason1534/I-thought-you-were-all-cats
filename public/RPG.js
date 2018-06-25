@@ -44,7 +44,7 @@ var character=getById("character"), plot=getById("scene_plot"), conv=getById("co
     btnlogin=getById("btnlogin"), btnreset=getById("btnreset"), umm=getById("umm"), switchpic=getById("switchpic"), 
     fbbtn=getById("fbbluebtn"), littlecat=getById("cat"), game=getById("game"), end2=getById("end2"),
 	history1=getById("history1"), history2=getById("history2"), potatochip=getById("potatochip"), 
-    history3=getById("history3"), bottle=getById("bottle"), idcard=getById("idcard"), coin=getById("coin"),
+    history3=getById("history3"), bottle=getById("bottle"), idcard=getById("idcard"), money=getById("money"),
     history4=getById("history4");
 
 //一開始將其他場景隱藏
@@ -73,7 +73,7 @@ hide(history4);
 hide(potatochip);
 hide(bottle);
 hide(idcard);
-hide(coin);
+hide(money);
 //一開始將抉擇隱藏
 hideChoice();
 
@@ -1013,9 +1013,9 @@ sensor.onclick=function(){
     }else if(cntiArr[scene]==10006){
         scene++;
         hideConv();
-        show(coin);
-        coin.onclick=function(){
-            hide(coin);
+        show(money);
+        money.onclick=function(){
+            hide(money);
             fireClick(sensor);
             show(sensor);
         }
