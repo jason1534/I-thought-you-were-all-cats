@@ -368,7 +368,18 @@ var first =  {
 				game.state.start('next')
 			}
 		}
-    } 
+    }
+	if (this.cat_player.body.x > 1600 && this.cat_player.body.x < 1800) {
+		if(flag.p2 != 1 ){
+			mark.visible = true
+			if (custom.isDown || trigger.space == 1) {
+				flag.p2 = 1
+				flag.p3 = 0
+				catposition = cat_player.body.x
+				game.state.start('next')
+			}
+		}
+    }
 	game.physics.arcade.overlap(this.cat_player, this.house,function(){
 		if(flag.p3 != 1){
 			mark.visible = true
