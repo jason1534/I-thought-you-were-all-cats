@@ -92,17 +92,16 @@ body,html{
     z-index: 2000;
     cursor:pointer;
 }
-div{
+/*div{
     font-size: 48px;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* IE/Edge */
-    user-select: none;           /* non-prefixed version, currently
-                                    not supported by any browser */
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none;   
+    -khtml-user-select: none;   
+    -moz-user-select: none;      
+    -ms-user-select: none;       
+    user-select: none;                                     
     cursor:default;
-}
+}*/
 
 /*故事背景圖*/
 #scene_plot{
