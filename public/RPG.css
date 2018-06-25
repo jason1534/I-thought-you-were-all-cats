@@ -92,7 +92,7 @@ body,html{
     z-index: 2000;
     cursor:pointer;
 }
-/*div{
+div{
     font-size: 48px;
     -webkit-touch-callout: none; 
     -webkit-user-select: none;   
@@ -101,7 +101,7 @@ body,html{
     -ms-user-select: none;       
     user-select: none;                                     
     cursor:default;
-}*/
+}
 
 /*故事背景圖*/
 #scene_plot{
