@@ -47,12 +47,13 @@ var character=getById("character"), plot=getById("scene_plot"), conv=getById("co
     fbbtn=getById("fbbluebtn"), littlecat=getById("cat"), game=getById("game"), end2=getById("end2"),
 	history1=getById("history1"), history2=getById("history2"), potatochip=getById("potatochip"), 
     history3=getById("history3"), bottle=getById("bottle"), idcard=getById("idcard"), money=getById("money"),
-    history4=getById("history4");
+    history4=getById("history4"), welcome=getById("welcome");
 
 //一開始將其他場景隱藏
 hideArr(plotArr);
 hideArr(switchArr);
 //初始畫面
+hide(welcome);////for test
 hide(game);
 hide(idform);
 hide(txName);
@@ -118,7 +119,29 @@ event.preventDefault();
              });
           })
           }
+/*/welcome.onclick=function(){
+//  console.log(chapter);
+//    scene=0;
+    //showArr(switchArr);
+    //show(switchpic);
+//    hide(welcome);
+//    convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
+//    conv.innerHTML=convArr;
+//    charArr=new Array(characterArr[chapter][0]);
+//    character.style.background="url(pic/"+charArr[scene]+".jpg)";
+//	character.style.left="25px";
+//	character.style.top="100px";
+//	character.style.width="350px";
+//	character.style.height="451px";
+//	bgArr=new Array(backgroundArr[chapter][0]);
+//	plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+//    plot.style.backgroundRepeat="no-repeat";
+//    plot.style.backgroundAttachment="fixed";
+//    plot.style.backgroundPosition="center";
+    plot.style.backgroundSize="cover";
+        showArr(plotArr);
 
+}*/
 //離開時先把新章節存入
 leave.onclick=function(){
     chapter++;
@@ -192,7 +215,6 @@ getById("btnnext").onclick=function(){
 }
 
 /*************************************這邊處理劇情部分***********************************/
-sensor.onclick=function(){
     //這個陣列比較特別，因為我們的roleplayer會隨著使用者輸入後修改，因此要放在這邊設定
     //若原本的部分是抉擇，就將對話統一改成false，讓陣列與陣列對齊
     //開始篇
@@ -500,6 +522,7 @@ sensor.onclick=function(){
    
     //changechapter(chapter);
 
+sensor.onclick=function(){/////////////////
     convArr=conversationArr[chapter];
     charArr=characterArr[chapter];
     charposArr=characterposArr[chapter];
@@ -1225,8 +1248,8 @@ getById("btnStart").onclick=function(){
           
                         }
           else{
+          //  show(welcome);
         hideArr(initArr);
-        showArr(plotArr);
         hide(leave);
         hide(idform);
         hide(txName);
@@ -1237,6 +1260,22 @@ getById("btnStart").onclick=function(){
             chapter =data.split(" ")[1];
             window.sessionStorage.setItem("chapter_data", chapter);
             window.sessionStorage.setItem("roleplayer_data", roleplayer);
+            scene=0;
+    convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
+    conv.innerHTML=convArr;
+    charArr=new Array(characterArr[chapter][0]);
+    character.style.background="url(pic/"+charArr[scene]+".jpg)";
+	character.style.left="25px";
+	character.style.top="100px";
+	character.style.width="350px";
+	character.style.height="451px";
+	bgArr=new Array(backgroundArr[chapter][0]);
+	plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+    plot.style.backgroundRepeat="no-repeat";
+    plot.style.backgroundAttachment="fixed";
+    plot.style.backgroundPosition="center";
+    plot.style.backgroundSize="cover";
+    showArr(plotArr);
 
               }
         }
