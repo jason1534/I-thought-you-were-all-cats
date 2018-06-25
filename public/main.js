@@ -4,8 +4,9 @@ var phaserhei = 480;
 var phaserwid = phaserhei*phaserwidth/phaserheight;
 var jumpTimer = 0
 var trigger = {left:0,right:0,up:0,space:0};
-var flag= {p1:0,p2:0,p3:0,p4:0};
+var flag= {p1:0,p2:1,p3:1,p4:1,p5:1,p6:1,p7:0};
 var coinnumber = 0;
+var catposition = 1500;
 
 var game = new Phaser.Game(phaserwid,phaserhei , Phaser.AUTO, 'game');
 
@@ -164,7 +165,6 @@ var littlegame = {
 		coinText.setText("硬幣: " + coinnumber)
 	},null,this);
 	if (custom.isDown || trigger.space == 1) {
-				flag.p4 = 0
 				game.state.start('first')
 			}
 	//方向控制
@@ -237,16 +237,7 @@ var first =  {
 	game.physics.startSystem(Phaser.Physics.ARCADE)
 	game.physics.arcade.gravity.y = 380
 	game.time.desiredFps = 30
-	/*
-	game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-	game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-	game.scale.refresh();
 
-	canvas_width = window.innerWidth * window.devicePixelRatio;
-	canvas_height = window.innerHeight * window.devicePixelRatio;
-	aspect_ratio = canvas_width / canvas_height;
-	if (aspect_ratio > 1) scale_ratio = canvas_height / canvas_height_max;
-	else scale_ratio = canvas_width / canvas_width_max;*/
 	//視窗設定
 	game.scale.scaleMode  = Phaser.ScaleManager.SHOW_ALL
 	game.scale.pageAlignVertically = true
@@ -271,12 +262,15 @@ var first =  {
 	baoan.scale.set(0.65)
 	sewer1 = game.add.sprite(2233,(phaserhei-130),'sewer1')
 	sewer1.scale.set(0.44)
+	game.physics.enable(house,Phaser.Physics.ARCADE)
 	game.physics.enable(vend,Phaser.Physics.ARCADE)
 	game.physics.enable(baoan,Phaser.Physics.ARCADE)
 	game.physics.enable(sewer1,Phaser.Physics.ARCADE)
 	baoan.body.allowGravity = false
 	vend.body.allowGravity = false
 	sewer1.body.allowGravity = false
+	house.body.allowGravity = false
+	house.body.immovable = true
 	sewer1.body.immovable = true
 	baoan.body.immovable = true
 	vend.body.immovable = true
@@ -290,13 +284,15 @@ var first =  {
 	}
 	coinText = game.add.text(20,50,'硬幣: '+coinnumber, {fontSize: '24px', fill: '#ffff00'});
 	coinText.fixedToCamera = true
+	//玩家位置紀錄
+	story_position= {p1:500,p2:1700,p3:2380,p4:3800};
 	//玩家
-	cat_player = game.add.sprite(2400,100, 'cat_player')
+	cat_player = game.add.sprite(catposition,300, 'cat_player')
 	game.physics.enable(cat_player,Phaser.Physics.ARCADE)
 	cat_player.scale.set(0.25)
     cat_player.facing = 'right'
 	//驚嘆號
-	mark = game.add.sprite(1500,100,'mark')
+	mark = game.add.sprite(catposition,300,'mark')
 	mark.scale.set(0.33)
 	mark.visible = false
 	game.physics.enable(mark,Phaser.Physics.ARCADE)
@@ -359,37 +355,64 @@ var first =  {
 	mark.body.y = cat_player.body.y-50
 	//進入關卡
     if (this.cat_player.body.x > 310 && this.cat_player.body.x < 660) {
-		if(flag.p1 != 1){
+		if(flag.p1 != 1 || flag.p5 != 1){
 			mark.visible = true
 			if (custom.isDown || trigger.space == 1) {
-				flag.p1 = 1
+				if(flag.p1 === 0 ){
+					flag.p1 = 1
+					flag.p2 = 0
+				}
+				else
+					flag.p5 = 1
+				catposition = cat_player.body.x
 				game.state.start('next')
 			}
 		}
     } 
-	game.physics.arcade.overlap(this.cat_player, this.vend,function(){
-		if(flag.p2 != 1){
-			mark.visible = true
-			if (custom.isDown || trigger.space == 1) {
-				flag.p2 = 1
-				//game.state.start('next')
-			}
-		}
-	});
-	game.physics.arcade.overlap(this.cat_player, this.baoan,function(){
+	game.physics.arcade.overlap(this.cat_player, this.house,function(){
 		if(flag.p3 != 1){
 			mark.visible = true
 			if (custom.isDown || trigger.space == 1) {
 				flag.p3 = 1
-				//game.state.start('next')
+				flag.p4 = 0
+				flag.p6 = 0
+				catposition = cat_player.body.x
+				game.state.start('next')
 			}
 		}
 	});
-	game.physics.arcade.overlap(this.cat_player, this.sewer1,function(){
+	game.physics.arcade.overlap(this.cat_player, this.baoan,function(){
 		if(flag.p4 != 1){
 			mark.visible = true
 			if (custom.isDown || trigger.space == 1) {
 				flag.p4 = 1
+				flag.p5 = 0
+				catposition = cat_player.body.x
+				game.state.start('next')
+			}
+		}
+	});
+	game.physics.arcade.overlap(this.cat_player, this.vend,function(){
+		if(flag.p6 != 1 && coinnumber > 2){
+			mark.visible = true
+			if (custom.isDown || trigger.space == 1) {
+				flag.p6 = 1
+				catposition = cat_player.body.x
+				coinnumber -= 3
+				/*if (mstate == 0) {
+					$("#vendingmachine_contain").show();
+					$("#vendingmachine").show();
+					mstate = 1;
+				}*/
+			}
+		}
+	});
+	game.physics.arcade.overlap(this.cat_player, this.sewer1,function(){
+		if(flag.p7 != 1){
+			mark.visible = true
+			if (custom.isDown || trigger.space == 1) {
+				flag.p7 = 1
+				catposition = cat_player.body.x
 				game.state.start('littlegame')
 			}
 		}
