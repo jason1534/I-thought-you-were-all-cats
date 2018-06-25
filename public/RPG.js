@@ -1294,6 +1294,7 @@ function testAPI() {
           }
           else{
             //  show(welcome);
+            hide(fbbtn);
             hideArr(initArr);
             hide(leave);
             hide(idform);
