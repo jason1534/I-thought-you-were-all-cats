@@ -7,7 +7,7 @@ body{
     overflow: hidden;
 }
 #enter_bag {
-    background-image: url("asset/bag/b1.png");
+    background-image: url("assets/bag/b1.png");
     background-size: contain;
     width: 8vw;
     height: 8vw;
@@ -15,10 +15,9 @@ body{
     background-repeat:no-repeat;   
     position: absolute;
     border-radius:1vw;    
-  z-index: 500;
 }
 #back_img {
-    background-image: url("asset/bag/b2.png");
+    background-image: url("assets/bag/b2.png");
     background-size: contain;
     width: 8vw;
     height: 8vw;
@@ -31,7 +30,7 @@ body{
 
 
 #menu {
-    background-image: url("asset/bag/background.png");
+    background-image: url("assets/bag/background.png");
     background-size: cover;
     width: 85vw;
     height: 75vh; 
@@ -61,27 +60,28 @@ body{
 }
 
 #item_img{
-    background-image: url("asset/bag/background2.png");
+        background-image: url(assets/bag/background2.png);
     background-size: contain;
-    width: 14vw;
-    height: 14vw; 
+    width: 28vw;
+    height: 28vw;
     margin-left: 7%;
-    margin-top: 3%;    
-    background-repeat:no-repeat;
-    display: block;
+    margin-top: 3%;
+    background-repeat: no-repeat;
+    display: inline-block;
 }
 #item_detail{
-    background-color: blanchedalmond;
+   background-color: blanchedalmond;
     background-size: contain;
-    width: 55vw;
-    height: 43vh; 
-    margin-left: 7%;
-    margin-top: 3%;    
-    background-repeat:no-repeat;
-    display: block;
-    border-radius:1vw;
-    padding: 2vw; 
-    font-size:1.5em;        
+    width: 31vw;
+    overflow:scroll;
+    height: 75vh;
+    margin-left: 0%;
+    margin-top: 3%;
+    background-repeat: no-repeat;
+    float: right;
+    border-radius: 1vw;
+    padding: 2vw;
+    font-size: 1.5em;      
 }
 
 #tag {
@@ -96,7 +96,7 @@ body{
 }
 
 #look_bag {
-    background-image: url("asset/bag/look_bag.png");
+    background-image: url("assets/bag/look_bag.png");
     background-size: contain;
     width: 30vw;
     height: 43vw; 
@@ -105,7 +105,7 @@ body{
     background-repeat:no-repeat;   
 }
 #look_text {
-    background-image: url("asset/bag/look_text.png");
+    background-image: url("assets/bag/look_text.png");
     background-size: contain;
     width: 30vw;
     height: 43vw; 
@@ -115,7 +115,7 @@ body{
 }
 
 .items {
-    background-image: url("asset/bag/background2.png");
+    background-image: url("assets/bag/background2.png");
     background-size: contain;
     width: 14vw;
     height: 14vw; 
@@ -125,7 +125,7 @@ body{
     display: none;       
 }
 .histories {
-    background-image: url("asset/bag/background2.png");
+    background-image: url("assets/bag/background2.png");
     background-size: contain;
     width: 14vw;
     height: 14vw; 
@@ -136,7 +136,15 @@ body{
 }
 
 .item_img{
-    width: 12vw;
-    height: 14vw; 
+    width: 95%;
+    height: 95%; 
+}
+.item_img_in{
+    background-image: url("assets/item/item3.png");
+    background-size: contain;
+    width: 95%;
+    height: 95%;
+    background-repeat:no-repeat;
+    display: block;
 }
 
