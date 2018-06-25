@@ -524,643 +524,666 @@ getById("btnnext").onclick=function(){
    
     //changechapter(chapter);
 
-sensor.onclick=function(){/////////////////
-    convArr=conversationArr[chapter];
-    charArr=characterArr[chapter];
-    charposArr=characterposArr[chapter];
-    cntiArr=continueArr[chapter];
-    bgArr=backgroundArr[chapter];
+    sensor.onclick=function(){/////////////////
+      roleplayer = window.sessionStorage.getItem("roleplayer_data");
+      console.log("senrole: "+roleplayer);
+      conversationArr[0]=["喵~星期三下午好無聊啊~鏟屎官又不知道去哪裡鬼混了，真是該罰~朕每天管理朝政既勞心又勞力，也不多給我吃幾個罐罐……",
+      "野貓："+roleplayer+"，喵哈哈哈哈~",
+      roleplayer+"：誰！？",
+      "野貓：窗外窗外~~你這傢伙真是笑死我了喵~",
+      roleplayer+"：大膽刁民竟如此嘲笑朕",
+      "野貓：哈哈哈！「大膽刁民」哈哈哈，你這傢伙中二病吧你",
+      roleplayer+"：不要把朕跟那些阿宅相並論，鏟屎官說過朕就是至高無上的皇帝",
+      "野貓：他說什麼你都信?就是受不了你們這些家貓，一個個都嬌生慣養，來！敢不敢跟哥出去長長眼界，哥帶你去吃吃到飽歐",
+      roleplayer+"：吃…吃到飽！？仔細想想朕的確是應該巡視巡視自己的土地...我倒要看看市井小民們平常的生活有多精彩",
+      false,"野貓：好好好~跟著哥包準你有糖吃~","野貓：走啦！跟著貓哥幹，肯定難波萬！"];
 
-    if(cntiArr[scene]==true){
+      conversationArr[6]= ["喵~時間很晚了我該回去找鏟屎官了，不然他沒有我一定活不下去想不開",
+          "那好吧要回家找主人嗎?",
+          "不用，鏟屎的在一間名為成大的鏟屎訓練所上課呢！我們就去那找他吧",
+          "這樣他不就會發現你偷跑出來了嗎?",
+          "他才不會在意那些小事呢！朕要去哪是朕的自由！",
+          "是是是，習聽尊便",
+          "我們到了！看！我家鏟屎的在那裏！",
+          "成大金城武：ㄟ！"+roleplayer+"你怎麼跑出來了?居然還交了新朋友嗎?算了沒關係，我的小乖最棒了",
+          "(在一旁的野貓覺得雞皮疙瘩、不蘇胡)",
+          "喵嗚~還是鏟屎的懷裡最棒惹(一整個大性轉，剛剛的皇帝氣勢都到哪惹)"];
+      convArr=conversationArr[chapter];
+      charArr=characterArr[chapter];
+      charposArr=characterposArr[chapter];
+      cntiArr=continueArr[chapter];
+      bgArr=backgroundArr[chapter];
+
+      if(cntiArr[scene]==true){
         if((scene+1)<charArr.length){           //以防練習時出錯(超出陣列範圍)
-            scene++;
-            //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-            characterposition();
-            conv.innerHTML=convArr[scene];
-            plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-            plot.style.backgroundRepeat="no-repeat";
-            plot.style.backgroundAttachment="fixed";
-            plot.style.backgroundPosition="center";
-            plot.style.backgroundSize="cover";
+          scene++;
+          //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+          characterposition();
+          conv.innerHTML=convArr[scene];
+          plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+          plot.style.backgroundRepeat="no-repeat";
+          plot.style.backgroundAttachment="fixed";
+          plot.style.backgroundPosition="center";
+          plot.style.backgroundSize="cover";
         }
-    }else if(cntiArr[scene]==false){
+      }else if(cntiArr[scene]==false){
         //會需要抉擇的場景
         if((scene+1)<charArr.length){           //以防練習時出錯(超出陣列範圍)
-            scene++;
-            characterposition();
-            //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-            //將對話與切換下個場景的sensor隱藏
-            hideConv();
-            //接著顯示抉擇選項(此處只有兩種選擇
-            //這邊顯示抉擇的選項有點複雜，
-            //根據上面的cntiArr陣列，我們的第一個抉擇(其實是陣列的第一個索引，也就是從0開始)是0
-            //而對應到了choice陣列，choice陣列的第一個(索引從0開始)抉擇選項是一個陣列
-            //因此遇到抉擇時就這樣以此類推。
-            select1.innerHTML=choice[parseInt(cntiArr[scene])][0];
-            select2.innerHTML=choice[parseInt(cntiArr[scene])][1];
-            select3.innerHTML=choice[parseInt(cntiArr[scene])][2];
-            showsel(select1);
-            showsel(select2);
-            showsel(select3);
-            //這邊處理使用者點擊選項後的結果
-            //使用者選擇的結果只有兩種：
-            //1:繼續下一個對話(可能是下一段劇情，或者詢問者給予你的抉擇做感想)
-            //2:切換畫面為位置選單(也就是可以到其他地點)
-            select1.onclick=function(){
-                if(parseInt(cntiArr[scene])==0){
-                    scene++;
-                    character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(leave);
-                }else if(parseInt(cntiArr[scene])==1){
-                	scene++;
-                	characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(backbtn1);
-                }else if(parseInt(cntiArr[scene])==2){
-                	scene++;
-                	characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(backbtn1);
-                }else if(parseInt(cntiArr[scene])==3){
-                	scene++;
-                	characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(sensor);
-                    scene++;
-                    scene++;
-                }else if(parseInt(cntiArr[scene])==4){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(backbtn1);
-                }else if(parseInt(cntiArr[scene])==5){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(backbtn1);
-                }else if(parseInt(cntiArr[scene])==6){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(backbtn1);
-                }else if(parseInt(cntiArr[scene])==7){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(backbtn1);
-                }else if(parseInt(cntiArr[scene])==8){//往結局-關夕平台
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(sensor);
-                    scene++;
-                    scene++;
-                }else if(parseInt(cntiArr[scene])==9){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(backbtn1);
-                }
+          scene++;
+          characterposition();
+          //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+          //將對話與切換下個場景的sensor隱藏
+          hideConv();
+          //接著顯示抉擇選項(此處只有兩種選擇
+          //這邊顯示抉擇的選項有點複雜，
+          //根據上面的cntiArr陣列，我們的第一個抉擇(其實是陣列的第一個索引，也就是從0開始)是0
+          //而對應到了choice陣列，choice陣列的第一個(索引從0開始)抉擇選項是一個陣列
+          //因此遇到抉擇時就這樣以此類推。
+          select1.innerHTML=choice[parseInt(cntiArr[scene])][0];
+          select2.innerHTML=choice[parseInt(cntiArr[scene])][1];
+          select3.innerHTML=choice[parseInt(cntiArr[scene])][2];
+          showsel(select1);
+          showsel(select2);
+          showsel(select3);
+          //這邊處理使用者點擊選項後的結果
+          //使用者選擇的結果只有兩種：
+          //1:繼續下一個對話(可能是下一段劇情，或者詢問者給予你的抉擇做感想)
+          //2:切換畫面為位置選單(也就是可以到其他地點)
+          select1.onclick=function(){
+            if(parseInt(cntiArr[scene])==0){
+              scene++;
+              character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(leave);
+            }else if(parseInt(cntiArr[scene])==1){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(backbtn1);
+            }else if(parseInt(cntiArr[scene])==2){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(backbtn1);
+            }else if(parseInt(cntiArr[scene])==3){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(sensor);
+              scene++;
+              scene++;
+            }else if(parseInt(cntiArr[scene])==4){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(backbtn1);
+            }else if(parseInt(cntiArr[scene])==5){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(backbtn1);
+            }else if(parseInt(cntiArr[scene])==6){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(backbtn1);
+            }else if(parseInt(cntiArr[scene])==7){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(backbtn1);
+            }else if(parseInt(cntiArr[scene])==8){//往結局-關夕平台
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(sensor);
+              scene++;
+              scene++;
+            }else if(parseInt(cntiArr[scene])==9){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(backbtn1);
             }
-            select2.onclick=function(){
-                if(parseInt(cntiArr[scene])==0){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(sensor);
-                    show(leave);
-                    fireClick(sensor);
-                }else if(parseInt(cntiArr[scene])==1){
-                	scene=scene+1;
-                	characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(sensor);
-                    fireClick(sensor);
-                    scene++;
-                }else if(parseInt(cntiArr[scene])==2){
-                	scene++;
-                	characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    fireClick(sensor);
-                    hideChoice();
-                    show(backbtn2);
-                }else if(parseInt(cntiArr[scene])==3){
-                	scene++;
-                	characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    fireClick(sensor);
-                    hideChoice();
-                    show(backbtn2);
-                }else if(parseInt(cntiArr[scene])==4){
-                    scene=scene+1;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(sensor);
-                    fireClick(sensor);
-                    scene++;
-                }else if(parseInt(cntiArr[scene])==5){
-                    scene=scene+1;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(sensor);
-                    fireClick(sensor);
-                    scene++;
-                }else if(parseInt(cntiArr[scene])==6){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    fireClick(sensor);
-                    hideChoice();
-                    show(backbtn2);
-                }else if(parseInt(cntiArr[scene])==7){
-                    scene=scene+1;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(sensor);
-                    fireClick(sensor);
-                    scene++;
-                }else if(parseInt(cntiArr[scene])==8){//到成大找張天豪老師
-                    scene=scene+1;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    //show(sensor);
-                    fireClick(sensor);
-                    //scene++;
-                    show(end2);
-                }else if(parseInt(cntiArr[scene])==9){
-                    scene=scene+1;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(sensor);
-                    fireClick(sensor);
-                    scene++;
-                }
+          }
+          select2.onclick=function(){
+            if(parseInt(cntiArr[scene])==0){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(sensor);
+              show(leave);
+              fireClick(sensor);
+            }else if(parseInt(cntiArr[scene])==1){
+              scene=scene+1;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(sensor);
+              fireClick(sensor);
+              scene++;
+            }else if(parseInt(cntiArr[scene])==2){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              fireClick(sensor);
+              hideChoice();
+              show(backbtn2);
+            }else if(parseInt(cntiArr[scene])==3){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              fireClick(sensor);
+              hideChoice();
+              show(backbtn2);
+            }else if(parseInt(cntiArr[scene])==4){
+              scene=scene+1;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(sensor);
+              fireClick(sensor);
+              scene++;
+            }else if(parseInt(cntiArr[scene])==5){
+              scene=scene+1;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(sensor);
+              fireClick(sensor);
+              scene++;
+            }else if(parseInt(cntiArr[scene])==6){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              fireClick(sensor);
+              hideChoice();
+              show(backbtn2);
+            }else if(parseInt(cntiArr[scene])==7){
+              scene=scene+1;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(sensor);
+              fireClick(sensor);
+              scene++;
+            }else if(parseInt(cntiArr[scene])==8){//到成大找張天豪老師
+              scene=scene+1;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              //show(sensor);
+              fireClick(sensor);
+              //scene++;
+              show(end2);
+            }else if(parseInt(cntiArr[scene])==9){
+              scene=scene+1;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(sensor);
+              fireClick(sensor);
+              scene++;
             }
-            select3.onclick=function(){
-                if(parseInt(cntiArr[scene])==0){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(leave);
-                    show(backbtn3);
-                }else if(parseInt(cntiArr[scene])==1){
-                	scene++;
-                	characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
-                    fireClick(sensor);
-                    show(backbtn3);
-                }else if(parseInt(cntiArr[scene])==2){
-                	scene++;
-                	characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(sensor);
-                    fireClick(sensor);
-                    fireClick(sensor);
-                }else if(parseInt(cntiArr[scene])==3){
-                	scene++;
-                	characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    fireClick(sensor);
-                    fireClick(sensor);
-                    show(backbtn3);
-                }else if(parseInt(cntiArr[scene])==4){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
-                    fireClick(sensor);
-                    show(backbtn3);
-                }else if(parseInt(cntiArr[scene])==5){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(backbtn3);
-                    fireClick(sensor);
-                    fireClick(sensor);
-                }else if(parseInt(cntiArr[scene])==6){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    show(sensor);
-                    fireClick(sensor);
-                    fireClick(sensor);
-                }else if(parseInt(cntiArr[scene])==7){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
-                    fireClick(sensor);
-                    show(backbtn3);
-                }else if(parseInt(cntiArr[scene])==8){//結局看要去哪
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    fireClick(sensor);
-                    fireClick(sensor);
-                    show(backbtn3);
-                }else if(parseInt(cntiArr[scene])==9){
-                    scene++;
-                    characterposition();
-                    //character.style.background="url(pic/"+charArr[scene]+".jpg)";
-                    conv.innerHTML=convArr[scene];
-                    plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-                    plot.style.backgroundRepeat="no-repeat";
-                    plot.style.backgroundAttachment="fixed";
-                    plot.style.backgroundPosition="center";
-                    plot.style.backgroundSize="cover";
-                    hideChoice();
-                    fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
-                    fireClick(sensor);
-                    show(backbtn3);
-                }
+          }
+          select3.onclick=function(){
+            if(parseInt(cntiArr[scene])==0){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(leave);
+              show(backbtn3);
+            }else if(parseInt(cntiArr[scene])==1){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
+              fireClick(sensor);
+              show(backbtn3);
+            }else if(parseInt(cntiArr[scene])==2){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(sensor);
+              fireClick(sensor);
+              fireClick(sensor);
+            }else if(parseInt(cntiArr[scene])==3){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              fireClick(sensor);
+              fireClick(sensor);
+              show(backbtn3);
+            }else if(parseInt(cntiArr[scene])==4){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
+              fireClick(sensor);
+              show(backbtn3);
+            }else if(parseInt(cntiArr[scene])==5){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(backbtn3);
+              fireClick(sensor);
+              fireClick(sensor);
+            }else if(parseInt(cntiArr[scene])==6){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              show(sensor);
+              fireClick(sensor);
+              fireClick(sensor);
+            }else if(parseInt(cntiArr[scene])==7){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
+              fireClick(sensor);
+              show(backbtn3);
+            }else if(parseInt(cntiArr[scene])==8){//結局看要去哪
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              fireClick(sensor);
+              fireClick(sensor);
+              show(backbtn3);
+            }else if(parseInt(cntiArr[scene])==9){
+              scene++;
+              characterposition();
+              //character.style.background="url(pic/"+charArr[scene]+".jpg)";
+              conv.innerHTML=convArr[scene];
+              plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+              plot.style.backgroundRepeat="no-repeat";
+              plot.style.backgroundAttachment="fixed";
+              plot.style.backgroundPosition="center";
+              plot.style.backgroundSize="cover";
+              hideChoice();
+              fireClick(sensor);//這個function會幫你多點一下>>scene會多+1
+              fireClick(sensor);
+              show(backbtn3);
             }
-            plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-            plot.style.backgroundRepeat="no-repeat";
-            plot.style.backgroundAttachment="fixed";
-            plot.style.backgroundPosition="center";
-            plot.style.backgroundSize="cover";
+          }
+          plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+          plot.style.backgroundRepeat="no-repeat";
+          plot.style.backgroundAttachment="fixed";
+          plot.style.backgroundPosition="center";
+          plot.style.backgroundSize="cover";
         }
-    }else if(cntiArr[scene]==9999){
-       show(leave);
-    }else if(cntiArr[scene]==10000){
-    	scene++;
-    	hideConv();
-       	show(history1);
-       	history1.onclick=function(){
-            history_exist[0]=1;
-       		hide(history1);
-       		fireClick(sensor);
-       		show(sensor);
-       	}
-    }else if(cntiArr[scene]==10001){
-    	scene++;
-    	hideConv();
-       	show(potatochip);
-       	potatochip.onclick=function(){
-            item_exist[2] = 1;
-       		hide(potatochip);
-       		fireClick(sensor);
-       		show(sensor);
-       	}
-    }else if(cntiArr[scene]==10002){
-    	scene++;
-    	hideConv();
-       	show(history2);
-       	history2.onclick=function(){
-            history_exist[1]=1;
-       		hide(history2);
-       		fireClick(sensor);
-       		show(sensor);
-       	}
-    }else if(cntiArr[scene]==10003){
+      }else if(cntiArr[scene]==9999){
+        show(leave);
+      }else if(cntiArr[scene]==10000){
+        scene++;
+        hideConv();
+        show(history1);
+        history1.onclick=function(){
+          history_exist[0]=1;
+          hide(history1);
+          fireClick(sensor);
+          show(sensor);
+        }
+      }else if(cntiArr[scene]==10001){
+        scene++;
+        hideConv();
+        show(potatochip);
+        potatochip.onclick=function(){
+          item_exist[2] = 1;
+          hide(potatochip);
+          fireClick(sensor);
+          show(sensor);
+        }
+      }else if(cntiArr[scene]==10002){
+        scene++;
+        hideConv();
+        show(history2);
+        history2.onclick=function(){
+          history_exist[1]=1;
+          hide(history2);
+          fireClick(sensor);
+          show(sensor);
+        }
+      }else if(cntiArr[scene]==10003){
         scene++;
         hideConv();
         show(history3);
         history3.onclick=function(){
-            history_exist[4]=1;
-            hide(history3);
-            fireClick(sensor);
-            show(sensor);
+          history_exist[4]=1;
+          hide(history3);
+          fireClick(sensor);
+          show(sensor);
         }
-    }else if(cntiArr[scene]==10004){
+      }else if(cntiArr[scene]==10004){
         scene++;
         hideConv();
         show(bottle);
         bottle.onclick=function(){
-            item_exist[5] = 1;
-            item_exist[4] = 0;
-            hide(bottle);
-            fireClick(sensor);
-            show(sensor);
+          item_exist[5] = 1;
+          item_exist[4] = 0;
+          hide(bottle);
+          fireClick(sensor);
+          show(sensor);
         }
-    }else if(cntiArr[scene]==10005){
+      }else if(cntiArr[scene]==10005){
         scene++;
         hideConv();
         show(idcard);
         idcard.onclick=function(){
-            item_exist[1] = 1;
-            hide(idcard);
-            fireClick(sensor);
-            show(sensor);
+          item_exist[1] = 1;
+          hide(idcard);
+          fireClick(sensor);
+          show(sensor);
         }
-    }else if(cntiArr[scene]==10006){
+      }else if(cntiArr[scene]==10006){
         scene++;
         hideConv();
         show(money);
         money.onclick=function(){
-            item_exist[3] = 1;
-            hide(money);
-            fireClick(sensor);
-            show(sensor);
+          item_exist[3] = 1;
+          hide(money);
+          fireClick(sensor);
+          show(sensor);
         }
-    }else if(cntiArr[scene]==10007){
+      }else if(cntiArr[scene]==10007){
         scene++;
         hideConv();
         show(history4);
         history4.onclick=function(){
-            history_exist[2]=1;
-            hide(history4);
-            fireClick(sensor);
-            show(sensor);
+          history_exist[2]=1;
+          hide(history4);
+          fireClick(sensor);
+          show(sensor);
         }
-    }else if(cntiArr[scene]==10008){
+      }else if(cntiArr[scene]==10008){
         scene++;
         hideConv();
         show(bottle);
         bottle.onclick=function(){
-            item_exist[4] = 1;
-            hide(bottle);
-            fireClick(sensor);
-            show(sensor);
+          item_exist[4] = 1;
+          hide(bottle);
+          fireClick(sensor);
+          show(sensor);
         }
-    }else if(cntiArr[scene]==10009){
+      }else if(cntiArr[scene]==10009){
         scene++;
         hideConv();
         show(history5);
         history5.onclick=function(){
-            history_exist[3]=1;
-            hide(history5);
-            fireClick(sensor);
-            show(sensor);
+          history_exist[3]=1;
+          hide(history5);
+          fireClick(sensor);
+          show(sensor);
         }
+      }
     }
-}
 /******************這個部分是給不同的劇情畫面的切換******************/
 /*hideArr(initArr);
-scene=2;
-fireClick(sensor);
-*/
+  scene=2;
+  fireClick(sensor);
+  */
 function getById(id){
-    return document.getElementById(id);
+  return document.getElementById(id);
 }
 function hideArr(arr){
-    for(var i in arr){
-        getById(arr[i]).style.display="none";
-    }
+  for(var i in arr){
+    getById(arr[i]).style.display="none";
+  }
 }
 function showArr(arr){
-    for(var i in arr){
-        getById(arr[i]).style.display="block";
-    }
+  for(var i in arr){
+    getById(arr[i]).style.display="block";
+  }
 }
 function hide(elem){
-    elem.style.display="none";
+  elem.style.display="none";
 }
 function show(elem){
-    elem.style.display="block";
+  elem.style.display="block";
 }
 function gameshow(elem){
-    elem.style.display="initial";
+  elem.style.display="initial";
 }
 function hideConv(){
-    conv.innerHTML="......";
-    hide(sensor);
+  conv.innerHTML="......";
+  hide(sensor);
 }
 function hideChoice(){
-    hide(select1);
-    hide(select2);
-    hide(select3);
+  hide(select1);
+  hide(select2);
+  hide(select3);
 }
 function showsel(elem){
-    elem.style.display="list-item";
+  elem.style.display="list-item";
 }
 
 function characterposition(){
-	if(charposArr[scene]==0){
-		character.style.background="url(pic/"+charArr[scene]+".jpg)";
-		character.style.left="25px";
-		character.style.top="100px";
-		character.style.width="350px";
-		character.style.height="451px";
-	}else{
-		character.style.background="url(pic/"+charArr[scene]+".jpg)";
-		character.style.left="580px";
-		character.style.top="100px";
-		character.style.width="350px";
-		character.style.height="451px";
-	}
+  if(charposArr[scene]==0){
+    character.style.background="url(pic/"+charArr[scene]+".jpg)";
+    character.style.left="25px";
+    character.style.top="100px";
+    character.style.width="350px";
+    character.style.height="451px";
+  }else{
+    character.style.background="url(pic/"+charArr[scene]+".jpg)";
+    character.style.left="580px";
+    character.style.top="100px";
+    character.style.width="350px";
+    character.style.height="451px";
+  }
 }
 
 function changechapter(chapter){
-	leave.onclick=function(){
-		chapter++;
-		return chapter;
-	}
+  leave.onclick=function(){
+    chapter++;
+    return chapter;
+  }
 }
 
 //觸發點擊事件的方法
 function fireClick(node){
-    // 不同瀏覽器有不同的寫法
-    if ( document.createEvent ) {
-        var evt = document.createEvent('MouseEvents');
-        evt.initEvent('click', true, false);
-        node.dispatchEvent(evt);    
-    } else if( document.createEventObject ) {
-        node.fireEvent('onclick') ; 
-    } else if (typeof node.onclick == 'function' ) {
-        node.onclick(); 
-    }
+  // 不同瀏覽器有不同的寫法
+  if ( document.createEvent ) {
+    var evt = document.createEvent('MouseEvents');
+    evt.initEvent('click', true, false);
+    node.dispatchEvent(evt);    
+  } else if( document.createEventObject ) {
+    node.fireEvent('onclick') ; 
+  } else if (typeof node.onclick == 'function' ) {
+    node.onclick(); 
+  }
 }
 
 //Get user name and id from FB
@@ -1209,101 +1232,101 @@ function testAPI() {
     console.log(JSON.stringify(response));
     fb_id = response.id;
 
-getById("btnStart").onclick=function(){
-      event.preventDefault();
-        $.ajax({
-        method:"get",
-        url:"./check_data",
-        data:{
-        id: response.id
-        },
-        success:function(data){
-          if (data=="0"){
-             show(txName);
-             show(idform);
-             show(btnlogin);
-             show(btnreset);
-             show(umm);
-             show(littlecat);
-             hide(btnStart);
-             hide(fbbtn);
-    btnlogin.onclick=function(){ 
-        roleplayer=getById("txName").value;
-        hideArr(initArr);
-        showArr(plotArr);
-        hide(leave);
-        hide(idform);
-        hide(txName);
-        hide(btnlogin);
-        hide(btnreset);
-        hide(umm); 
+    getById("btnStart").onclick=function(){
       event.preventDefault();
       $.ajax({
         method:"get",
-        url:"./login_data",
+        url:"./check_data",
         data:{
-        id: response.id,
-        name:response.name,
-         //   id:$("response").val(),
-       //     NAME:$("#fbnamee").val(),
-          NICKNAME:$("#txName").val(),
+          id: response.id
         },
         success:function(data){
-          $("#login_check").text(data)
-        }
-      });
-               window.sessionStorage.setItem("chapter_data", "0");
-               window.sessionStorage.setItem("roleplayer_data", $("#txName").val());
-               chapter=0;
-    }
-  
-              var pos = 400;
-              var mv = setInterval(frame, 5);
-              function frame() {
-                   if (pos == 150) {
-                      clearInterval(mv);
-                 } else {
-                      pos--; 
-                      littlecat.style.top = pos + 'px'; 
-                        }
-                               }
-          
-                        }
+          if (data=="0"){
+            show(txName);
+            show(idform);
+            show(btnlogin);
+            show(btnreset);
+            show(umm);
+            show(littlecat);
+            hide(btnStart);
+            hide(fbbtn);
+            btnlogin.onclick=function(){ 
+              roleplayer=getById("txName").value;
+              hideArr(initArr);
+              showArr(plotArr);
+              hide(leave);
+              hide(idform);
+              hide(txName);
+              hide(btnlogin);
+              hide(btnreset);
+              hide(umm); 
+              event.preventDefault();
+              $.ajax({
+                method:"get",
+                url:"./login_data",
+                data:{
+                  id: response.id,
+                  name:response.name,
+                  //   id:$("response").val(),
+                  //     NAME:$("#fbnamee").val(),
+                  NICKNAME:$("#txName").val(),
+                },
+                success:function(data){
+                  $("#login_check").text(data)
+                }
+              });
+              window.sessionStorage.setItem("chapter_data", "0");
+              window.sessionStorage.setItem("roleplayer_data", $("#txName").val());
+              chapter=0;
+            }
+
+            var pos = 400;
+            var mv = setInterval(frame, 5);
+            function frame() {
+              if (pos == 150) {
+                clearInterval(mv);
+              } else {
+                pos--; 
+                littlecat.style.top = pos + 'px'; 
+              }
+            }
+
+          }
           else{
-          //  show(welcome);
-        hideArr(initArr);
-        hide(leave);
-        hide(idform);
-        hide(txName);
-        hide(btnlogin);
-        hide(btnreset);
-        hide(umm); 
+            //  show(welcome);
+            hideArr(initArr);
+            hide(leave);
+            hide(idform);
+            hide(txName);
+            hide(btnlogin);
+            hide(btnreset);
+            hide(umm); 
             roleplayer= data.split(" ")[0];
             chapter =data.split(" ")[1];
             window.sessionStorage.setItem("chapter_data", chapter);
             window.sessionStorage.setItem("roleplayer_data", roleplayer);
             scene=0;
-    convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
-    conv.innerHTML=convArr;
-    charArr=new Array(characterArr[chapter][0]);
-    character.style.background="url(pic/"+charArr[scene]+".jpg)";
-	character.style.left="25px";
-	character.style.top="100px";
-	character.style.width="350px";
-	character.style.height="451px";
-	bgArr=new Array(backgroundArr[chapter][0]);
-	plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-    plot.style.backgroundRepeat="no-repeat";
-    plot.style.backgroundAttachment="fixed";
-    plot.style.backgroundPosition="center";
-    plot.style.backgroundSize="cover";
-    showArr(plotArr);
+            convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
+            conv.innerHTML=convArr;
+            charArr=new Array(characterArr[chapter][0]);
+            character.style.background="url(pic/"+charArr[scene]+".jpg)";
+            character.style.left="25px";
+            character.style.top="100px";
+            character.style.width="350px";
+            character.style.height="451px";
+            bgArr=new Array(backgroundArr[chapter][0]);
+            plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
+            plot.style.backgroundRepeat="no-repeat";
+            plot.style.backgroundAttachment="fixed";
+            plot.style.backgroundPosition="center";
+            plot.style.backgroundSize="cover";
+            showArr(plotArr);
 
-              }
+          }
         }
-     });
-  //放這裡!不行
-}
+      });
+      //放這裡!不行
+    }
   })
 }
 
@@ -1321,129 +1344,129 @@ var coinnumber = 0;
 var game = new Phaser.Game(phaserwid,phaserhei , Phaser.AUTO, 'game');
 
 function dowm() {
-    switch (this.key) {
-        case "l":
-            trigger.left =1;
-            break;
-        case "r":
-            trigger.right = 1;
-            break;
-        case "up":
-            trigger.up = 1;
-            break;
-        case "space":
-            trigger.space = 1
-            break;    
-        default:
-            break;
-    }
+  switch (this.key) {
+    case "l":
+      trigger.left =1;
+      break;
+    case "r":
+      trigger.right = 1;
+      break;
+    case "up":
+      trigger.up = 1;
+      break;
+    case "space":
+      trigger.space = 1
+        break;    
+    default:
+      break;
+  }
 }
 function up() {
-    switch (this.key) {
-        case "l":
-            trigger.left = 0
-            break;
-        case "r":
-            trigger.right = 0
-            break;
-        case "up":
-            trigger.up = 0
-            break;
-        case "space":
-            trigger.space = 0
-            break;
-        default:
-            break;
-    }       
+  switch (this.key) {
+    case "l":
+      trigger.left = 0
+        break;
+    case "r":
+      trigger.right = 0
+        break;
+    case "up":
+      trigger.up = 0
+        break;
+    case "space":
+      trigger.space = 0
+        break;
+    default:
+      break;
+  }       
 } 
 var next = {
-    preload: function () {
-    },
-    create: function () {
-        $('#game').css({ display: 'none' })
-        hideArr(initArr);
-        hideArr(switchArr);
-        showArr(plotArr);
-        hide(leave);
-        hide(switchpic);
-    },
-    update: function () {
-        
-    },
-    render: function () {
+  preload: function () {
+  },
+  create: function () {
+    $('#game').css({ display: 'none' })
+      hideArr(initArr);
+    hideArr(switchArr);
+    showArr(plotArr);
+    hide(leave);
+    hide(switchpic);
+  },
+  update: function () {
 
-    }
+  },
+  render: function () {
+
+  }
 };
 game.state.add('next', next);
 var littlegame = {
-     preload:()=>{
+  preload:()=>{
     game.load.tilemap('map', 'assets/json/map5.json', null,Phaser.Tilemap.TILED_JSON)
-    game.load.image('road2', 'assets/img/road2.png')
-    game.load.image('cas1', 'assets/img/cas1.png')
-    game.load.image('leftb', 'assets/img/leftb.png')
-    game.load.image('rightb', 'assets/img/rightb.png')
-    game.load.image('jumpb', 'assets/img/jumpb.png')
-    game.load.image('enterb', 'assets/img/enterb.png')
-    game.load.image('mark', 'assets/img/mark.png')
-    game.load.image('coin','assets/img/gold.png')
-    game.load.image('sewer1','assets/img/sewer1.png')
-    game.load.image('sewer2','assets/img/sewer2.png')
-    game.load.spritesheet('cat_player','assets/img/cat3.png', 316, 276)
+      game.load.image('road2', 'assets/img/road2.png')
+      game.load.image('cas1', 'assets/img/cas1.png')
+      game.load.image('leftb', 'assets/img/leftb.png')
+      game.load.image('rightb', 'assets/img/rightb.png')
+      game.load.image('jumpb', 'assets/img/jumpb.png')
+      game.load.image('enterb', 'assets/img/enterb.png')
+      game.load.image('mark', 'assets/img/mark.png')
+      game.load.image('coin','assets/img/gold.png')
+      game.load.image('sewer1','assets/img/sewer1.png')
+      game.load.image('sewer2','assets/img/sewer2.png')
+      game.load.spritesheet('cat_player','assets/img/cat3.png', 316, 276)
   },
   create:()=> {
-      //物理系統設定
+    //物理系統設定
     game.physics.startSystem(Phaser.Physics.ARCADE)
-    game.physics.arcade.gravity.y = 380
-    game.time.desiredFps = 30
-    //視窗設定
-    game.scale.scaleMode  = Phaser.ScaleManager.SHOW_ALL
-    game.scale.pageAlignVertically = true
-    game.scale.pageAlignHorizontally = true
-    Phaser.Canvas.setImageRenderingCrisp(game.canvas)
-    //地圖載入
-    map = game.add.tilemap('map')
-    map.addTilesetImage('road2','road2')
-    map.addTilesetImage('cas1','cas1')
-    map.addTilesetImage('sewer2','sewer2')
-    layer = map.createLayer('lay 2')
-    map.createLayer('lay 1')
-    map.setCollisionBetween(63,71,true,layer)
-    //物件
-    coins = game.add.physicsGroup()
-    for(var i = 0;i < 10;i++) {
+      game.physics.arcade.gravity.y = 380
+      game.time.desiredFps = 30
+      //視窗設定
+      game.scale.scaleMode  = Phaser.ScaleManager.SHOW_ALL
+      game.scale.pageAlignVertically = true
+      game.scale.pageAlignHorizontally = true
+      Phaser.Canvas.setImageRenderingCrisp(game.canvas)
+      //地圖載入
+      map = game.add.tilemap('map')
+      map.addTilesetImage('road2','road2')
+      map.addTilesetImage('cas1','cas1')
+      map.addTilesetImage('sewer2','sewer2')
+      layer = map.createLayer('lay 2')
+      map.createLayer('lay 1')
+      map.setCollisionBetween(63,71,true,layer)
+      //物件
+      coins = game.add.physicsGroup()
+      for(var i = 0;i < 10;i++) {
         coin = coins.create(100+i*200,(phaserhei-128),'coin')
-        coin.scale.set(0.6)
-        coin.body.allowGravity = false
-        //coin.body.immovable = true
-    }
+          coin.scale.set(0.6)
+          coin.body.allowGravity = false
+          //coin.body.immovable = true
+      }
     coinText = game.add.text(20,50,'硬幣: 0', {fontSize: '24px', fill: '#ffff00'});
     coinText.fixedToCamera = true
-    //玩家
-    cat_player = game.add.sprite(100,100, 'cat_player')
-    game.physics.enable(cat_player,Phaser.Physics.ARCADE)
-    cat_player.scale.set(0.25)
-    cat_player.facing = 'right'
-    //玩家動畫設定
-    cat_player.animations.add('left', [10,9,8,7], 18 , true)
-    cat_player.animations.add('right', [1,2,3,4], 18, true)
-    cat_player.animations.add('rightup', [16,17,18], 3,false)
-    cat_player.animations.add('leftup', [25,24,23], 3,false)
-    cat_player.animations.add('rightupst', [14,15], 2,false)
-    cat_player.animations.add('leftupst', [27,26], 2,false)
-    cat_player.animations.add('rightdown', [19,20], 2,false)
-    cat_player.animations.add('leftdown', [22,21], 2,false)
-    //cat_player.animations.add('jumpdownleft',,2,false)
-    //cat_player.animations.add('jumpdownright',,2,false)
-    //世界設定
-    game.world.setBounds(0,0,2560 , 480)
-    cat_player.body.collideWorldBounds = true
-    game.camera.follow(cat_player)
-    
-    //設置操縱按鈕
-    cursors = game.input.keyboard.createCursorKeys()
-    this.cursors = game.input.keyboard.createCursorKeys(); 
+      //玩家
+      cat_player = game.add.sprite(100,100, 'cat_player')
+      game.physics.enable(cat_player,Phaser.Physics.ARCADE)
+      cat_player.scale.set(0.25)
+      cat_player.facing = 'right'
+      //玩家動畫設定
+      cat_player.animations.add('left', [10,9,8,7], 18 , true)
+      cat_player.animations.add('right', [1,2,3,4], 18, true)
+      cat_player.animations.add('rightup', [16,17,18], 3,false)
+      cat_player.animations.add('leftup', [25,24,23], 3,false)
+      cat_player.animations.add('rightupst', [14,15], 2,false)
+      cat_player.animations.add('leftupst', [27,26], 2,false)
+      cat_player.animations.add('rightdown', [19,20], 2,false)
+      cat_player.animations.add('leftdown', [22,21], 2,false)
+      //cat_player.animations.add('jumpdownleft',,2,false)
+      //cat_player.animations.add('jumpdownright',,2,false)
+      //世界設定
+      game.world.setBounds(0,0,2560 , 480)
+      cat_player.body.collideWorldBounds = true
+      game.camera.follow(cat_player)
+
+      //設置操縱按鈕
+      cursors = game.input.keyboard.createCursorKeys()
+      this.cursors = game.input.keyboard.createCursorKeys(); 
     this.custom = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    
+
     //左
     this.button_L = game.add.button(0, (phaserhei-75), 'leftb');
     this.button_L.scale.set(0.5);
@@ -1468,176 +1491,176 @@ var littlegame = {
     this.button_SPACE.onInputDown.add(dowm, { key: "space" }, this);
     this.button_SPACE.onInputUp.add(up, { key: "space" }, this); 
     this.button_SPACE.fixedToCamera = true;   
-   },
+  },
 
   update:()=>{
     //this.custom.isDown
     game.physics.arcade.collide(this.cat_player, this.layer);
     game.physics.arcade.overlap(cat_player, coins,function(cat_player,coin){
-        coin.kill()
+      coin.kill()
         coinnumber ++
         coinText.setText("硬幣: " + coinnumber)
     },null,this);
     if (custom.isDown || trigger.space == 1) {
-                flag.p4 = 0
-                game.state.start('first')
-            }
+      flag.p4 = 0
+        game.state.start('first')
+    }
     //方向控制
     if ((cursors.left.isDown || trigger.left === 1)&& cat_player.body.onFloor()) {
-         this.cat_player.body.velocity.x = -200
+      this.cat_player.body.velocity.x = -200
         this.cat_player.play('left')
         if (this.cat_player.facing !== 'left')
-            this.cat_player.facing = 'left'
+          this.cat_player.facing = 'left'
     }
 
     else if ((cursors.right.isDown || trigger.right === 1)&& cat_player.body.onFloor()) {   
-        this.cat_player.body.velocity.x = 200
+      this.cat_player.body.velocity.x = 200
         this.cat_player.play('right')
         if (this.cat_player.facing !== 'right') 
-            this.cat_player.facing = 'right'
+          this.cat_player.facing = 'right'
     }
     else if ((cursors.up.isDown || trigger.up === 1)&& cat_player.body.onFloor()&& game.time.now > jumpTimer ) {    
-        if (this.cat_player.facing === 'right')  {
-           this.cat_player.play('rightup')          
-           this.cat_player.body.velocity.x = 200
-           this.cat_player.body.velocity.y += -200
-           jumpTimer = game.time.now + 750
-        }
-        else if (this.cat_player.facing === 'left'){
-           this.cat_player.play('leftup')
-           this.cat_player.body.velocity.x = -200
-           this.cat_player.body.velocity.y += -200
-           jumpTimer = game.time.now + 750
-        }
+      if (this.cat_player.facing === 'right')  {
+        this.cat_player.play('rightup')          
+          this.cat_player.body.velocity.x = 200
+          this.cat_player.body.velocity.y += -200
+          jumpTimer = game.time.now + 750
+      }
+      else if (this.cat_player.facing === 'left'){
+        this.cat_player.play('leftup')
+          this.cat_player.body.velocity.x = -200
+          this.cat_player.body.velocity.y += -200
+          jumpTimer = game.time.now + 750
+      }
     }
     else {
-        if(this.cat_player.body.onFloor()){
-            this.cat_player.body.velocity.x = 0
-            if (this.cat_player.facing === 'left') cat_player.frame = 9
+      if(this.cat_player.body.onFloor()){
+        this.cat_player.body.velocity.x = 0
+          if (this.cat_player.facing === 'left') cat_player.frame = 9
             if (this.cat_player.facing === 'right') cat_player.frame = 0
-            //this.cat_player.animations.stop()
-        }
+              //this.cat_player.animations.stop()
+      }
     }
   },
-  
-   render:()=>{
-       //game.debug.spriteInfo(cat_player,32,32);
-   },
-      //no
+
+  render:()=>{
+    //game.debug.spriteInfo(cat_player,32,32);
+  },
+  //no
 };
 game.state.add('littlegame', littlegame);
 
 var first =  {
-  
+
   preload:()=>{
     game.load.tilemap('map', 'assets/json/map4.json', null,Phaser.Tilemap.TILED_JSON)
-    game.load.image('road2', 'assets/img/road2.png')
-    game.load.image('red2', 'assets/img/red2.png')
-    game.load.image('cas1', 'assets/img/cas1.png')
-    game.load.image('cloud', 'assets/img/cloud.jpg')
-    game.load.image('leftb', 'assets/img/leftb.png')
-    game.load.image('rightb', 'assets/img/rightb.png')
-    game.load.image('jumpb', 'assets/img/jumpb.png')
-    game.load.image('enterb', 'assets/img/enterb.png')
-    game.load.image('mark', 'assets/img/mark.png')
-    game.load.image('vend', 'assets/img/vend.png')
-    game.load.image('house', 'assets/img/house.png')
-    game.load.image('coin','assets/img/gold.png')
-    game.load.image('baoan','assets/img/baoan.png')
-    game.load.image('sewer1','assets/img/sewer1.png')
-    game.load.spritesheet('cat_player','assets/img/cat3.png', 316, 276)
+      game.load.image('road2', 'assets/img/road2.png')
+      game.load.image('red2', 'assets/img/red2.png')
+      game.load.image('cas1', 'assets/img/cas1.png')
+      game.load.image('cloud', 'assets/img/cloud.jpg')
+      game.load.image('leftb', 'assets/img/leftb.png')
+      game.load.image('rightb', 'assets/img/rightb.png')
+      game.load.image('jumpb', 'assets/img/jumpb.png')
+      game.load.image('enterb', 'assets/img/enterb.png')
+      game.load.image('mark', 'assets/img/mark.png')
+      game.load.image('vend', 'assets/img/vend.png')
+      game.load.image('house', 'assets/img/house.png')
+      game.load.image('coin','assets/img/gold.png')
+      game.load.image('baoan','assets/img/baoan.png')
+      game.load.image('sewer1','assets/img/sewer1.png')
+      game.load.spritesheet('cat_player','assets/img/cat3.png', 316, 276)
   },
   create:()=> {
-      //物理系統設定
+    //物理系統設定
     game.physics.startSystem(Phaser.Physics.ARCADE)
-    game.physics.arcade.gravity.y = 380
-    game.time.desiredFps = 30
-    /*
-    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    game.scale.refresh();
+      game.physics.arcade.gravity.y = 380
+      game.time.desiredFps = 30
+      /*
+         game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+         game.scale.refresh();
 
-    canvas_width = window.innerWidth * window.devicePixelRatio;
-    canvas_height = window.innerHeight * window.devicePixelRatio;
-    aspect_ratio = canvas_width / canvas_height;
-    if (aspect_ratio > 1) scale_ratio = canvas_height / canvas_height_max;
-    else scale_ratio = canvas_width / canvas_width_max;*/
-    //視窗設定
-    game.scale.scaleMode  = Phaser.ScaleManager.SHOW_ALL
-    game.scale.pageAlignVertically = true
-    game.scale.pageAlignHorizontally = true
-    Phaser.Canvas.setImageRenderingCrisp(game.canvas)
-    //地圖載入
-    map = game.add.tilemap('map')
-    map.addTilesetImage('red2','red2')
-    map.addTilesetImage('road2','road2')
-    map.addTilesetImage('cas1','cas1')
-    map.addTilesetImage('cloud','cloud')
-    map.createLayer('lay 3')
-    layer = map.createLayer('lay 2')
-    map.createLayer('lay 1')
-    map.setCollisionBetween(64,70,true,layer)
-    //物件
-    house = game.add.sprite(2000,(phaserhei-308),'house')
-    house.scale.set(0.4)
-    vend = game.add.sprite(2400,(phaserhei-214),'vend')
-    vend.scale.set(0.06)
-    baoan = game.add.sprite(3400,(phaserhei-443),'baoan')
-    baoan.scale.set(0.65)
-    sewer1 = game.add.sprite(2233,(phaserhei-130),'sewer1')
-    sewer1.scale.set(0.44)
-    game.physics.enable(vend,Phaser.Physics.ARCADE)
-    game.physics.enable(baoan,Phaser.Physics.ARCADE)
-    game.physics.enable(sewer1,Phaser.Physics.ARCADE)
-    baoan.body.allowGravity = false
-    vend.body.allowGravity = false
-    sewer1.body.allowGravity = false
-    sewer1.body.immovable = true
-    baoan.body.immovable = true
-    vend.body.immovable = true
+         canvas_width = window.innerWidth * window.devicePixelRatio;
+         canvas_height = window.innerHeight * window.devicePixelRatio;
+         aspect_ratio = canvas_width / canvas_height;
+         if (aspect_ratio > 1) scale_ratio = canvas_height / canvas_height_max;
+         else scale_ratio = canvas_width / canvas_width_max;*/
+      //視窗設定
+      game.scale.scaleMode  = Phaser.ScaleManager.SHOW_ALL
+      game.scale.pageAlignVertically = true
+      game.scale.pageAlignHorizontally = true
+      Phaser.Canvas.setImageRenderingCrisp(game.canvas)
+      //地圖載入
+      map = game.add.tilemap('map')
+      map.addTilesetImage('red2','red2')
+      map.addTilesetImage('road2','road2')
+      map.addTilesetImage('cas1','cas1')
+      map.addTilesetImage('cloud','cloud')
+      map.createLayer('lay 3')
+      layer = map.createLayer('lay 2')
+      map.createLayer('lay 1')
+      map.setCollisionBetween(64,70,true,layer)
+      //物件
+      house = game.add.sprite(2000,(phaserhei-308),'house')
+      house.scale.set(0.4)
+      vend = game.add.sprite(2400,(phaserhei-214),'vend')
+      vend.scale.set(0.06)
+      baoan = game.add.sprite(3400,(phaserhei-443),'baoan')
+      baoan.scale.set(0.65)
+      sewer1 = game.add.sprite(2233,(phaserhei-130),'sewer1')
+      sewer1.scale.set(0.44)
+      game.physics.enable(vend,Phaser.Physics.ARCADE)
+      game.physics.enable(baoan,Phaser.Physics.ARCADE)
+      game.physics.enable(sewer1,Phaser.Physics.ARCADE)
+      baoan.body.allowGravity = false
+      vend.body.allowGravity = false
+      sewer1.body.allowGravity = false
+      sewer1.body.immovable = true
+      baoan.body.immovable = true
+      vend.body.immovable = true
 
-    coins = game.add.physicsGroup()
-    for(var i = 0;i < 10;i++) {
+      coins = game.add.physicsGroup()
+      for(var i = 0;i < 10;i++) {
         coin = coins.create(100+i*200,(phaserhei-128),'coin')
-        coin.scale.set(0.6)
-        coin.body.allowGravity = false
-        //coin.body.immovable = true
-    }
+          coin.scale.set(0.6)
+          coin.body.allowGravity = false
+          //coin.body.immovable = true
+      }
     coinText = game.add.text(20,50,'硬幣: '+coinnumber, {fontSize: '24px', fill: '#ffff00'});
     coinText.fixedToCamera = true
-    //玩家
-    cat_player = game.add.sprite(2400,100, 'cat_player')
-    game.physics.enable(cat_player,Phaser.Physics.ARCADE)
-    cat_player.scale.set(0.25)
-    cat_player.facing = 'right'
-    //驚嘆號
-    mark = game.add.sprite(1500,100,'mark')
-    mark.scale.set(0.33)
-    mark.visible = false
-    game.physics.enable(mark,Phaser.Physics.ARCADE)
-    mark.body.allowGravity = false
-    mark.body.immovable = true
-    //玩家動畫設定
-    cat_player.animations.add('left', [10,9,8,7], 18 , true)
-    cat_player.animations.add('right', [1,2,3,4], 18, true)
-    cat_player.animations.add('rightup', [16,17,18], 3,false)
-    cat_player.animations.add('leftup', [25,24,23], 3,false)
-    cat_player.animations.add('rightupst', [14,15], 2,false)
-    cat_player.animations.add('leftupst', [27,26], 2,false)
-    cat_player.animations.add('rightdown', [19,20], 2,false)
-    cat_player.animations.add('leftdown', [22,21], 2,false)/*
-    cat_player.animations.add('jumpdownleft',,2,false)
-    cat_player.animations.add('jumpdownright',,2,false)*/
-    //世界設定
-    game.world.setBounds(0,0, 4800, 480)
-    cat_player.body.collideWorldBounds = true
-    game.camera.follow(cat_player)
-    
-    //設置操縱按鈕
-    cursors = game.input.keyboard.createCursorKeys()
-    this.cursors = game.input.keyboard.createCursorKeys(); 
+      //玩家
+      cat_player = game.add.sprite(2400,100, 'cat_player')
+      game.physics.enable(cat_player,Phaser.Physics.ARCADE)
+      cat_player.scale.set(0.25)
+      cat_player.facing = 'right'
+      //驚嘆號
+      mark = game.add.sprite(1500,100,'mark')
+      mark.scale.set(0.33)
+      mark.visible = false
+      game.physics.enable(mark,Phaser.Physics.ARCADE)
+      mark.body.allowGravity = false
+      mark.body.immovable = true
+      //玩家動畫設定
+      cat_player.animations.add('left', [10,9,8,7], 18 , true)
+      cat_player.animations.add('right', [1,2,3,4], 18, true)
+      cat_player.animations.add('rightup', [16,17,18], 3,false)
+      cat_player.animations.add('leftup', [25,24,23], 3,false)
+      cat_player.animations.add('rightupst', [14,15], 2,false)
+      cat_player.animations.add('leftupst', [27,26], 2,false)
+      cat_player.animations.add('rightdown', [19,20], 2,false)
+      cat_player.animations.add('leftdown', [22,21], 2,false)/*
+                                                                cat_player.animations.add('jumpdownleft',,2,false)
+                                                                cat_player.animations.add('jumpdownright',,2,false)*/
+      //世界設定
+      game.world.setBounds(0,0, 4800, 480)
+      cat_player.body.collideWorldBounds = true
+      game.camera.follow(cat_player)
+
+      //設置操縱按鈕
+      cursors = game.input.keyboard.createCursorKeys()
+      this.cursors = game.input.keyboard.createCursorKeys(); 
     this.custom = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    
+
     //左
     this.button_L = game.add.button(0, (phaserhei-75), 'leftb');
     this.button_L.scale.set(0.5);
@@ -1662,99 +1685,99 @@ var first =  {
     this.button_SPACE.onInputDown.add(dowm, { key: "space" }, this);
     this.button_SPACE.onInputUp.add(up, { key: "space" }, this); 
     this.button_SPACE.fixedToCamera = true;   
-   },
+  },
 
   update:()=>{
     //this.custom.isDown
     game.physics.arcade.collide(this.cat_player, this.layer);
-    
+
     //驚嘆號
     mark.visible = false
-    mark.body.x = cat_player.body.x+35
-    mark.body.y = cat_player.body.y-50
-    //進入關卡
-    if (this.cat_player.body.x > 310 && this.cat_player.body.x < 660) {
+      mark.body.x = cat_player.body.x+35
+      mark.body.y = cat_player.body.y-50
+      //進入關卡
+      if (this.cat_player.body.x > 310 && this.cat_player.body.x < 660) {
         if(flag.p1 != 1){
-            mark.visible = true
+          mark.visible = true
             if (custom.isDown || trigger.space == 1) {
-                flag.p1 = 1
+              flag.p1 = 1
                 game.state.start('next')
             }
         }
-    } 
+      } 
     game.physics.arcade.overlap(this.cat_player, this.vend,function(){
-        if(flag.p2 != 1){
-            mark.visible = true
-            if (custom.isDown || trigger.space == 1) {
-                flag.p2 = 1
-                //game.state.start('next')
-            }
-        }
+      if(flag.p2 != 1){
+        mark.visible = true
+          if (custom.isDown || trigger.space == 1) {
+            flag.p2 = 1
+              //game.state.start('next')
+          }
+      }
     });
     game.physics.arcade.overlap(this.cat_player, this.baoan,function(){
-        if(flag.p3 != 1){
-            mark.visible = true
-            if (custom.isDown || trigger.space == 1) {
-                flag.p3 = 1
-                //game.state.start('next')
-            }
-        }
+      if(flag.p3 != 1){
+        mark.visible = true
+          if (custom.isDown || trigger.space == 1) {
+            flag.p3 = 1
+              //game.state.start('next')
+          }
+      }
     });
     game.physics.arcade.overlap(this.cat_player, this.sewer1,function(){
-        if(flag.p4 != 1){
-            mark.visible = true
-            if (custom.isDown || trigger.space == 1) {
-                flag.p4 = 1
-                game.state.start('littlegame')
-            }
-        }
+      if(flag.p4 != 1){
+        mark.visible = true
+          if (custom.isDown || trigger.space == 1) {
+            flag.p4 = 1
+              game.state.start('littlegame')
+          }
+      }
     });
     game.physics.arcade.overlap(cat_player, coins,function(cat_player,coin){
-        coin.kill()
+      coin.kill()
         coinnumber ++
         coinText.setText("硬幣: " + coinnumber)
     },null,this);
     //方向控制
     if ((cursors.left.isDown || trigger.left === 1)&& cat_player.body.onFloor()) {
-         this.cat_player.body.velocity.x = -200
+      this.cat_player.body.velocity.x = -200
         this.cat_player.play('left')
         if (this.cat_player.facing !== 'left')
-            this.cat_player.facing = 'left'
+          this.cat_player.facing = 'left'
     }
 
     else if ((cursors.right.isDown || trigger.right === 1)&& cat_player.body.onFloor()) {   
-        this.cat_player.body.velocity.x = 200
+      this.cat_player.body.velocity.x = 200
         this.cat_player.play('right')
         if (this.cat_player.facing !== 'right') 
-            this.cat_player.facing = 'right'
+          this.cat_player.facing = 'right'
     }
     else if ((cursors.up.isDown || trigger.up === 1)&& cat_player.body.onFloor()&& game.time.now > jumpTimer ) {    
-        if (this.cat_player.facing === 'right')  {
-           this.cat_player.play('rightup')          
-           this.cat_player.body.velocity.x = 200
-           this.cat_player.body.velocity.y += -200
-           jumpTimer = game.time.now + 750
-        }
-        else if (this.cat_player.facing === 'left'){
-           this.cat_player.play('leftup')
-           this.cat_player.body.velocity.x = -200
-           this.cat_player.body.velocity.y += -200
-           jumpTimer = game.time.now + 750
-        }
+      if (this.cat_player.facing === 'right')  {
+        this.cat_player.play('rightup')          
+          this.cat_player.body.velocity.x = 200
+          this.cat_player.body.velocity.y += -200
+          jumpTimer = game.time.now + 750
+      }
+      else if (this.cat_player.facing === 'left'){
+        this.cat_player.play('leftup')
+          this.cat_player.body.velocity.x = -200
+          this.cat_player.body.velocity.y += -200
+          jumpTimer = game.time.now + 750
+      }
     }
     else {
-        if(this.cat_player.body.onFloor()){
-            this.cat_player.body.velocity.x = 0
-            if (this.cat_player.facing === 'left') cat_player.frame = 9
+      if(this.cat_player.body.onFloor()){
+        this.cat_player.body.velocity.x = 0
+          if (this.cat_player.facing === 'left') cat_player.frame = 9
             if (this.cat_player.facing === 'right') cat_player.frame = 0
-            //this.cat_player.animations.stop()
-        }
+              //this.cat_player.animations.stop()
+      }
     }
   },
-  
-   render:()=>{
-       //game.debug.spriteInfo(cat_player,32,32);
-   },
+
+  render:()=>{
+    //game.debug.spriteInfo(cat_player,32,32);
+  },
 };
 game.state.add('first', first);
 game.state.start('first');
