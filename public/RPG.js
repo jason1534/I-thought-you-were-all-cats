@@ -1241,20 +1241,7 @@ getById("btnStart").onclick=function(){
               }
         }
      });
-            convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
-            conv.innerHTML=convArr;
-            charArr=new Array(characterArr[chapter][0]);
-            character.style.background="url(pic/"+charArr[scene]+".jpg)";
-            character.style.left="25px";
-            character.style.top="100px";
-            character.style.width="350px";
-            character.style.height="451px";
-            bgArr=new Array(backgroundArr[chapter][0]);
-            plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
-            plot.style.backgroundRepeat="no-repeat";
-            plot.style.backgroundAttachment="fixed";
-            plot.style.backgroundPosition="center";
-            plot.style.backgroundSize="cover";  //放這裡
+  //放這裡!不行
 }
   })
 }
