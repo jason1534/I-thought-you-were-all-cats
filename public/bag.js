@@ -86,7 +86,7 @@ $(document).ready(function () {
             if (!history_exist[index - 1]) {
                 $(select).css("display", "none");               
             }
-            {
+            else{
                 $(select).css("display", "inline-block");
             }
         }
