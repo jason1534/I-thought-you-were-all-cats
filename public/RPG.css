@@ -92,6 +92,13 @@ body,html{
     z-index: 2000;
     cursor:pointer;
 }
+#login_status{
+    position: absolute;
+    left:32%;
+    top:56%;
+    font-size: 30px;
+    z-index: 2000;
+}
 div{
     font-size: 48px;
     -webkit-touch-callout: none; 
