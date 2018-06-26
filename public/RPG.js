@@ -521,7 +521,7 @@ getById("btnnext").onclick=function(){
         "(在一旁的野貓覺得雞皮疙瘩、不蘇胡)",
         "喵嗚~還是鏟屎的懷裡最棒惹(一整個大性轉，剛剛的皇帝氣勢都到哪惹)");
     characterArr[6]=new Array(player["I"].happy,player["wild"].normal,player["I"].angry,player["wild"].say,player["I"].surprise
-                    ,player["wild"].suck,player["I"].happy,player["dirty"].none,player["wild"].suck,player["I"].happy);
+                    ,player["wild"].suck,player["I"].happy,player["dirty"].happy,player["wild"].suck,player["I"].happy);
     characterposArr[6]=new Array(0,1,0,1,0,1,0,1,1,0);
     continueArr[6]=new Array(true,true,true,true,true,true,true,true,true,true);
     backgroundArr[6]=new Array("EEbuilding","EEbuilding","EEbuilding","EEbuilding","EEbuilding","EEbuilding","dirty","dirty","dirty","dirty");
