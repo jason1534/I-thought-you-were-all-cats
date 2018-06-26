@@ -154,7 +154,6 @@ leave.onclick=function(){
     //show(switchpic);
     hideArr(plotArr);
     hide(leave);
-    hide(bag);
     convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
     conv.innerHTML=convArr;
     charArr=new Array(characterArr[chapter][0]);
@@ -170,6 +169,9 @@ leave.onclick=function(){
     plot.style.backgroundPosition="center";
     plot.style.backgroundSize="cover";
     $("#game").show();
+    // $("#enter_bag").css("margin-top", "-56vw");
+    // $("#back_img").css("margin-top", "-56vw");
+    // $("#tag").css("margin-top", "-56vw");
 }
 
 end2.onclick=function(){
@@ -519,10 +521,10 @@ getById("btnnext").onclick=function(){
         "(在一旁的野貓覺得雞皮疙瘩、不蘇胡)",
         "喵嗚~還是鏟屎的懷裡最棒惹(一整個大性轉，剛剛的皇帝氣勢都到哪惹)");
     characterArr[6]=new Array(player["I"].happy,player["wild"].normal,player["I"].angry,player["wild"].say,player["I"].surprise
-                    ,player["wild"].suck,player["I"].happy,player["turtle"].happy,player["wild"].suck,player["I"].happy);
+                    ,player["wild"].suck,player["I"].happy,player["dirty"].none,player["wild"].suck,player["I"].happy);
     characterposArr[6]=new Array(0,1,0,1,0,1,0,1,1,0);
     continueArr[6]=new Array(true,true,true,true,true,true,true,true,true,true);
-    backgroundArr[6]=new Array("road","road","road","road","road","road","EEbuilding","EEbuilding","EEbuilding","EEbuilding");
+    backgroundArr[6]=new Array("EEbuilding","EEbuilding","EEbuilding","EEbuilding","EEbuilding","EEbuilding","dirty","dirty","dirty","dirty");
    
     //changechapter(chapter);
 
