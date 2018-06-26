@@ -1866,7 +1866,7 @@ var first =  {
                 else
                     flag.p5 = 1
                 cat_position = cat_player.body.x
-                game.state.start('next')
+                $('#game').css({ display: 'none' })
             }
         }
     }
@@ -1897,7 +1897,7 @@ var first =  {
                 flag.p4 = 0
                 flag.p6 = 0
                 cat_position = cat_player.body.x
-                game.state.start('next')
+                $('#game').css({ display: 'none' })
             }
         }
     });
@@ -1910,7 +1910,7 @@ var first =  {
                 flag.p4 = 1
                 flag.p5 = 0
                 cat_position = cat_player.body.x
-                game.state.start('next')
+                $('#game').css({ display: 'none' })
             }
         }
     });
