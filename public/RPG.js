@@ -23,6 +23,7 @@ var player=[];
 	player["turtle"]={normal: "turtle",happy: "turtleHappy",sad: "turtleSad", angry: "turtleAngry"};
     player["kitty"]={normal: "kitty",happy: "kittyHappy",sad: "kittySad", angry: "kittyAngry"};
     player["Lily"]={normal: "Lily",happy: "LilyHappy",sad: "Lilysad", angry: "Lilyangry"};
+    player["dirty"]={normal: "dirty",happy: "dirtyhappy"};
 
 
 //這個陣列是儲存抉擇的部分
