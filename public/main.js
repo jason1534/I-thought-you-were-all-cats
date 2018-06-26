@@ -7,7 +7,7 @@ var trigger = {left:0,right:0,up:0,space:0};
 var flag= {p1:0,p2:1,p3:1,p4:1,p5:1,p6:1,p7:1};
 var coin_position = [4000,700,1500,1800,2300,3000,3100,3500,3800,4800]
 var coinnumber = 0;
-var cat_position = 1500;
+var cat_position = 0;
 
 var game = new Phaser.Game(phaserwid,phaserhei , Phaser.AUTO, 'game');
 
@@ -47,17 +47,23 @@ function up() {
             break;
     }       
 } 
+function outgame(){
+	$('#game').css({ display: 'none' })
+	hideArr(initArr);
+	hideArr(switchArr);
+	showArr(plotArr);
+	hide(leave);
+	hide(switchpic);
+	$("#enter_bag").css("margin-top", "0vw");
+    $("#back_img").css("margin-top", "0vw");
+    $("#tag").css("margin-top", "0vw");
+}
 var next = {
     preload: function () {
     },
     create: function () {
-    	show(bag);
         $('#game').css({ display: 'none' })
-        hideArr(initArr);
-    	hideArr(switchArr);
-    	showArr(plotArr);
-    	hide(leave);
-    	hide(switchpic);
+        
     },
     update: function () {
         
@@ -395,7 +401,7 @@ var first =  {
 				else
 					flag.p5 = 1
 				cat_position = cat_player.body.x
-				game.state.start('next')
+				outgame()
 			}
 		}
     }
@@ -412,6 +418,7 @@ var first =  {
 				cat_text.visible = true
 				game.time.events.add(Phaser.Timer.SECOND * 3, function(){
 					cat_text.visible = false
+					outgame()
 				}, this)
 			}
 		}
@@ -426,7 +433,7 @@ var first =  {
 				flag.p4 = 0
 				flag.p6 = 0
 				cat_position = cat_player.body.x
-				game.state.start('next')
+				outgame()
 			}
 		}
 	});
@@ -439,7 +446,7 @@ var first =  {
 				flag.p4 = 1
 				flag.p5 = 0
 				cat_position = cat_player.body.x
-				game.state.start('next')
+				outgame()
 			}
 		}
 	});
