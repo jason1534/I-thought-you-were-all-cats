@@ -51,8 +51,13 @@ var next = {
     preload: function () {
     },
     create: function () {
+    	show(bag);
         $('#game').css({ display: 'none' })
-        
+        hideArr(initArr);
+    	hideArr(switchArr);
+    	showArr(plotArr);
+    	hide(leave);
+    	hide(switchpic);
     },
     update: function () {
         
