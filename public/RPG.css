@@ -224,7 +224,7 @@ div{
 .object{
     position: absolute;
     top:20%;
-    left:30%;
+    left:40%;
     z-index: 2000;
     cursor: pointer;
 }
