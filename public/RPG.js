@@ -2033,5 +2033,5 @@ var first =  {
 game.state.add('first', first);
 game.state.start('first');
 
-
+console.log("chapter="+chapter);
 //game end
