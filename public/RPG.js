@@ -1794,6 +1794,7 @@ var first =  {
     coinText.fixedToCamera = true
     //玩家位置紀錄
     story_position= {p1:500,p2:1700,p3:2380,p4:3800};
+    console.log("chapter in game="+chapter);
     switch(chapter){
         case 1:
             flag.p1 = 0
@@ -1818,6 +1819,7 @@ var first =  {
             cat_position = story_position.p1
             break;
         default:
+        flag.p1 = 0
             break;
     }
     //玩家
