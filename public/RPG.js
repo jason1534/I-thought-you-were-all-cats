@@ -1795,33 +1795,33 @@ var first =  {
     //玩家位置紀錄
     story_position= {p1:500,p2:1700,p3:2380,p4:3800};
     console.log("chapter in game="+chapter);
-    switch(chapter){
-        case 1:
+    if(chapter ===0){
             flag.p1 = 0
-            break;
-        case 2:
+        }
+        else if(chapter ===1){
+            flag.p1 = 0
+        }
+        else if(chapter ===2){
             flag.p2 = 0
             cat_position = story_position.p1
-            break;
-        case 3:
+        }
+        else if(chapter ===3){
             flag.p3 = 0
             cat_position = story_position.p2
-            break;
-        case 4:
+        }
+        else if(chapter ===4){
             flag.p4 = 0
+            flag.p6 = 0
             cat_position = story_position.p3
-            break;
-        case 5:
+        }
+        else if(chapter ===5){
             flag.p5 = 0
             cat_position = story_position.p4
-            break;
-        case 6:
+        }
+        else if(chapter ===6){
+            flag.p7 = 0
             cat_position = story_position.p1
-            break;
-        default:
-        flag.p1 = 0
-            break;
-    }
+        }
     //玩家
     cat_player = game.add.sprite(cat_position,300, 'cat_player')
     game.physics.enable(cat_player,Phaser.Physics.ARCADE)
