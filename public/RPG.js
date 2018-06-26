@@ -1451,6 +1451,18 @@ function testAPI() {
         }
       });
       //放這裡!不行
+      $.ajax({
+        method:"get",
+        url:"./get_thing_data",
+        data:{
+            id: response.id,
+            },
+        success:function(data){
+            item_exist = [data[0].item1,data[0].item2,data[0].item3,data[0].item4,data[0].item5,data[0].item6,
+                          data[0].item7,data[0].item8,data[0].item9,data[0].item10];
+            history_exist = [ data[0].history1,data[0].history2,data[0].history3,data[0].history4,data[0].history5];
+        }
+       });
     }
   })
 }
