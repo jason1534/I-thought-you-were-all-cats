@@ -97,7 +97,7 @@ body{
     left: 10vw;
     background-repeat:no-repeat;   
     position: absolute;
-    display: block;
+    display: none;
     border-radius:1vw; 
     z-index: 2000;   
 }
