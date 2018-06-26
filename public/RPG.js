@@ -44,7 +44,7 @@ var convArr=[];
 var character=getById("character"), plot=getById("scene_plot"), conv=getById("convers"), sensor=getById("sensor"), 
 	select1=getById("select1"), select2=getById("select2"), select3=getById("select3"), leave=getById("leave"), backbtn1=getById("back1"),
     backbtn2=getById("back2"), backbtn3=getById("back3"), idform=getById("idform"), txName=getById("txName"),
-    btnlogin=getById("btnlogin"), btnreset=getById("btnreset"), umm=getById("umm"), switchpic=getById("switchpic"), 
+    btnlogin=getById("btnlogin"), btnreset=getById("btnreset"), umm=getById("umm"), switchpic=getById("switchpic"), bag=getById("enter_bag"),
     fbbtn=getById("fbbluebtn"), littlecat=getById("cat"), game=getById("game"), end2=getById("end2"),
 	history1=getById("history1"), history2=getById("history2"), potatochip=getById("potatochip"), 
     history3=getById("history3"), bottle=getById("bottle"), idcard=getById("idcard"), money=getById("money"),
@@ -63,6 +63,7 @@ hide(btnreset);
 hide(umm);
 hide(switchpic);
 hide(littlecat);
+hide(bag);
 //按鈕
 hide(leave);
 hide(end2);
@@ -1379,7 +1380,8 @@ function testAPI() {
               hide(txName);
               hide(btnlogin);
               hide(btnreset);
-              hide(umm); 
+              hide(umm);
+              show(bag); 
               event.preventDefault();
               $.ajax({
                 method:"get",
@@ -1422,6 +1424,7 @@ function testAPI() {
             hide(btnlogin);
             hide(btnreset);
             hide(umm); 
+            show(bag);
             roleplayer= data.split(" ")[0];
             chapter =data.split(" ")[1];
             window.sessionStorage.setItem("chapter_data", chapter);
