@@ -1879,10 +1879,12 @@ var first =  {
         }
         else if(chapter ==4){
             flag.p5 = 0
+            flag.p6 = 0
             cat_player.body.x  = story_position.p4
         }
         else if(chapter ==5){
             flag.p7 = 0
+            flag.p6 = 0
             cat_player.body.x  = story_position.p1
         }
     }
