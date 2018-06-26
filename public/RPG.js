@@ -1522,8 +1522,8 @@ var next = {
     preload: function () {
     },
     create: function () {
-        show(bag);
         $('#game').css({ display: 'none' })
+        show(bag);
         hideArr(initArr);
         hideArr(switchArr);
         showArr(plotArr);
@@ -1867,6 +1867,12 @@ var first =  {
                     flag.p5 = 1
                 cat_position = cat_player.body.x
                 $('#game').css({ display: 'none' })
+                show(bag);
+                hideArr(initArr);
+                hideArr(switchArr);
+                showArr(plotArr);
+                hide(leave);
+                hide(switchpic);
             }
         }
     }
@@ -1898,6 +1904,12 @@ var first =  {
                 flag.p6 = 0
                 cat_position = cat_player.body.x
                 $('#game').css({ display: 'none' })
+                show(bag);
+                hideArr(initArr);
+                hideArr(switchArr);
+                showArr(plotArr);
+                hide(leave);
+                hide(switchpic);
             }
         }
     });
@@ -1911,6 +1923,12 @@ var first =  {
                 flag.p5 = 0
                 cat_position = cat_player.body.x
                 $('#game').css({ display: 'none' })
+                show(bag);
+                hideArr(initArr);
+                hideArr(switchArr);
+                showArr(plotArr);
+                hide(leave);
+                hide(switchpic);
             }
         }
     });
