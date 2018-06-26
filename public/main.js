@@ -3,11 +3,13 @@ var phaserheight = window.innerHeight;
 var phaserhei = 480;
 var phaserwid = phaserhei*phaserwidth/phaserheight;
 var jumpTimer = 0
+var chapter = 2
 var trigger = {left:0,right:0,up:0,space:0};
 var flag= {p1:1,p2:1,p3:1,p4:1,p5:1,p6:1,p7:1};
 var coin_position = [4000,700,1500,1800,2300,3000,3100,3500,3800,4800]
 var coinnumber = 0;
 var cat_position = 0;
+var cat_read = 0;
 
 var game = new Phaser.Game(phaserwid,phaserhei , Phaser.AUTO, 'game');
 
@@ -319,32 +321,8 @@ var first =  {
 	coinText.fixedToCamera = true
 	//玩家位置紀錄
 	story_position= {p1:500,p2:1700,p3:2380,p4:3800};
-	switch(chapter){
-		case 1:
-			flag.p1 = 0
-            break;
-        case 2:
-			flag.p2 = 0
-            cat_position = story_position.p1
-            break;
-        case 3:
-			flag.p3 = 0
-            cat_position = story_position.p2
-            break;
-        case 4:
-			flag.p4 = 0
-            cat_position = story_position.p3
-            break;
-		case 5:
-			flag.p5 = 0
-            cat_position = story_position.p4
-            break;
-		case 6:
-            cat_position = story_position.p1
-            break;
-        default:
-            break;
-	}
+	if(chapter == null)
+		flag.p1 = 0
 	//玩家
 	cat_player = game.add.sprite(cat_position,300, 'cat_player')
 	game.physics.enable(cat_player,Phaser.Physics.ARCADE)
@@ -405,7 +383,33 @@ var first =  {
    },
 
   update:()=>{
-	//this.custom.isDown
+	if(chapter != null && cat_read == 0){
+		cat_read = 1
+		if(chapter ==0){
+			flag.p1 = 0
+		}
+		else if(chapter ==1){
+			flag.p2 = 0
+			cat_player.body.x  = story_position.p1
+		}
+		else if(chapter ==2){
+			flag.p3 = 0
+			cat_player.body.x  = story_position.p2
+		}
+		else if(chapter ==3){
+			flag.p4 = 0
+			flag.p6 = 0
+			cat_player.body.x  = story_position.p3
+		}
+		else if(chapter ==4){
+			flag.p5 = 0
+			cat_player.body.x  = story_position.p4
+		}
+		else if(chapter ==5){
+			flag.p7 = 0
+			cat_player.body.x  = story_position.p1
+		}
+	}
 	game.physics.arcade.collide(this.cat_player, this.layer);
 	
 	//驚嘆號
@@ -427,6 +431,7 @@ var first =  {
 				}
 				else
 					flag.p5 = 1
+					flag.p7 = 0
 				cat_position = cat_player.body.x
 				outgame()
 			}
@@ -551,7 +556,7 @@ var first =  {
   },
   
    render:()=>{
-	   //game.debug.spriteInfo(cat_text,32,32);
+	   //game.debug.spriteInfo(cat_player,32,32);
 	  // game.debug.spriteInfo(mark,32,200);
    },
 };
