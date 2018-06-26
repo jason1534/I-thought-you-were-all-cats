@@ -85,22 +85,11 @@ hide(money);
 hideChoice();
 
 /*******************************初始畫面(輸入主角按名並開始)******************************/
-getById("umm").onclick=function(){
-    roleplayer=getById("txName").value;         //假如使用者修改過名字，這個值就不會是預設的"永馨"
-    //接著將場景切換到一開始的劇情(可按跳過!)
-    //場景是由背景圖、人物框、對話框組成
-    hideArr(initArr);       //先關閉按下開始的畫面
-    showArr(plotArr);
-    hide(leave);
-    hide(idform);
-    hide(txName);
-    hide(btnlogin);
-    hide(btnreset);
-    hide(umm);
-}
-// btnlogin.onclick=function(){
-//     roleplayer=getById("txName").value;
-//     hideArr(initArr);
+// getById("umm").onclick=function(){
+//     roleplayer=getById("txName").value;         //假如使用者修改過名字，這個值就不會是預設的"永馨"
+//     //接著將場景切換到一開始的劇情(可按跳過!)
+//     //場景是由背景圖、人物框、對話框組成
+//     hideArr(initArr);       //先關閉按下開始的畫面
 //     showArr(plotArr);
 //     hide(leave);
 //     hide(idform);
@@ -109,6 +98,7 @@ getById("umm").onclick=function(){
 //     hide(btnreset);
 //     hide(umm);
 // }
+
 function save_chapter(chapter){
   FB.api('/me', function(response) {
 event.preventDefault();
@@ -170,9 +160,9 @@ leave.onclick=function(){
     plot.style.backgroundPosition="center";
     plot.style.backgroundSize="cover";
     $("#game").show();
-    $("#enter_bag").css("margin-top", "-56vw");
-    $("#back_img").css("margin-top", "-56vw");
-    $("#tag").css("margin-top", "-56vw");
+    $("#enter_bag").css("margin-top", "0vw");
+    $("#back_img").css("margin-top", "0vw");
+    $("#tag").css("margin-top", "0vw");
 }
 
 end2.onclick=function(){
@@ -1795,10 +1785,6 @@ var first =  {
     coinText.fixedToCamera = true
     //玩家位置紀錄
     story_position= {p1:500,p2:1700,p3:2380,p4:3800};
-    //console.log("chapter in game="+chapter);
-    if(chapter ==null){
-            flag.p1 = 0
-        }
     //玩家
     cat_player = game.add.sprite(cat_position,300, 'cat_player')
     game.physics.enable(cat_player,Phaser.Physics.ARCADE)
@@ -1859,7 +1845,7 @@ var first =  {
    },
 
   update:()=>{
-    if(chapter != null && cat_read == 0){
+    if(chapter!=null && cat_read == 0){
         cat_read = 1
         if(chapter ==0){
             flag.p1 = 0

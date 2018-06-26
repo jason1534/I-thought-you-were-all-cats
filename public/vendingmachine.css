@@ -49,7 +49,7 @@
     float: right;
     border-radius: 1vw;
     padding: 2vw;
-    font-size: 1.5em; 
+    font-size: 0.5em; 
     overflow: scroll;       
 }
 #vmt{
@@ -79,7 +79,7 @@
     background-repeat: no-repeat;
 }
 #congratulations{
-    font-size: 2em;
+    font-size: 1em;
     margin:0px auto;
     display: inline;
 }
@@ -95,6 +95,6 @@
     top: 50%;
     margin-left: 15%;
     display: block;
-    font-size: 1.5em;
+    font-size: 0.5em;
     border-radius: 4vw;       
 }
