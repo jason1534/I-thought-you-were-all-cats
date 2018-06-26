@@ -1483,6 +1483,7 @@ var flag= {p1:1,p2:1,p3:1,p4:1,p5:1,p6:1,p7:1};
 var coin_position = [4000,700,1500,1800,2300,3000,3100,3500,3800,4800]
 var coinnumber = 0;
 var cat_position = 0;
+var cat_read = 0;
 
 var game = new Phaser.Game(phaserwid,phaserhei , Phaser.AUTO, 'game');
 
@@ -1798,30 +1799,6 @@ var first =  {
     if(chapter ==null){
             flag.p1 = 0
         }
-        else if(chapter ==1){
-            flag.p1 = 0
-        }
-        else if(chapter ==2){
-            flag.p2 = 0
-            cat_position = story_position.p1
-        }
-        else if(chapter ==3){
-            flag.p3 = 0
-            cat_position = story_position.p2
-        }
-        else if(chapter ==4){
-            flag.p4 = 0
-            flag.p6 = 0
-            cat_position = story_position.p3
-        }
-        else if(chapter ==5){
-            flag.p5 = 0
-            cat_position = story_position.p4
-        }
-        else if(chapter ==6){
-            flag.p7 = 0
-            cat_position = story_position.p1
-        }
     //玩家
     cat_player = game.add.sprite(cat_position,300, 'cat_player')
     game.physics.enable(cat_player,Phaser.Physics.ARCADE)
@@ -1882,6 +1859,33 @@ var first =  {
    },
 
   update:()=>{
+    if(chapter != null && cat_read == 0){
+        cat_read = 1
+        if(chapter ==0){
+            flag.p1 = 0
+        }
+        else if(chapter ==1){
+            flag.p2 = 0
+            cat_player.body.x  = story_position.p1
+        }
+        else if(chapter ==2){
+            flag.p3 = 0
+            cat_player.body.x  = story_position.p2
+        }
+        else if(chapter ==3){
+            flag.p4 = 0
+            flag.p6 = 0
+            cat_player.body.x  = story_position.p3
+        }
+        else if(chapter ==4){
+            flag.p5 = 0
+            cat_player.body.x  = story_position.p4
+        }
+        else if(chapter ==5){
+            flag.p7 = 0
+            cat_player.body.x  = story_position.p1
+        }
+    }
     //this.custom.isDown
     game.physics.arcade.collide(this.cat_player, this.layer);
     
