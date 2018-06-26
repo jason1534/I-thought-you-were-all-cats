@@ -17,7 +17,19 @@ $(document).ready(function () {
             $("#buy_img").css("background-image", "url(" + item_img_source[draw] + ")");
             $("#buy_detail").html(item_detail_source[draw]);
             $('#buy_animation').fadeIn(500);
-            mstate = 2;                
+            mstate = 2; 
+            FB.api('/me', function(response) {  //存檔
+            event.preventDefault();
+            $.ajax({
+              method:"get",
+              url:"./thing_data",
+              data:{
+                id: response.id,
+                bag_thing: draw,
+              },
+              success:function(data){}
+            });
+          })                                
         }
     });
     $("#buy_animation").click(function () {
