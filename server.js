@@ -99,7 +99,7 @@ app.get('/thing_data',function(req, res){
 app.get('/get_thing_data',function(req, res){
   var id = req.param('id') ;
   console.log(id);
-  var sql ="SELECT id,history1,history2,history3,history4,history5,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10 FROM `uidd2018_groupN`.`midterm` WHERE id='"+id+"';"
+  var sql ="SELECT id,history1,history2,history3,history4,history5,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16 FROM `uidd2018_groupN`.`midterm` WHERE id='"+id+"';"
  
   console.log(sql)
   con.query(sql,function(err,result){
