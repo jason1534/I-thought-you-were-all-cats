@@ -11,7 +11,7 @@ $(document).ready(function () {
         if (mstate == 1) {
             $("#vendingmachine").hide();
             //console.log(item_select);
-            var x = Math.floor((Math.random() * 6) + 7);
+            var x = Math.floor((Math.random() * 10) + 7);
             var draw = "item" + x;
             item_exist[x-1] = 1;
             $("#buy_img").css("background-image", "url(" + item_img_source[draw] + ")");
