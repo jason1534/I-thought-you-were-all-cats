@@ -83,5 +83,16 @@ app.get('/chapter_data',function(req, res){
   } );
 });
 
+//save item
+app.get('/thing_data',function(req, res){
+  var id = req.param('id') ; 
+  var thing_number = req.param('bag_thing');
+  var sql ="UPDATE `uidd2018_groupN`.`midterm` SET `"+thing_number+"`='1' WHERE `id`='"+id+"'";
+  console.log(sql)
+  con.query(sql,function(err,result){
+   if (err) throw err;
+    console.log("save"+thing_number);
+  } );
+});
 
 

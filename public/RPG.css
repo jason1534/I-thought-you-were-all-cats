@@ -14,7 +14,7 @@ body,html{
 #scene_init{
     background:url(pic/background.png);
     background-repeat: no-repeat;
-    background-attachment: fixed
+    background-attachment: fixed;
     background-position: center;
     background-size: cover; 
     height:100%;

@@ -526,7 +526,7 @@ getById("btnnext").onclick=function(){
 
     sensor.onclick=function(){/////////////////
       roleplayer = window.sessionStorage.getItem("roleplayer_data");
-      console.log("senrole: "+roleplayer);
+     // console.log("senrole: "+roleplayer);
       conversationArr[0]=["喵~星期三下午好無聊啊~鏟屎官又不知道去哪裡鬼混了，真是該罰~朕每天管理朝政既勞心又勞力，也不多給我吃幾個罐罐……",
       "野貓："+roleplayer+"，喵哈哈哈哈~",
       roleplayer+"：誰！？",
@@ -1011,6 +1011,18 @@ getById("btnnext").onclick=function(){
         hideConv();
         show(history1);
         history1.onclick=function(){
+          FB.api('/me', function(response) {  //存檔
+            event.preventDefault();
+            $.ajax({
+              method:"get",
+              url:"./thing_data",
+              data:{
+                id: response.id,
+                bag_thing: "history1",
+              },
+              success:function(data){}
+            });
+          })                                 //
           history_exist[0]=1;
           hide(history1);
           fireClick(sensor);
@@ -1021,6 +1033,18 @@ getById("btnnext").onclick=function(){
         hideConv();
         show(potatochip);
         potatochip.onclick=function(){
+          FB.api('/me', function(response) {  //存檔
+            event.preventDefault();
+            $.ajax({
+              method:"get",
+              url:"./thing_data",
+              data:{
+                id: response.id,
+                bag_thing: "item3",
+              },
+              success:function(data){}
+            });
+          })                                 //
           item_exist[2] = 1;
           hide(potatochip);
           fireClick(sensor);
@@ -1031,6 +1055,18 @@ getById("btnnext").onclick=function(){
         hideConv();
         show(history2);
         history2.onclick=function(){
+          FB.api('/me', function(response) {  //存檔
+            event.preventDefault();
+            $.ajax({
+              method:"get",
+              url:"./thing_data",
+              data:{
+                id: response.id,
+                bag_thing: "history2",
+              },
+              success:function(data){}
+            });
+          })                                 //
           history_exist[1]=1;
           hide(history2);
           fireClick(sensor);
@@ -1041,6 +1077,18 @@ getById("btnnext").onclick=function(){
         hideConv();
         show(history3);
         history3.onclick=function(){
+          FB.api('/me', function(response) {  //存檔
+            event.preventDefault();
+            $.ajax({
+              method:"get",
+              url:"./thing_data",
+              data:{
+                id: response.id,
+                bag_thing: "history3",
+              },
+              success:function(data){}
+            });
+          })                                 //
           history_exist[4]=1;
           hide(history3);
           fireClick(sensor);
@@ -1051,6 +1099,18 @@ getById("btnnext").onclick=function(){
         hideConv();
         show(bottle);
         bottle.onclick=function(){
+          FB.api('/me', function(response) {  //存檔
+            event.preventDefault();
+            $.ajax({
+              method:"get",
+              url:"./thing_data",
+              data:{
+                id: response.id,
+                bag_thing: "item6",
+              },
+              success:function(data){}
+            });
+          })                                 //
           item_exist[5] = 1;
           item_exist[4] = 0;
           hide(bottle);
@@ -1062,6 +1122,18 @@ getById("btnnext").onclick=function(){
         hideConv();
         show(idcard);
         idcard.onclick=function(){
+          FB.api('/me', function(response) {  //存檔
+            event.preventDefault();
+            $.ajax({
+              method:"get",
+              url:"./thing_data",
+              data:{
+                id: response.id,
+                bag_thing: "item2",
+              },
+              success:function(data){}
+            });
+          })                                 //
           item_exist[1] = 1;
           hide(idcard);
           fireClick(sensor);
@@ -1072,6 +1144,18 @@ getById("btnnext").onclick=function(){
         hideConv();
         show(money);
         money.onclick=function(){
+          FB.api('/me', function(response) {  //存檔
+            event.preventDefault();
+            $.ajax({
+              method:"get",
+              url:"./thing_data",
+              data:{
+                id: response.id,
+                bag_thing: "item4",
+              },
+              success:function(data){}
+            });
+          })                                 //
           item_exist[3] = 1;
           hide(money);
           fireClick(sensor);
@@ -1082,6 +1166,18 @@ getById("btnnext").onclick=function(){
         hideConv();
         show(history4);
         history4.onclick=function(){
+          FB.api('/me', function(response) {  //存檔
+            event.preventDefault();
+            $.ajax({
+              method:"get",
+              url:"./thing_data",
+              data:{
+                id: response.id,
+                bag_thing: "history4",
+              },
+              success:function(data){}
+            });
+          })                                 //
           history_exist[2]=1;
           hide(history4);
           fireClick(sensor);
@@ -1092,6 +1188,18 @@ getById("btnnext").onclick=function(){
         hideConv();
         show(bottle);
         bottle.onclick=function(){
+          FB.api('/me', function(response) {  //存檔
+            event.preventDefault();
+            $.ajax({
+              method:"get",
+              url:"./thing_data",
+              data:{
+                id: response.id,
+                bag_thing: "item5",
+              },
+              success:function(data){}
+            });
+          })                                 //
           item_exist[4] = 1;
           hide(bottle);
           fireClick(sensor);
@@ -1102,6 +1210,18 @@ getById("btnnext").onclick=function(){
         hideConv();
         show(history5);
         history5.onclick=function(){
+          FB.api('/me', function(response) {  //存檔
+            event.preventDefault();
+            $.ajax({
+              method:"get",
+              url:"./thing_data",
+              data:{
+                id: response.id,
+                bag_thing: "history5",
+              },
+              success:function(data){}
+            });
+          })                                 //
           history_exist[3]=1;
           hide(history5);
           fireClick(sensor);
