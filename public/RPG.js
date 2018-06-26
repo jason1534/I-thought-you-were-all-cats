@@ -1316,7 +1316,7 @@ function statusChangeCallback(response) {
 
   if (response.status === 'connected') {
     show(btnStart);
-    hide(getElementById('login_status'));
+    hide(login_status);
     testAPI();
   } else {
     document.getElementById('login_status').innerHTML = 'Please log ' +
