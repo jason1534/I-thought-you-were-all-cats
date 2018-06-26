@@ -154,6 +154,7 @@ leave.onclick=function(){
     //show(switchpic);
     hideArr(plotArr);
     hide(leave);
+    hide(bag);
     convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
     conv.innerHTML=convArr;
     charArr=new Array(characterArr[chapter][0]);
@@ -1508,7 +1509,8 @@ var next = {
   },
   create: function () {
     $('#game').css({ display: 'none' })
-      hideArr(initArr);
+    show(bag);
+    hideArr(initArr);
     hideArr(switchArr);
     showArr(plotArr);
     hide(leave);
@@ -1538,6 +1540,7 @@ var littlegame = {
       game.load.spritesheet('cat_player','assets/img/cat3.png', 316, 276)
   },
   create:()=> {
+    show(bag);
     //物理系統設定
     game.physics.startSystem(Phaser.Physics.ARCADE)
       game.physics.arcade.gravity.y = 380
@@ -1695,6 +1698,7 @@ var first =  {
       game.load.spritesheet('cat_player','assets/img/cat3.png', 316, 276)
   },
   create:()=> {
+    show(bag);
     //物理系統設定
     game.physics.startSystem(Phaser.Physics.ARCADE)
       game.physics.arcade.gravity.y = 380
