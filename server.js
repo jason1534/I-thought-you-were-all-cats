@@ -62,7 +62,7 @@ app.get('/login_data',function(req, res){
   var id = req.param('id') ;
   var nm = req.param('name');
   var nicknm = req.param('NICKNAME');
-  var sql ="INSERT INTO `uidd2018_groupN`.`midterm` (`id`,`name`, `nickname`,`chapter`) VALUES ('"+id+"','"+nm+"','"+nicknm+"','0')";
+  var sql ="INSERT INTO `uidd2018_groupN`.`midterm` (`id`,`name`, `nickname`,`chapter`,`item1`) VALUES ('"+id+"','"+nm+"','"+nicknm+"','0','1')";
   console.log(sql)
   con.query(sql,function(err,result){
    if (err) throw err;
