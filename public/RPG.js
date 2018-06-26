@@ -1472,7 +1472,8 @@ function testAPI() {
 }
 
 
-//game startvar phaserwidth = window.innerWidth;
+//game start
+var phaserwidth = window.innerWidth;
 var phaserheight = window.innerHeight;
 var phaserhei = 480;
 var phaserwid = phaserhei*phaserwidth/phaserheight;
