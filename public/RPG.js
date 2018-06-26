@@ -1509,7 +1509,7 @@ var next = {
   },
   create: function () {
     $('#game').css({ display: 'none' })
-    show(bag);
+    //show(bag);
     hideArr(initArr);
     hideArr(switchArr);
     showArr(plotArr);
@@ -1540,7 +1540,7 @@ var littlegame = {
       game.load.spritesheet('cat_player','assets/img/cat3.png', 316, 276)
   },
   create:()=> {
-    show(bag);
+    //show(bag);
     //物理系統設定
     game.physics.startSystem(Phaser.Physics.ARCADE)
       game.physics.arcade.gravity.y = 380
@@ -1698,7 +1698,7 @@ var first =  {
       game.load.spritesheet('cat_player','assets/img/cat3.png', 316, 276)
   },
   create:()=> {
-    show(bag);
+    //show(bag);
     //物理系統設定
     game.physics.startSystem(Phaser.Physics.ARCADE)
       game.physics.arcade.gravity.y = 380

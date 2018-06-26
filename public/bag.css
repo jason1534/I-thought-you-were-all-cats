@@ -16,7 +16,6 @@ body{
     position: absolute;
     border-radius:1vw;    
     z-index: 2000;
-    display: none;
 }
 #back_img {
     background-image: url("assets/bag/b2.png");
