@@ -170,9 +170,9 @@ leave.onclick=function(){
     plot.style.backgroundPosition="center";
     plot.style.backgroundSize="cover";
     $("#game").show();
-    // $("#enter_bag").css("margin-top", "-56vw");
-    // $("#back_img").css("margin-top", "-56vw");
-    // $("#tag").css("margin-top", "-56vw");
+    $("#enter_bag").css("margin-top", "-56vw");
+    $("#back_img").css("margin-top", "-56vw");
+    $("#tag").css("margin-top", "-56vw");
 }
 
 end2.onclick=function(){
@@ -525,7 +525,7 @@ getById("btnnext").onclick=function(){
                     ,player["wild"].suck,player["I"].happy,player["dirty"].happy,player["wild"].suck,player["I"].happy);
     characterposArr[6]=new Array(0,1,0,1,0,1,0,1,1,0);
     continueArr[6]=new Array(true,true,true,true,true,true,true,true,true,true);
-    backgroundArr[6]=new Array("EEbuilding","EEbuilding","EEbuilding","EEbuilding","EEbuilding","EEbuilding","dirty","dirty","dirty","dirty");
+    backgroundArr[6]=new Array("EEbuilding","EEbuilding","EEbuilding","EEbuilding","EEbuilding","EEbuilding","EEbuilding","dirty","dirty","dirty");
    
     //changechapter(chapter);
 
