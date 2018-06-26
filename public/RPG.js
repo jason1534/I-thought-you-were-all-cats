@@ -1798,27 +1798,27 @@ var first =  {
     if(chapter ==0){
             flag.p1 = 0
         }
+        // else if(chapter ==0){
+        //     flag.p1 = 0
+        // }
         else if(chapter ==1){
-            flag.p1 = 0
-        }
-        else if(chapter ==2){
             flag.p2 = 0
             cat_position = story_position.p1
         }
-        else if(chapter ==3){
+        else if(chapter ==2){
             flag.p3 = 0
             cat_position = story_position.p2
         }
-        else if(chapter ==4){
+        else if(chapter ==3){
             flag.p4 = 0
             flag.p6 = 0
             cat_position = story_position.p3
         }
-        else if(chapter ==5){
+        else if(chapter ==4){
             flag.p5 = 0
             cat_position = story_position.p4
         }
-        else if(chapter ==6){
+        else if(chapter ==5){
             flag.p7 = 0
             cat_position = story_position.p1
         }
