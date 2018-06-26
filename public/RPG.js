@@ -1521,7 +1521,7 @@ var next = {
   },
   create: function () {
     $('#game').css({ display: 'none' })
-    //show(bag);
+    show(bag);
     hideArr(initArr);
     hideArr(switchArr);
     showArr(plotArr);
