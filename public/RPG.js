@@ -148,11 +148,25 @@ leave.onclick=function(){
     convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
     conv.innerHTML=convArr;
     charArr=new Array(characterArr[chapter][0]);
-    character.style.background="url(pic/"+charArr[scene]+".jpg)";
-	character.style.left="2.5vw";
-	character.style.top="18vh";
-	character.style.width="350px";
-	character.style.height="451px";
+    function myFunction(x) {
+        if (x.matches) { // If media query matches
+            character.style.background="url(pic/"+charArr[scene]+".jpg)";
+            character.style.left="2.5vw";
+            character.style.top="18vh";
+            character.style.width="350px";
+            character.style.height="451px";
+        } else {
+            character.style.background="url(pic/"+charArr[scene]+".jpg)";
+            character.style.left="25px";
+            character.style.top="240px";
+            character.style.width="350px";
+            character.style.height="451px";
+        }
+    }
+
+    var x = window.matchMedia("(max-width: 1000px)");
+    myFunction(x); // Call listener function at run time
+    x.addListener(myFunction);
 	bgArr=new Array(backgroundArr[chapter][0]);
 	plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
     plot.style.backgroundRepeat="no-repeat";
@@ -174,11 +188,25 @@ end2.onclick=function(){
     convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
     conv.innerHTML=convArr;
     charArr=new Array(characterArr[chapter][0]);
-    character.style.background="url(pic/"+charArr[scene]+".jpg)";
-    character.style.left="2.5vw";
-    character.style.top="18vh";
-    character.style.width="350px";
-    character.style.height="451px";
+    function myFunction(x) {
+        if (x.matches) { // If media query matches
+            character.style.background="url(pic/"+charArr[scene]+".jpg)";
+            character.style.left="2.5vw";
+            character.style.top="18vh";
+            character.style.width="350px";
+            character.style.height="451px";
+        } else {
+            character.style.background="url(pic/"+charArr[scene]+".jpg)";
+            character.style.left="25px";
+            character.style.top="240px";
+            character.style.width="350px";
+            character.style.height="451px";
+        }
+    }
+
+    var x = window.matchMedia("(max-width: 1000px)");
+    myFunction(x); // Call listener function at run time
+    x.addListener(myFunction);
     bgArr=new Array(backgroundArr[chapter][0]);
     plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
     plot.style.backgroundRepeat="no-repeat";
@@ -1265,19 +1293,47 @@ function showsel(elem){
 }
 
 function characterposition(){
-  if(charposArr[scene]==0){
-    character.style.background="url(pic/"+charArr[scene]+".jpg)";
-    character.style.left="2.5vw";
-    character.style.top="18vh";
-    character.style.width="350px";
-    character.style.height="451px";
-  }else{
-    character.style.background="url(pic/"+charArr[scene]+".jpg)";
-    character.style.left="59vw";
-    character.style.top="18vh";
-    character.style.width="350px";
-    character.style.height="451px";
-  }
+    if(charposArr[scene]==0){
+        function myFunction(x) {
+    if (x.matches) { // If media query matches
+        character.style.background="url(pic/"+charArr[scene]+".jpg)";
+        character.style.left="2.5vw";
+        character.style.top="18vh";
+        character.style.width="350px";
+        character.style.height="451px";
+    } else {
+        character.style.background="url(pic/"+charArr[scene]+".jpg)";
+        character.style.left="25px";
+        character.style.top="240px";
+        character.style.width="350px";
+        character.style.height="451px";
+    }
+}
+
+var x = window.matchMedia("(max-width: 1000px)")
+myFunction(x) // Call listener function at run time
+x.addListener(myFunction)
+
+    }else{
+function myFunction(x) {
+    if (x.matches) { // If media query matches
+        character.style.background="url(pic/"+charArr[scene]+".jpg)";
+        character.style.left="59vw";
+        character.style.top="18vh";
+        character.style.width="350px";
+        character.style.height="451px";
+    } else {
+        character.style.background="url(pic/"+charArr[scene]+".jpg)";
+        character.style.left="1080px";
+        character.style.top="240px";
+        character.style.width="350px";
+        character.style.height="451px";
+    }
+}
+var x = window.matchMedia("(max-width: 1000px)")   
+myFunction(x) // Call listener function at run time
+x.addListener(myFunction)
+    }
 }
 
 function changechapter(chapter){
@@ -1397,16 +1453,35 @@ function testAPI() {
               chapter=0;
             }
 
-            var pos = 400;
-            var mv = setInterval(frame, 5);
-            function frame() {
-              if (pos == 150) {
-                clearInterval(mv);
-              } else {
-                pos--; 
-                littlecat.style.top = pos + 'px'; 
-              }
+            function responsiveanimation(abc) {
+                if (abc.matches) { // If media query matches
+                     var pos = 400;
+                    var mv = setInterval(frame, 5);
+                    function frame() {
+                    if (pos == 150) {
+                      clearInterval(mv);
+                    } else {
+                      pos--; 
+                      littlecat.style.top = pos + 'px'; 
+                    }
+                  }
+                } else {
+                     var pos = 400;
+                var mv = setInterval(frame, 8);
+                function frame() {
+                    if (pos == 310) {
+                      clearInterval(mv);
+                    } else {
+                      pos--; 
+                      littlecat.style.top = pos + 'px'; 
+                    }
+                  }
+                }
             }
+
+            var abc = window.matchMedia("(max-width: 1000px)");
+            responsiveanimation(abc); // Call listener function at run time
+            abc.addListener(responsiveanimation);
 
           }
           else{
@@ -1428,11 +1503,25 @@ function testAPI() {
             convArr=new Array(conversationArr[chapter][0]);//先把新章節的第一句話存進來
             conv.innerHTML=convArr;
             charArr=new Array(characterArr[chapter][0]);
-            character.style.background="url(pic/"+charArr[scene]+".jpg)";
-            character.style.left="2.5vw";
-            character.style.top="18vh";
-            character.style.width="350px";
-            character.style.height="451px";
+            function myFunction(x) {
+                if (x.matches) { // If media query matches
+                    character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    character.style.left="2.5vw";
+                    character.style.top="18vh";
+                    character.style.width="350px";
+                    character.style.height="451px";
+                } else {
+                    character.style.background="url(pic/"+charArr[scene]+".jpg)";
+                    character.style.left="25px";
+                    character.style.top="240px";
+                    character.style.width="350px";
+                    character.style.height="451px";
+                }
+            }
+
+            var x = window.matchMedia("(max-width: 1000px)")
+            myFunction(x) // Call listener function at run time
+            x.addListener(myFunction)
             bgArr=new Array(backgroundArr[chapter][0]);
             plot.style.background="url(pic/"+bgArr[scene]+".jpg)";
             plot.style.backgroundRepeat="no-repeat";
