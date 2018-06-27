@@ -175,8 +175,8 @@ leave.onclick=function(){
     plot.style.backgroundSize="cover";
     $("#game").show();
     $("#enter_bag").css("margin-top", "0vw");
-    $("#back_img").css("margin-top", "-50vw");
-    $("#tag").css("margin-top", "-50vw");
+    $("#back_img").css("margin-top", "-56vw");
+    $("#tag").css("margin-top", "-56vw");
 }
 
 end2.onclick=function(){
@@ -1611,8 +1611,8 @@ function outgame(){
     hide(leave);
     hide(switchpic);
     $("#enter_bag").css("margin-top", "0vw");
-    $("#back_img").css("margin-top", "-50vw");
-    $("#tag").css("margin-top", "-50vw");
+    $("#back_img").css("margin-top", "-56vw");
+    $("#tag").css("margin-top", "-56vw");
 }
 var next = {
     preload: function () {
