@@ -3,10 +3,9 @@ var phaserheight = window.innerHeight;
 var phaserhei = 480;
 var phaserwid = phaserhei*phaserwidth/phaserheight;
 var jumpTimer = 0
-var chapter = 2
 var trigger = {left:0,right:0,up:0,space:0};
 var flag= {p1:1,p2:1,p3:1,p4:1,p5:1,p6:1,p7:1};
-var coin_position = [4000,700,1500,1800,2300,3000,3100,3500,3800,4800]
+var coin_position = [220,1400,1500,2042,2300,2800,3140,3367,3800,4458]
 var coinnumber = 0;
 var cat_position = 0;
 var cat_read = 0;
@@ -248,6 +247,7 @@ var first =  {
 	game.load.image('sewer1','assets/img/sewer1.png')
 	game.load.image('cat_text','assets/img/text.png')
 	game.load.image('traffic','assets/img/traffic.png')
+	game.load.image('item','assets/img/item.png')
     game.load.spritesheet('cat_player','assets/img/cat3.png', 316, 276)
   },
   create:()=> {
@@ -268,9 +268,10 @@ var first =  {
 	map.addTilesetImage('road3','road3')
     map.addTilesetImage('cas1','cas1')
 	map.addTilesetImage('cloud','cloud')
+	map.addTilesetImage('item','item')
 	map.createLayer('lay 3')
-    layer = map.createLayer('lay 2')
-	map.createLayer('lay 1')
+	map.createLayer('lay 2')
+	layer = map.createLayer('lay 1')
 	map.setCollisionBetween(64,75,true,layer)
 	map.setCollisionBetween(100,110,true,layer)
 	//物件加入
@@ -287,6 +288,20 @@ var first =  {
 	cat_text = game.add.sprite(0,(phaserhei-300),'cat_text')
 	cat_text.scale.set(0.08)
 	cat_text.visible = false
+	
+	coins = game.add.physicsGroup()
+	for(var i = 0;i < 10;i++) {
+		coin = coins.create(coin_position[i],(phaserhei-128),'coin')
+		coin.scale.set(0.6)
+		coin.body.allowGravity = false
+		//coin.body.immovable = true
+	}
+	coinText = game.add.text(20,50,'硬幣: '+coinnumber, {fontSize: '24px', fill: '#ffff00'});
+	coinText.fixedToCamera = true
+	
+	layer = map.createLayer('lay 1')
+	map.setCollisionBetween(64,75,true,layer)
+	map.setCollisionBetween(100,110,true,layer)
 	
 	//物理啟動
 	game.physics.enable(house,Phaser.Physics.ARCADE)
@@ -310,19 +325,8 @@ var first =  {
 	vend.body.immovable = true
 	cat_text.body.immovable = true
 
-	coins = game.add.physicsGroup()
-	for(var i = 0;i < 10;i++) {
-		coin = coins.create(coin_position[i],(phaserhei-128),'coin')
-		coin.scale.set(0.6)
-		coin.body.allowGravity = false
-		//coin.body.immovable = true
-	}
-	coinText = game.add.text(20,50,'硬幣: '+coinnumber, {fontSize: '24px', fill: '#ffff00'});
-	coinText.fixedToCamera = true
 	//玩家位置紀錄
 	story_position= {p1:500,p2:1700,p3:2380,p4:3800};
-	if(chapter == null)
-		flag.p1 = 0
 	//玩家
 	cat_player = game.add.sprite(cat_position,300, 'cat_player')
 	game.physics.enable(cat_player,Phaser.Physics.ARCADE)
@@ -403,10 +407,12 @@ var first =  {
 		}
 		else if(chapter ==4){
 			flag.p5 = 0
+			flag.p6 = 0
 			cat_player.body.x  = story_position.p4
 		}
 		else if(chapter ==5){
 			flag.p7 = 0
+			flag.p6 = 0
 			cat_player.body.x  = story_position.p1
 		}
 	}
@@ -519,14 +525,14 @@ var first =  {
 	},null,this);
 	//方向控制
     if ((cursors.left.isDown || trigger.left === 1)&& cat_player.body.onFloor()) {
-         this.cat_player.body.velocity.x = -200
+         this.cat_player.body.velocity.x = -220
         this.cat_player.play('left')
         if (this.cat_player.facing !== 'left')
 		    this.cat_player.facing = 'left'
     }
 
     else if ((cursors.right.isDown || trigger.right === 1)&& cat_player.body.onFloor()) {	
-        this.cat_player.body.velocity.x = 200
+        this.cat_player.body.velocity.x = 220
         this.cat_player.play('right')
         if (this.cat_player.facing !== 'right') 
             this.cat_player.facing = 'right'
@@ -534,13 +540,13 @@ var first =  {
 	else if ((cursors.up.isDown || trigger.up === 1)&& cat_player.body.onFloor()&& game.time.now > jumpTimer ) {	
 	    if (this.cat_player.facing === 'right')  {
            this.cat_player.play('rightup')			
-           this.cat_player.body.velocity.x = 200
+           this.cat_player.body.velocity.x = 220
 		   this.cat_player.body.velocity.y += -200
 		   jumpTimer = game.time.now + 750
 		}
 		else if (this.cat_player.facing === 'left'){
 		   this.cat_player.play('leftup')
-		   this.cat_player.body.velocity.x = -200
+		   this.cat_player.body.velocity.x = -220
 		   this.cat_player.body.velocity.y += -200
 		   jumpTimer = game.time.now + 750
 		}
