@@ -28,7 +28,7 @@ var player=[];
 
 //這個陣列是儲存抉擇的部分
 var choice=[];
-	choice[0]=new Array("走吧！","離家出走這樣不好吧...","");
+	choice[0]=new Array("走吧！","離家出走這樣不好吧...","來吃嘣嘎嘣嘎～～");
 	choice[1]=new Array("熱蘭遮城","普羅民遮城","鄭成功的家");//給第一章的第一個選擇問題
 	choice[2]=new Array("Let's Rock n' roll","Call me maybe!","可能牠的手就長那樣吧");
 	choice[3]=new Array("贔屭(ㄅㄧˋㄒㄧˋ)","贔屭(ㄅㄟˋㄌㄟˇ)","贔屭(ㄅㄧㄝ ㄌㄨˋ)");
@@ -1802,6 +1802,7 @@ var first =  {
     game.load.image('sewer1','assets/img/sewer1.png')
     game.load.image('cat_text','assets/img/text.png')
     game.load.image('traffic','assets/img/traffic.png')
+    game.load.image('item','assets/img/item.png')
     game.load.spritesheet('cat_player','assets/img/cat3.png', 316, 276)
   },
   create:()=> {
@@ -1822,9 +1823,10 @@ var first =  {
     map.addTilesetImage('road3','road3')
     map.addTilesetImage('cas1','cas1')
     map.addTilesetImage('cloud','cloud')
+    map.addTilesetImage('item','item')
     map.createLayer('lay 3')
-    layer = map.createLayer('lay 2')
-    map.createLayer('lay 1')
+    map.createLayer('lay 2')
+    layer = map.createLayer('lay 1')
     map.setCollisionBetween(64,75,true,layer)
     map.setCollisionBetween(100,110,true,layer)
     //物件加入
@@ -1841,6 +1843,20 @@ var first =  {
     cat_text = game.add.sprite(0,(phaserhei-300),'cat_text')
     cat_text.scale.set(0.08)
     cat_text.visible = false
+    
+    coins = game.add.physicsGroup()
+    for(var i = 0;i < 10;i++) {
+        coin = coins.create(coin_position[i],(phaserhei-128),'coin')
+        coin.scale.set(0.6)
+        coin.body.allowGravity = false
+        //coin.body.immovable = true
+    }
+    coinText = game.add.text(20,50,'硬幣: '+coinnumber, {fontSize: '24px', fill: '#ffff00'});
+    coinText.fixedToCamera = true
+    
+    layer = map.createLayer('lay 1')
+    map.setCollisionBetween(64,75,true,layer)
+    map.setCollisionBetween(100,110,true,layer)
     
     //物理啟動
     game.physics.enable(house,Phaser.Physics.ARCADE)
@@ -1863,16 +1879,6 @@ var first =  {
     baoan.body.immovable = true
     vend.body.immovable = true
     cat_text.body.immovable = true
-
-    coins = game.add.physicsGroup()
-    for(var i = 0;i < 10;i++) {
-        coin = coins.create(coin_position[i],(phaserhei-128),'coin')
-        coin.scale.set(0.6)
-        coin.body.allowGravity = false
-        //coin.body.immovable = true
-    }
-    coinText = game.add.text(20,50,'硬幣: '+coinnumber, {fontSize: '24px', fill: '#ffff00'});
-    coinText.fixedToCamera = true
     //玩家位置紀錄
     story_position= {p1:500,p2:1700,p3:2380,p4:3800};
     //玩家
