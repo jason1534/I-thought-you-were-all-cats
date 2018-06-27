@@ -149,8 +149,8 @@ leave.onclick=function(){
     conv.innerHTML=convArr;
     charArr=new Array(characterArr[chapter][0]);
     character.style.background="url(pic/"+charArr[scene]+".jpg)";
-	character.style.left="25px";
-	character.style.top="100px";
+	character.style.left="2.5vw";
+	character.style.top="18vh";
 	character.style.width="350px";
 	character.style.height="451px";
 	bgArr=new Array(backgroundArr[chapter][0]);
@@ -175,8 +175,8 @@ end2.onclick=function(){
     conv.innerHTML=convArr;
     charArr=new Array(characterArr[chapter][0]);
     character.style.background="url(pic/"+charArr[scene]+".jpg)";
-    character.style.left="25px";
-    character.style.top="100px";
+    character.style.left="2.5vw";
+    character.style.top="18vh";
     character.style.width="350px";
     character.style.height="451px";
     bgArr=new Array(backgroundArr[chapter][0]);
@@ -1267,14 +1267,14 @@ function showsel(elem){
 function characterposition(){
   if(charposArr[scene]==0){
     character.style.background="url(pic/"+charArr[scene]+".jpg)";
-    character.style.left="25px";
-    character.style.top="100px";
+    character.style.left="2.5vw";
+    character.style.top="18vh";
     character.style.width="350px";
     character.style.height="451px";
   }else{
     character.style.background="url(pic/"+charArr[scene]+".jpg)";
-    character.style.left="580px";
-    character.style.top="100px";
+    character.style.left="59vw";
+    character.style.top="18vh";
     character.style.width="350px";
     character.style.height="451px";
   }
@@ -1429,8 +1429,8 @@ function testAPI() {
             conv.innerHTML=convArr;
             charArr=new Array(characterArr[chapter][0]);
             character.style.background="url(pic/"+charArr[scene]+".jpg)";
-            character.style.left="25px";
-            character.style.top="100px";
+            character.style.left="2.5vw";
+            character.style.top="18vh";
             character.style.width="350px";
             character.style.height="451px";
             bgArr=new Array(backgroundArr[chapter][0]);
